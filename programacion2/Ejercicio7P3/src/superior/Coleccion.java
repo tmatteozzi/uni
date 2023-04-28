@@ -34,6 +34,7 @@ public class Coleccion {
     }
 
     // MÉTODOS GENERALES DE LA COLECCIÓN
+
     // 1) Ingresar CD o DVD
     public void agregarDisco(int opcionIngreso) {
         if (opcionIngreso == 1) {
@@ -275,6 +276,7 @@ public class Coleccion {
     }
 
     // MÉTODOS PROPIOS DE DVD
+
     // 10) Listar DVD´s por director
     public void listarDvdsPorDirector(String director) {
         System.out.println("Lista de los DVD's que tengo del director '" + director + "':");
@@ -288,6 +290,7 @@ public class Coleccion {
     }
 
     // MÉTODOS PROPIOS DE CD
+
     // 11) Método para listar los CD's por interprete
     public void listarCdsPorInterprete(String interprete) {
         System.out.println("Lista de los CD's que tengo del interprete '" + interprete + "'");

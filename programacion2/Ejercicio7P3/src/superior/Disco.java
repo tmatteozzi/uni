@@ -38,6 +38,7 @@ public abstract class Disco {
     public void setPosesion(boolean posesion) {
         this.posesion = posesion;
     }
+
     // ToString
     @Override
     public abstract String toString();

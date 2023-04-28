@@ -1,12 +1,11 @@
 package hijos;
 import superior.Disco;
 
-import java.util.Scanner;
-
 public class Cd extends Disco {
     // Atributos
     private String interprete;
     private int cantTemas;
+
     // Constructor
     public Cd(String titulo, String genero, String comentario, int duracion, boolean posesion, String interprete,
               int cantTemas) {
@@ -14,6 +13,7 @@ public class Cd extends Disco {
         this.interprete = interprete;
         this.cantTemas = cantTemas;
     }
+
     // Getters & Setters
     public String getInterprete() {
         return interprete;
@@ -27,6 +27,7 @@ public class Cd extends Disco {
     public void setCantTemas(int cantTemas) {
         this.cantTemas = cantTemas;
     }
+
     // ToString
     @Override
     public String toString() {
