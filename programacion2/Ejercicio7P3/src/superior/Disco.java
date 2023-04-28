@@ -1,6 +1,6 @@
 package superior;
 
-public class Disco {
+public abstract class Disco {
     // Atributos
     protected String titulo,genero, comentario;
     protected int duracion;
@@ -20,14 +20,8 @@ public class Disco {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    public String getGenero() {
-        return genero;
-    }
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-    public String getComentario() {
-        return comentario;
     }
     public void setComentario(String comentario) {
         this.comentario = comentario;
@@ -46,8 +40,5 @@ public class Disco {
     }
     // ToString
     @Override
-    public String toString() {
-        return "Disco [Titulo = " + titulo + ", Genero = " + genero + ", Comentario = " + comentario + ", Duracion = "
-                + duracion + ", Posesion = " + posesion + "]";
-    }
+    public abstract String toString();
 }
