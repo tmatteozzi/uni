@@ -55,7 +55,7 @@ public abstract class Transporte {
         double costoTransporte1 = this.costoTransporte();
         double costoTransporte2 = aComparar.costoTransporte();
         if(costoTransporte1 > costoTransporte2){
-            System.out.println("El transporte: " + this.toString() + ", es el transporte de mayor costo. Con un costo de: $" + costoTransporte1);
+            System.out.println("El transporte: " + this + ", es el transporte de mayor costo. Con un costo de: $" + costoTransporte1);
         }
         else {
             System.out.println("El transporte: " + aComparar + ", es el transporte de mayor costo. Con un costo de: $" + costoTransporte2);

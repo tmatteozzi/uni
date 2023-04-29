@@ -7,7 +7,7 @@ public class Alimentos extends Transporte {
     // Constructor
     public Alimentos(String descripcionCarga, String numeroPatente, int localidadSalida, int localidadLlegada) {
         super(descripcionCarga, numeroPatente, localidadSalida, localidadLlegada);
-        listaAlimentos = new ArrayList<Alimento>();
+        listaAlimentos = new ArrayList<>();
         inicializarTiposAlimentos();
     }
 
