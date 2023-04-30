@@ -11,9 +11,9 @@ public class Main {
         Empleado baseMasComisionTest = new EmpleadoBaseMasComision("Franco", "Peralta", "4", 100000,15000,3);
 
         // Imprimir
-        asalariadoTest.toString();
-        porHorasTest.toString();
-        porComisionTest.toString();
-        baseMasComisionTest.toString();
+        System.out.println(asalariadoTest);
+        System.out.println(porHorasTest);
+        System.out.println(porComisionTest);
+        System.out.println(baseMasComisionTest);
     }
 }
