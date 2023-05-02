@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import superior.Coleccion;
+import superior.ColeccionCd;
+import superior.ColeccionDvd;
 import superior.Disco;
 
 public class Menu {
@@ -10,6 +12,7 @@ public class Menu {
     }
     public void nuevoMenu(){
         // Instanciar coleccion
+        Coleccion coleccion = new Coleccion();
 
         // Iniciar scanner para input
         Scanner teclado = new Scanner(System.in);
@@ -31,7 +34,13 @@ public class Menu {
                     System.out.print("Ingrese una opción: \n1- Ingresar DVD\n2- Ingresar CD \n");
                     int opcionIngreso = teclado.nextInt();
                     if (opcionIngreso == 1){
-                        coleccion.agregarDisco();
+                        ColeccionDvd.agregarDisco();
+                    }
+                    else if (opcionIngreso == 2){
+                        ColeccionCd.agregarDisco();
+                    }
+                    else {
+                        System.out.println("Ingrese una opción valida.");
                     }
                     break;
                 // Eliminar un disco conociendo el nombre
@@ -48,7 +57,15 @@ public class Menu {
                     teclado.nextLine();
                     System.out.print("Ingrese el título del disco a modificar: ");
                     String tituloAModificar = teclado.nextLine();
-                    coleccion.modificarDisco(tituloAModificar);
+                    if (opcionModificar == 1){
+                        coleccionDvd.modificarDisco(tituloAModificar);
+                    }
+                    else if (opcionModificar == 2){
+                        coleccionCd.modificarDisco(tituloAModificar);
+                    }
+                    else {
+                        System.out.println("Ingrese una opción valida.");
+                    }
                     break;
                 // Listar todos los Discos
                 case 4:
@@ -80,13 +97,13 @@ public class Menu {
                 case 10:
                     System.out.print("Ingrese el nombre del director del que deseas obtener el listado: ");
                     String directorListado = teclado.nextLine();
-                    coleccion.listarDvdsPorDirector(directorListado);
+                    coleccionDvd.listarDiscoPorDirectorOInterprete(directorListado);
                     break;
                 // Listar CD's de un determinado interprete
                 case 11:
                     System.out.print("Ingrese el nombre del interprete del que deseas obtener el listado: ");
                     String interprete = teclado.nextLine();
-                    coleccion.listarCdsPorInterprete(interprete);
+                    coleccionCd.listarDiscoPorDirectorOInterprete(interprete);
                     break;
                 // Informar la cantidad de temas de un CD según el título (EXCLUSIVO CD)
                 case 12:

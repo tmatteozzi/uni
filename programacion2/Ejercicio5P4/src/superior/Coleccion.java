@@ -1,17 +1,17 @@
 package superior;
 
+import hijos.Cd;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Coleccion {
+public class Coleccion {
     // CREAR ARRAY LIST PARA LA COLECCIÓN
     protected ArrayList<Disco> coleccion;
 
     // CONSTRUCTOR
     public Coleccion() {
         this.coleccion = new ArrayList <> ();
-        new ColeccionCd();
-        new ColeccionDvd();
     }
 
     // GETTER DEL ARRAYLIST
@@ -41,8 +41,10 @@ public abstract class Coleccion {
 
     // MÉTODOS GENERALES DE LA COLECCIÓN
 
+    /**
     // 1) Ingresar CD o DVD
     public abstract void agregarDisco();
+    **/
 
     // 2) Eliminar CD o DVD mediante su título
     public void eliminarDisco(String titulo) {
@@ -63,9 +65,10 @@ public abstract class Coleccion {
             System.out.println("No se encontró ningún DVD o CD con el título ingresado.");
         }
     }
+    /**
     // 3) Modificar disco mediante su título
     public abstract void modificarDisco(String tituloAModificar);
-
+    **/
     // 4) Listar todos los discos
     public void listarDiscos() {
         System.out.println("Lista de los discos: ");
@@ -155,8 +158,24 @@ public abstract class Coleccion {
     }
 
     // MÉTODOS PROPIOS DE DVD Y CD
-
+    /**
     // 10 y 11) Listar DVD´s y CD's por director
     public abstract void listarDiscoPorDirectorOInterprete(String directorOInterprete);
+     **/
+    // 12) Método para devolver la cantidad de temas de un CD
+    public void cantTemasCd(String titulo){
+        // Inicializar variable en 0 para luego asignarle la cantidad de temas si se encuentra
+        int cantTemas = 0;
+        for (int i = 0; i < coleccion.size(); i++) {
+            Cd cd = (Cd) coleccion.get(i);
+            if (cd.getTitulo().equalsIgnoreCase(titulo)) {
+                cantTemas = cd.getCantTemas();
+            }
+        }
+        if (cantTemas == 0) {
+            System.out.println("¡No se encontró el CD que estás buscando, o el CD no tiene temas!");
+        }
+        System.out.println("La cantidad de temas del CD '" + titulo + "' es: " + cantTemas + " temas.");
+    }
 
 }

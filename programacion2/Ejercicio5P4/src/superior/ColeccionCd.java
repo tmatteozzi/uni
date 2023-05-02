@@ -4,7 +4,7 @@ import hijos.Cd;
 
 import java.util.Scanner;
 
-public class ColeccionCd extends Coleccion {
+public class ColeccionCd extends Coleccion implements Editable{
     // INICIAR SCANNER PARA INPUT
     static Scanner teclado = new Scanner(System.in);
 
@@ -102,20 +102,6 @@ public class ColeccionCd extends Coleccion {
         System.out.println("\n");
     }
 
-    // 12) Método para devolver la cantidad de temas de un CD
-    public void cantTemasCd(String titulo){
-        // Inicializar variable en 0 para luego asignarle la cantidad de temas si se encuentra
-        int cantTemas = 0;
-        for (int i = 0; i < coleccion.size(); i++) {
-            Cd cd = (Cd) coleccion.get(i);
-            if (cd.getTitulo().equalsIgnoreCase(titulo)) {
-                cantTemas = cd.getCantTemas();
-            }
-        }
-        if (cantTemas == 0) {
-            System.out.println("¡No se encontró el CD que estás buscando, o el CD no tiene temas!");
-        }
-        System.out.println("La cantidad de temas del CD '" + titulo + "' es: " + cantTemas + " temas.");
-    }
+
 }
 
