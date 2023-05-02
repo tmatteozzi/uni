@@ -7,7 +7,7 @@ public class Dvd extends Disco implements toStringable {
     private String director;
 
     // Constructor
-    public Dvd(String titulo, String genero, String comentario, int duracion, boolean posesion, String director) {
+    public Dvd(String titulo, String director, String genero, int duracion, String comentario, boolean posesion) {
         super(titulo, genero, comentario, duracion, posesion);
         this.director = director;
     }

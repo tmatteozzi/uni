@@ -8,8 +8,7 @@ public class Cd extends Disco implements toStringable {
     private int cantTemas;
 
     // Constructor
-    public Cd(String titulo, String genero, String comentario, int duracion, boolean posesion, String interprete,
-              int cantTemas) {
+    public Cd(String titulo, String interprete, String genero, int duracion, int cantTemas, String comentario, boolean posesion) {
         super(titulo, genero, comentario, duracion, posesion);
         this.interprete = interprete;
         this.cantTemas = cantTemas;

@@ -1,12 +1,17 @@
 import java.util.Scanner;
 import superior.Coleccion;
+import superior.ColeccionCd;
+import superior.ColeccionDvd;
+
 public class Menu {
     public Menu(){
         nuevoMenu();
     }
     public void nuevoMenu(){
         // Instanciar coleccion
-        Coleccion coleccion = new Coleccion();
+        Coleccion coleccionCd = new ColeccionCd();
+        Coleccion coleccionDvd = new ColeccionDvd();
+
         // Iniciar scanner para input
         Scanner teclado = new Scanner(System.in);
         // Iniciar un boolean para que termine el programa en falso para que pueda comenzar
@@ -26,7 +31,9 @@ public class Menu {
                 case 1:
                     System.out.print("Ingrese una opción: \n1- Ingresar DVD\n2- Ingresar CD \n");
                     int opcionIngreso = teclado.nextInt();
-                    coleccion.agregarDisco(opcionIngreso);
+                    if (opcionIngreso == 1){
+                        coleccionCd.agregarDisco();
+                    }
                     break;
                 // Eliminar un disco conociendo el nombre
                 case 2:
@@ -42,7 +49,7 @@ public class Menu {
                     teclado.nextLine();
                     System.out.print("Ingrese el título del disco a modificar: ");
                     String tituloAModificar = teclado.nextLine();
-                    coleccion.modificarDisco(tituloAModificar, opcionModificar);
+                    coleccion.modificarDisco(tituloAModificar);
                     break;
                 // Listar todos los Discos
                 case 4:
