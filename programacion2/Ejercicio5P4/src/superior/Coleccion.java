@@ -5,18 +5,25 @@ import java.util.Scanner;
 
 public abstract class Coleccion {
     // CREAR ARRAY LIST PARA LA COLECCIÓN
-    public ArrayList<Disco> coleccion;
+    protected ArrayList<Disco> coleccion;
+
+    // CONSTRUCTOR
     public Coleccion() {
         this.coleccion = new ArrayList <> ();
         new ColeccionCd();
-        new ColeccionDvd();s
+        new ColeccionDvd();
+    }
+
+    // GETTER DEL ARRAYLIST
+    public ArrayList<Disco> getColeccion(){
+        return coleccion;
     }
 
     // INICIAR SCANNER PARA INPUT
     static Scanner teclado = new Scanner(System.in);
 
     // MENÚ DE OPCIONES
-    public void imprimirMenuOpciones() {
+    public static void imprimirMenuOpciones() {
         System.out.println("1. Ingresar información sobre un disco");
         System.out.println("2. Eliminar un disco conociendo el título");
         System.out.println("3. Modificar los valores de uno o más atributos del disco conociendo el título");

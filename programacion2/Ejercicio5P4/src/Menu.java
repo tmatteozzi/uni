@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import superior.Coleccion;
-import superior.ColeccionCd;
-import superior.ColeccionDvd;
+import superior.Disco;
 
 public class Menu {
     public Menu(){
@@ -9,8 +10,6 @@ public class Menu {
     }
     public void nuevoMenu(){
         // Instanciar coleccion
-        Coleccion coleccionCd = new ColeccionCd();
-        Coleccion coleccionDvd = new ColeccionDvd();
 
         // Iniciar scanner para input
         Scanner teclado = new Scanner(System.in);
@@ -18,7 +17,7 @@ public class Menu {
         boolean salir = false;
         while (!salir) {
             // Imprimir menu de opciones
-            coleccion.imprimirMenuOpciones();
+            Coleccion.imprimirMenuOpciones();
             // Input de la opción elegida
             System.out.print("Ingrese una opción: \n");
             int opcion = teclado.nextInt();
@@ -32,7 +31,7 @@ public class Menu {
                     System.out.print("Ingrese una opción: \n1- Ingresar DVD\n2- Ingresar CD \n");
                     int opcionIngreso = teclado.nextInt();
                     if (opcionIngreso == 1){
-                        coleccionCd.agregarDisco();
+                        coleccion.agregarDisco();
                     }
                     break;
                 // Eliminar un disco conociendo el nombre
