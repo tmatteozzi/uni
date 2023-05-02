@@ -2,6 +2,7 @@ import java.util.Scanner;
 import superior.Coleccion;
 public class Menu {
     public Menu(){
+        nuevoMenu();
     }
     public void nuevoMenu(){
         // Instanciar coleccion
