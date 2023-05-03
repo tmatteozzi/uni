@@ -1,8 +1,7 @@
 package hijos;
 import superior.Disco;
-import superior.toStringable;
 
-public class Dvd extends Disco implements toStringable {
+public class Dvd extends Disco {
     // Atributos
     private String director;
 

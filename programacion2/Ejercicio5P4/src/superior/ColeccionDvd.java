@@ -4,7 +4,7 @@ import hijos.Dvd;
 
 import java.util.Scanner;
 
-public class ColeccionDvd extends Coleccion implements Editable {
+public class ColeccionDvd extends Coleccion {
     // INICIAR SCANNER PARA INPUT
     static Scanner teclado = new Scanner(System.in);
 

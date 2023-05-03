@@ -5,7 +5,7 @@ import hijos.Cd;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Coleccion {
+public abstract class Coleccion {
     // CREAR ARRAY LIST PARA LA COLECCIÓN
     protected ArrayList<Disco> coleccion;
 
@@ -41,11 +41,8 @@ public class Coleccion {
 
     // MÉTODOS GENERALES DE LA COLECCIÓN
 
-    /**
     // 1) Ingresar CD o DVD
     public abstract void agregarDisco();
-    **/
-
     // 2) Eliminar CD o DVD mediante su título
     public void eliminarDisco(String titulo) {
         // Booleano para indicar si ya fue eliminado (Empieza en falso)
@@ -65,10 +62,8 @@ public class Coleccion {
             System.out.println("No se encontró ningún DVD o CD con el título ingresado.");
         }
     }
-    /**
     // 3) Modificar disco mediante su título
     public abstract void modificarDisco(String tituloAModificar);
-    **/
     // 4) Listar todos los discos
     public void listarDiscos() {
         System.out.println("Lista de los discos: ");
@@ -138,11 +133,11 @@ public class Coleccion {
         System.out.println();
     }
     // 8) Informar cantidad total
-    public void informarTotal() {
-        System.out.println("La cantidad total de discos es de: " + coleccion.size() + " discos.");
+    public int obtenerTotal() {
+        return coleccion.size();
     }
     // 9) Informar cantidad de discos en posesión
-    public void discosEnPosesion() {
+    public int discosEnPosesion() {
         // Crear una nuevo array list donde se van a agregar todos los dvds que posea
         ArrayList<Disco> discosEnPosesion = new ArrayList<>();
         // Fijarse en la coleccion cuales poseo
@@ -153,15 +148,12 @@ public class Coleccion {
                 discosEnPosesion.add(d);
             }
         }
-        // Imprimir la cantidad total
-        System.out.println("Cantidad total de DVD que poseo: " + discosEnPosesion.size());
+        return discosEnPosesion.size();
     }
 
     // MÉTODOS PROPIOS DE DVD Y CD
-    /**
     // 10 y 11) Listar DVD´s y CD's por director
     public abstract void listarDiscoPorDirectorOInterprete(String directorOInterprete);
-     **/
     // 12) Método para devolver la cantidad de temas de un CD
     public void cantTemasCd(String titulo){
         // Inicializar variable en 0 para luego asignarle la cantidad de temas si se encuentra

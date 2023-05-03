@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import superior.Coleccion;
@@ -10,12 +9,19 @@ public class Menu {
     public Menu(){
         nuevoMenu();
     }
+    // Iniciar scanner para input
+    Scanner teclado = new Scanner(System.in);
+    // Método que devuelve una opción de ingreso
+    public int elegirOpcion(){
+        System.out.print("Ingrese una opción: \n1- DVD\n2- CD \n");
+        return teclado.nextInt();
+    }
+
     public void nuevoMenu(){
         // Instanciar coleccion
-        Coleccion coleccion = new Coleccion();
+        Coleccion coleccionCd = new ColeccionCd();
+        Coleccion coleccionDvd = new ColeccionDvd();
 
-        // Iniciar scanner para input
-        Scanner teclado = new Scanner(System.in);
         // Iniciar un boolean para que termine el programa en falso para que pueda comenzar
         boolean salir = false;
         while (!salir) {
@@ -31,13 +37,13 @@ public class Menu {
             switch (opcion) {
                 // Ingresar información sobre un disco
                 case 1:
-                    System.out.print("Ingrese una opción: \n1- Ingresar DVD\n2- Ingresar CD \n");
-                    int opcionIngreso = teclado.nextInt();
+                    System.out.println("AGREGAR UN DISCO");
+                    int opcionIngreso = elegirOpcion();
                     if (opcionIngreso == 1){
-                        ColeccionDvd.agregarDisco();
+                        coleccionDvd.agregarDisco();
                     }
                     else if (opcionIngreso == 2){
-                        ColeccionCd.agregarDisco();
+                        coleccionCd.agregarDisco();
                     }
                     else {
                         System.out.println("Ingrese una opción valida.");
@@ -45,14 +51,28 @@ public class Menu {
                     break;
                 // Eliminar un disco conociendo el nombre
                 case 2:
+                    System.out.println("ELIMINAR UN DISCO");
+                    int opcionAEliminar = elegirOpcion();
+                    // Limpiar el buffer de entrada
+                    teclado.nextLine();
                     System.out.print("Ingrese el titulo del disco a eliminar: ");
                     String tituloAEliminar = teclado.nextLine();
-                    coleccion.eliminarDisco(tituloAEliminar);
+                    if (opcionAEliminar == 1){
+                        coleccionDvd.eliminarDisco(tituloAEliminar);
+                        break;
+                    }
+                    else if (opcionAEliminar == 2){
+                        coleccionCd.eliminarDisco(tituloAEliminar);
+                        break;
+                    }
+                    else {
+                        System.out.println("Ingrese una opción valida.");
+                    }
                     break;
                 // Modificar los valores de uno o más atributos del disco conociendo el título
                 case 3:
-                    System.out.print("Ingrese una opción \n1- Modificar DVD\n2- Modificar CD \n");
-                    int opcionModificar = teclado.nextInt();
+                    System.out.println("MODIFICAR UN DISCO");
+                    int opcionModificar = elegirOpcion();
                     // Limpiar el buffer de entrada
                     teclado.nextLine();
                     System.out.print("Ingrese el título del disco a modificar: ");
@@ -69,47 +89,86 @@ public class Menu {
                     break;
                 // Listar todos los Discos
                 case 4:
-                    coleccion.listarDiscos();
+                    System.out.println("LISTAR TODOS LOS DISCOS");
+                    coleccionDvd.listarDiscos();
+                    coleccionCd.listarDiscos();
                     break;
                 // Listar los Discos que tengo
                 case 5:
-                    coleccion.listarDiscosEnPosesion();
+                    System.out.println("LISTAR TODOS LOS DISCOS EN POSESION");
+                    int opcionAListarPosesion = elegirOpcion();
+                    if (opcionAListarPosesion == 1){
+                        coleccionDvd.listarDiscosEnPosesion();
+                    }
+                    else if (opcionAListarPosesion == 2){
+                        coleccionCd.listarDiscosEnPosesion();
+                    }
+                    else {
+                        System.out.println("Ingrese una opción valida.");
+                    }
                     break;
                 // Listar los discos que duran menos de un tiempo dado en minutos
                 case 6:
+                    System.out.println("LISTAR TODOS LOS DISCOS QUE DUREN MENOS DE UN DETERMINADO TIEMPO");
+                    int opcionAListarPorTiempo = elegirOpcion();
                     System.out.print("Ingrese el tiempo máximo que debe durar el dvd (En minutos): ");
                     int tiempo = teclado.nextInt();
-                    coleccion.listarDiscosPorTiempo(tiempo);
+                    if (opcionAListarPorTiempo == 1){
+                        coleccionDvd.listarDiscosPorTiempo(tiempo);
+                    }
+                    else if (opcionAListarPorTiempo == 2){
+                        coleccionCd.listarDiscosPorTiempo(tiempo);
+                    }
+                    else {
+                        System.out.println("Ingrese una opción valida.");
+                    }
                     break;
                 // Listar todos los Discos ordenados por título
                 case 7:
-                    coleccion.listarDiscosOrdenados();
+                    System.out.println("LISTAR DISCOS ORDENADOS POR TÍTULO");
+                    int opcionAListarPorTitulo = elegirOpcion();
+                    if (opcionAListarPorTitulo == 1){
+                        coleccionDvd.listarDiscosOrdenados();
+                    }
+                    else if (opcionAListarPorTitulo == 2){
+                        coleccionCd.listarDiscosOrdenados();
+                    }
+                    else {
+                        System.out.println("Ingrese una opción valida.");
+                    }
                     break;
-                // Informar la cantidad total de DVDs
+                // Informar la cantidad total de Discos
                 case 8:
-                    coleccion.informarTotal();
+                    System.out.println("INFORME DE CANTIDAD TOTAL DE DISCOS");
+                    System.out.println("La cantidad total es de: " +
+                    (coleccionCd.obtenerTotal() + coleccionDvd.obtenerTotal()) + "discos");
                     break;
                 // Informar la cantidad de DVD que tengo en posesion
                 case 9:
-                    coleccion.discosEnPosesion();
+                    System.out.println("INFORME DE CANTIDAD TOTAL DE DISCOS EN POSESION");
+                    System.out.println("La cantidad total de discos en posesión es de: " +
+                            (coleccionCd.discosEnPosesion() + coleccionDvd.discosEnPosesion()) + "discos");
                     break;
                 // Listar los discos de un determinado director (Exclusivo Dvd's)
                 case 10:
+                    System.out.println("INFORME DE DVD's DE UN DIRECTOR EN PARTICULAR");
                     System.out.print("Ingrese el nombre del director del que deseas obtener el listado: ");
                     String directorListado = teclado.nextLine();
                     coleccionDvd.listarDiscoPorDirectorOInterprete(directorListado);
                     break;
                 // Listar CD's de un determinado interprete
                 case 11:
+                    System.out.println("INFORME DE CD'S DE UN INTERPRETE EN PARTICULAR");
                     System.out.print("Ingrese el nombre del interprete del que deseas obtener el listado: ");
                     String interprete = teclado.nextLine();
                     coleccionCd.listarDiscoPorDirectorOInterprete(interprete);
                     break;
                 // Informar la cantidad de temas de un CD según el título (EXCLUSIVO CD)
                 case 12:
+                    System.out.println("LISTADO DE TEMAS DE UN CD");
                     System.out.print("Ingrese el título del CD del que deseas obtener el listado: ");
                     String tituloParaCantTemas = teclado.nextLine();
-                    coleccion.cantTemasCd(tituloParaCantTemas);
+                    coleccionCd.cantTemasCd(tituloParaCantTemas);
                     break;
                 // Salir
                 case 13:

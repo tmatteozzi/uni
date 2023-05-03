@@ -1,8 +1,7 @@
 package hijos;
 import superior.Disco;
-import superior.toStringable;
 
-public class Cd extends Disco implements toStringable {
+public class Cd extends Disco {
     // Atributos
     private String interprete;
     private int cantTemas;
