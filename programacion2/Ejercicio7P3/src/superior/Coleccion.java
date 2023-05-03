@@ -1,23 +1,29 @@
 package superior;
-// Importar package de hijos
+
 import hijos.Cd;
-import hijos.Dvd;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Coleccion {
+public abstract class Coleccion {
     // CREAR ARRAY LIST PARA LA COLECCIÓN
-    private ArrayList<Disco> coleccion;
+    protected ArrayList<Disco> coleccion;
+
+    // CONSTRUCTOR
     public Coleccion() {
         this.coleccion = new ArrayList <> ();
+    }
+
+    // GETTER DEL ARRAYLIST
+    public ArrayList<Disco> getColeccion(){
+        return coleccion;
     }
 
     // INICIAR SCANNER PARA INPUT
     static Scanner teclado = new Scanner(System.in);
 
     // MENÚ DE OPCIONES
-    public void imprimirMenuOpciones() {
+    public static void imprimirMenuOpciones() {
         System.out.println("1. Ingresar información sobre un disco");
         System.out.println("2. Eliminar un disco conociendo el título");
         System.out.println("3. Modificar los valores de uno o más atributos del disco conociendo el título");
@@ -36,51 +42,7 @@ public class Coleccion {
     // MÉTODOS GENERALES DE LA COLECCIÓN
 
     // 1) Ingresar CD o DVD
-    public void agregarDisco(int opcionIngreso) {
-        if (opcionIngreso == 1) {
-            // Inputs
-            System.out.print("Ingrese el título del DVD: ");
-            String titulo = teclado.nextLine();
-            System.out.print("Ingrese el género del DVD: ");
-            String genero = teclado.nextLine();
-            System.out.print("Ingrese el nombre del director: ");
-            String director = teclado.nextLine();
-            System.out.print("Ingrese la duración en minutos del DVD: ");
-            int duracion = teclado.nextInt();
-            // Limpiar el buffer de entrada
-            teclado.nextLine();
-            System.out.print("¿Tiene el DVD? (s/n): ");
-            boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-            System.out.print("Ingrese un comentario (Excelente, Muy Buena, Buena, Regular, Mala): ");
-            String comentario = teclado.nextLine();
-            // Una vez ingresados los datos en el input se ingresa el nuevo DVD (Creandolo)
-            coleccion.add(new Dvd(titulo, genero, comentario, duracion, posesion, director));
-            System.out.println("DVD agregado correctamente.\n");
-        } else if (opcionIngreso == 2) {
-            // Inputs
-            System.out.print("Ingrese el título del CD: ");
-            String titulo = teclado.nextLine();
-            System.out.print("Ingrese el género del CD: ");
-            String genero = teclado.nextLine();
-            System.out.print("Ingrese el nombre del interprete: ");
-            String interprete = teclado.nextLine();
-            System.out.print("Ingrese la duración del CD: ");
-            int duracion = teclado.nextInt();
-            System.out.print("Ingrese la cantidad de temas en el CD: ");
-            int cantTemas = teclado.nextInt();
-            // Limpiar el buffer de entrada
-            teclado.nextLine();
-            System.out.print("¿Tiene el CD? (s/n): ");
-            boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-            System.out.print("Ingrese un comentario (Excelente, Muy Buena, Buena, Regular, Mala): ");
-            String comentario = teclado.nextLine();
-            // Una vez ingresados los datos en el input se ingresa el nuevo DVD (Creandolo)
-            coleccion.add(new Cd(titulo, genero, comentario, duracion, posesion, interprete, cantTemas ));
-            System.out.println("CD agregado correctamente.\n");
-        } else {
-            System.out.println("¡Debe elegir la opción 1 o 2!");
-        }
-    }
+    public abstract void agregarDisco();
     // 2) Eliminar CD o DVD mediante su título
     public void eliminarDisco(String titulo) {
         // Booleano para indicar si ya fue eliminado (Empieza en falso)
@@ -101,122 +63,34 @@ public class Coleccion {
         }
     }
     // 3) Modificar disco mediante su título
-    public void modificarDisco(String tituloAModificar, int opcionModificar) {
-        if (opcionModificar == 1) {
-            // Booleano para indicar si ya fue modificado (Empieza en falso)
-            boolean modificado = false;
-            for (int i = 0; i < coleccion.size(); i++) {
-                Disco d = coleccion.get(i);
-                if (d.getTitulo().equalsIgnoreCase(tituloAModificar)) {
-                    // Inputs
-                    System.out.println("Ingresar los datos del DVD:");
-                    System.out.print("Ingrese el título del DVD: ");
-                    String titulo = teclado.nextLine();
-                    System.out.print("Ingrese el género del DVD: ");
-                    String genero = teclado.nextLine();
-                    System.out.print("Ingrese la duración en minutos del DVD: ");
-                    int duracion = teclado.nextInt();
-                    teclado.nextLine(); // Limpiar el buffer de entrada
-                    System.out.print("¿Tiene el DVD? (s/n): ");
-                    boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-                    System.out.print("Ingrese un comentario (Excelente, Muy Buena, Buena, Regular, Mala): ");
-                    String comentario = teclado.nextLine();
-                    System.out.print("Ingrese el nombre del director: ");
-                    String director = teclado.nextLine();
-                    // Realizar los cambios
-                    d.setTitulo(titulo);
-                    d.setGenero(genero);
-                    d.setDuracion(duracion);
-                    d.setPosesion(posesion);
-                    d.setComentario(comentario);
-                    ((Dvd) d).setDirector(director);
-                    // Si lo encontró y modificó cambiar el booleano a true y salir del for
-                    modificado = true;
-                    break;
-                }
-            }
-            if (modificado) {
-                System.out.println("DVD modificado correctamente.");
-            } else {
-                System.out.println("No se encontró un DVD con el título ingresado.");
-            }
-        }
-        else if (opcionModificar == 2) {
-            boolean modificado = false;
-            for (int i = 0; i < coleccion.size(); i++) {
-                Disco c = coleccion.get(i);
-                if (c.getTitulo().equalsIgnoreCase(tituloAModificar)) {
-                    // Inputs
-                    System.out.print("Ingrese el título del CD: ");
-                    String titulo = teclado.nextLine();
-                    System.out.print("Ingrese el género del CD: ");
-                    String genero = teclado.nextLine();
-                    System.out.print("Ingrese el nombre del interprete: ");
-                    String interprete = teclado.nextLine();
-                    System.out.print("Ingrese la duración del CD: ");
-                    int duracion = teclado.nextInt();
-                    System.out.print("Ingrese la cantidad de temas en el CD: ");
-                    int cantTemas = teclado.nextInt();
-                    // Limpiar el buffer de entrada
-                    teclado.nextLine();
-                    System.out.print("¿Tiene el CD? (s/n): ");
-                    boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-                    System.out.print("Ingrese un comentario (Excelente, Muy Buena, Buena, Regular, Mala): ");
-                    String comentario = teclado.nextLine();
-
-                    // Realizar los cambios
-                    c.setTitulo(titulo);
-                    c.setGenero(genero);
-                    c.setDuracion(duracion);
-                    c.setPosesion(posesion);
-                    c.setComentario(comentario);
-                    ((Cd) c).setInterprete(interprete);
-                    ((Cd) c).setCantTemas(cantTemas);
-                    modificado = true;
-                    break;
-                }
-            }
-            if (modificado) {
-                System.out.println("CD modificado correctamente.");
-            } else {
-                System.out.println("No se encontró un CD con el título ingresado.");
-            }
-        }
-        else {
-            System.out.println("¡Debe elegir la opción 1 o 2!");
-        }
-
-    }
+    public abstract void modificarDisco(String tituloAModificar);
     // 4) Listar todos los discos
     public void listarDiscos() {
-        System.out.println("Lista de los discos: ");
         for (int i = 0; i < coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             System.out.println(d);
         }
-        System.out.println("\n");
+        System.out.println();
     }
     // 5) Listar todos los discos en posesión
     public void listarDiscosEnPosesion() {
-        System.out.println("Lista de los discos que tengo: \n");
         for (int i = 0; i< coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             if (d.isPosesion() == true) {
                 System.out.println(d);
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
     // 6) Listar todos los discos que duren menos tiempo que el parámetro
     public void listarDiscosPorTiempo(int tiempo) {
-        System.out.println("Lista de los DVD's que tengo menores a " + tiempo + " minutos: \n");
         for (int i = 0; i< coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             if (d.getDuracion() < tiempo) {
                 System.out.println(d);
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
     // 7) Listar todos los discos ordenados por título
     public void listarDiscosOrdenados() {
@@ -256,11 +130,11 @@ public class Coleccion {
         System.out.println();
     }
     // 8) Informar cantidad total
-    public void informarTotal() {
-        System.out.println("La cantidad total de discos es de: " + coleccion.size() + " discos.");
+    public int obtenerTotal() {
+        return coleccion.size();
     }
     // 9) Informar cantidad de discos en posesión
-    public void discosEnPosesion() {
+    public int discosEnPosesion() {
         // Crear una nuevo array list donde se van a agregar todos los dvds que posea
         ArrayList<Disco> discosEnPosesion = new ArrayList<>();
         // Fijarse en la coleccion cuales poseo
@@ -271,39 +145,14 @@ public class Coleccion {
                 discosEnPosesion.add(d);
             }
         }
-        // Imprimir la cantidad total
-        System.out.println("Cantidad total de DVD que poseo: " + discosEnPosesion.size());
+        return discosEnPosesion.size();
     }
 
-    // MÉTODOS PROPIOS DE DVD
-
-    // 10) Listar DVD´s por director
-    public void listarDvdsPorDirector(String director) {
-        System.out.println("Lista de los DVD's que tengo del director '" + director + "':");
-        for (int i = 0; i< coleccion.size(); i++) {
-            Dvd d = (Dvd) coleccion.get(i);
-            if (d.getDirector().equals(director)) {
-                System.out.println(d);
-            }
-        }
-        System.out.println("\n");
-    }
-
-    // MÉTODOS PROPIOS DE CD
-
-    // 11) Método para listar los CD's por interprete
-    public void listarCdsPorInterprete(String interprete) {
-        System.out.println("Lista de los CD's que tengo del interprete '" + interprete + "'");
-        for (int i = 0; i< coleccion.size(); i++) {
-            Cd cd = (Cd) coleccion.get(i);
-            if (cd.getInterprete().equals(interprete)) {
-                System.out.println(cd);
-            }
-        }
-        System.out.println("\n");
-    }
+    // MÉTODOS PROPIOS DE DVD Y CD
+    // 10 y 11) Listar DVD´s y CD's por director
+    public abstract void listarDiscoPorDirectorOInterprete(String directorOInterprete);
     // 12) Método para devolver la cantidad de temas de un CD
-    public void cantTemasCd(String titulo){
+    public int obtenerCantidadCd(String titulo){
         // Inicializar variable en 0 para luego asignarle la cantidad de temas si se encuentra
         int cantTemas = 0;
         for (int i = 0; i < coleccion.size(); i++) {
@@ -312,9 +161,6 @@ public class Coleccion {
                 cantTemas = cd.getCantTemas();
             }
         }
-        if (cantTemas == 0) {
-            System.out.println("¡No se encontró el CD que estás buscando, o el CD no tiene temas!");
-        }
-        System.out.println("La cantidad de temas del CD '" + titulo + "' es: " + cantTemas + " temas.");
+        return cantTemas;
     }
 }

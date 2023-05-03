@@ -1,6 +1,6 @@
 package superior;
 
-public abstract class Disco {
+public class Disco {
     // Atributos
     protected String titulo,genero, comentario;
     protected int duracion;
@@ -38,8 +38,4 @@ public abstract class Disco {
     public void setPosesion(boolean posesion) {
         this.posesion = posesion;
     }
-
-    // ToString
-    @Override
-    public abstract String toString();
 }

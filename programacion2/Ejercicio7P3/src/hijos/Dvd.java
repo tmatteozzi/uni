@@ -6,7 +6,7 @@ public class Dvd extends Disco {
     private String director;
 
     // Constructor
-    public Dvd(String titulo, String genero, String comentario, int duracion, boolean posesion, String director) {
+    public Dvd(String titulo, String director, String genero, int duracion, String comentario, boolean posesion) {
         super(titulo, genero, comentario, duracion, posesion);
         this.director = director;
     }
@@ -19,10 +19,10 @@ public class Dvd extends Disco {
         this.director = director;
     }
 
-    // ToString
+    // Método ToString desde interfaz
     @Override
     public String toString() {
-        return "Dvd [Título = " + titulo + ", Género = " + genero + ", Comentario = " + comentario + ", Duración = " + duracion
-                + ", Posesión = " + posesion + ", Director = " + director + "]";
+        return "Dvd [Título = " + titulo + ", Director = " + director + ", Género = " + genero
+                + ", Duración = " + duracion + ", Comentario = " + comentario + "]";
     }
 }

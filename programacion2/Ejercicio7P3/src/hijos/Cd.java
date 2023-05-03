@@ -7,8 +7,7 @@ public class Cd extends Disco {
     private int cantTemas;
 
     // Constructor
-    public Cd(String titulo, String genero, String comentario, int duracion, boolean posesion, String interprete,
-              int cantTemas) {
+    public Cd(String titulo, String interprete, String genero, int duracion, int cantTemas, String comentario, boolean posesion) {
         super(titulo, genero, comentario, duracion, posesion);
         this.interprete = interprete;
         this.cantTemas = cantTemas;
@@ -28,10 +27,11 @@ public class Cd extends Disco {
         this.cantTemas = cantTemas;
     }
 
-    // ToString
+    // Método ToString desde interfaz
     @Override
     public String toString() {
-        return "Cd [Título = " + titulo + ", Género = " + genero + ", Comentario = " + comentario + ", Duración = " + duracion
-                + ", Posesión = " + posesion + ", Interprete = " + interprete + ", Cantidad de temas = " + cantTemas + "]";
+        return "Cd [Título = " + titulo + ", Interprete = " + interprete + ", Género = " + genero
+                + ", Duración = " + duracion + ", Cantidad de temas = " + cantTemas + ", Comentario = "
+                + comentario + "]";
     }
 }
