@@ -44,7 +44,6 @@ public class ColeccionDvd extends Coleccion {
         coleccion.add(new Dvd(titulo, director, genero, duracion, comentario, posesion));
         System.out.println("DVD agregado correctamente.\n");
     }
-
     @Override
     public void modificarDisco(String tituloAModificar) {
         // Booleano para indicar si ya fue modificado (Empieza en falso)
@@ -96,6 +95,6 @@ public class ColeccionDvd extends Coleccion {
                 System.out.println(dvd);
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
 }

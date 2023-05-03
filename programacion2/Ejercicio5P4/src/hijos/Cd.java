@@ -30,8 +30,8 @@ public class Cd extends Disco {
     // Método ToString desde interfaz
     @Override
     public String toString() {
-        return "Cd [Título = " + titulo + ", Género = " + genero + ", Comentario = " + comentario + ", Duración = " + duracion
-                + ", Posesión = " + posesion + ", Interprete = " + interprete + ", Cantidad de temas = " + cantTemas + "]";
+        return "Cd [Título = " + titulo + ", Interprete = " + interprete + ", Género = " + genero
+                + ", Duración = " + duracion + ", Cantidad de temas = " + cantTemas + ", Comentario = "
+                + comentario + "]";
     }
-
 }

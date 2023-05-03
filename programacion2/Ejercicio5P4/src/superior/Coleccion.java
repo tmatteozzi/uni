@@ -66,34 +66,31 @@ public abstract class Coleccion {
     public abstract void modificarDisco(String tituloAModificar);
     // 4) Listar todos los discos
     public void listarDiscos() {
-        System.out.println("Lista de los discos: ");
         for (int i = 0; i < coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             System.out.println(d);
         }
-        System.out.println("\n");
+        System.out.println();
     }
     // 5) Listar todos los discos en posesión
     public void listarDiscosEnPosesion() {
-        System.out.println("Lista de los discos que tengo: \n");
         for (int i = 0; i< coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             if (d.isPosesion() == true) {
                 System.out.println(d);
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
     // 6) Listar todos los discos que duren menos tiempo que el parámetro
     public void listarDiscosPorTiempo(int tiempo) {
-        System.out.println("Lista de los DVD's que tengo menores a " + tiempo + " minutos: \n");
         for (int i = 0; i< coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             if (d.getDuracion() < tiempo) {
                 System.out.println(d);
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
     // 7) Listar todos los discos ordenados por título
     public void listarDiscosOrdenados() {
@@ -155,7 +152,7 @@ public abstract class Coleccion {
     // 10 y 11) Listar DVD´s y CD's por director
     public abstract void listarDiscoPorDirectorOInterprete(String directorOInterprete);
     // 12) Método para devolver la cantidad de temas de un CD
-    public void cantTemasCd(String titulo){
+    public int obtenerCantidadCd(String titulo){
         // Inicializar variable en 0 para luego asignarle la cantidad de temas si se encuentra
         int cantTemas = 0;
         for (int i = 0; i < coleccion.size(); i++) {
@@ -164,10 +161,6 @@ public abstract class Coleccion {
                 cantTemas = cd.getCantTemas();
             }
         }
-        if (cantTemas == 0) {
-            System.out.println("¡No se encontró el CD que estás buscando, o el CD no tiene temas!");
-        }
-        System.out.println("La cantidad de temas del CD '" + titulo + "' es: " + cantTemas + " temas.");
+        return cantTemas;
     }
-
 }

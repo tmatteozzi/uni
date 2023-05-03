@@ -22,7 +22,7 @@ public class Dvd extends Disco {
     // Método ToString desde interfaz
     @Override
     public String toString() {
-        return "Dvd [Título = " + titulo + ", Género = " + genero + ", Comentario = " + comentario + ", Duración = " + duracion
-                + ", Posesión = " + posesion + ", Director = " + director + "]";
+        return "Dvd [Título = " + titulo + ", Director = " + director + ", Género = " + genero
+                + ", Duración = " + duracion + ", Comentario = " + comentario + "]";
     }
 }

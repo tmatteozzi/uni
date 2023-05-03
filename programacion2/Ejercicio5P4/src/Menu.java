@@ -3,7 +3,6 @@ import java.util.Scanner;
 import superior.Coleccion;
 import superior.ColeccionCd;
 import superior.ColeccionDvd;
-import superior.Disco;
 
 public class Menu {
     public Menu(){
@@ -16,7 +15,7 @@ public class Menu {
         System.out.print("Ingrese una opción: \n1- DVD\n2- CD \n");
         return teclado.nextInt();
     }
-
+    // Método del menu de opciones
     public void nuevoMenu(){
         // Instanciar coleccion
         Coleccion coleccionCd = new ColeccionCd();
@@ -98,9 +97,11 @@ public class Menu {
                     System.out.println("LISTAR TODOS LOS DISCOS EN POSESION");
                     int opcionAListarPosesion = elegirOpcion();
                     if (opcionAListarPosesion == 1){
+                        System.out.println("DVD's EN POSESION");
                         coleccionDvd.listarDiscosEnPosesion();
                     }
                     else if (opcionAListarPosesion == 2){
+                        System.out.println("CD´s EN POSESION");
                         coleccionCd.listarDiscosEnPosesion();
                     }
                     else {
@@ -114,9 +115,11 @@ public class Menu {
                     System.out.print("Ingrese el tiempo máximo que debe durar el dvd (En minutos): ");
                     int tiempo = teclado.nextInt();
                     if (opcionAListarPorTiempo == 1){
+                        System.out.println("DVD's QUE DURAN MENOS DE " + tiempo + " MINUTOS:");
                         coleccionDvd.listarDiscosPorTiempo(tiempo);
                     }
                     else if (opcionAListarPorTiempo == 2){
+                        System.out.println("CD's QUE DURAN MENOS DE " + tiempo + " MINUTOS:");
                         coleccionCd.listarDiscosPorTiempo(tiempo);
                     }
                     else {
@@ -128,9 +131,11 @@ public class Menu {
                     System.out.println("LISTAR DISCOS ORDENADOS POR TÍTULO");
                     int opcionAListarPorTitulo = elegirOpcion();
                     if (opcionAListarPorTitulo == 1){
+                        System.out.println("DVD's ORDENADOS POR TÍTULO");
                         coleccionDvd.listarDiscosOrdenados();
                     }
                     else if (opcionAListarPorTitulo == 2){
+                        System.out.println("CD's ORDENADOS POR TÍTULO");
                         coleccionCd.listarDiscosOrdenados();
                     }
                     else {
@@ -140,14 +145,14 @@ public class Menu {
                 // Informar la cantidad total de Discos
                 case 8:
                     System.out.println("INFORME DE CANTIDAD TOTAL DE DISCOS");
-                    System.out.println("La cantidad total es de: " +
-                    (coleccionCd.obtenerTotal() + coleccionDvd.obtenerTotal()) + "discos");
+                    System.out.println("LA CANTIDAD TOTAL ES DE " +
+                    (coleccionCd.obtenerTotal() + coleccionDvd.obtenerTotal()) + " DISCOS\n");
                     break;
                 // Informar la cantidad de DVD que tengo en posesion
                 case 9:
                     System.out.println("INFORME DE CANTIDAD TOTAL DE DISCOS EN POSESION");
-                    System.out.println("La cantidad total de discos en posesión es de: " +
-                            (coleccionCd.discosEnPosesion() + coleccionDvd.discosEnPosesion()) + "discos");
+                    System.out.println("LA CANTIDAD TOTAL DE DISCOS EN POSESION ES DE " +
+                            (coleccionCd.discosEnPosesion() + coleccionDvd.discosEnPosesion()) + " DISCOS\n");
                     break;
                 // Listar los discos de un determinado director (Exclusivo Dvd's)
                 case 10:
@@ -168,7 +173,9 @@ public class Menu {
                     System.out.println("LISTADO DE TEMAS DE UN CD");
                     System.out.print("Ingrese el título del CD del que deseas obtener el listado: ");
                     String tituloParaCantTemas = teclado.nextLine();
-                    coleccionCd.cantTemasCd(tituloParaCantTemas);
+
+                    System.out.println("LA CANTIDAD DE TEMAS DEL CD '" + tituloParaCantTemas + "' ES: "
+                            + coleccionCd.obtenerCantidadCd(tituloParaCantTemas) + " TEMAS.\n");
                     break;
                 // Salir
                 case 13:

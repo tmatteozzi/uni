@@ -46,7 +46,6 @@ public class ColeccionCd extends Coleccion{
         coleccion.add(new Cd(titulo, interprete, genero, duracion, cantTemas, comentario, posesion));
         System.out.println("CD agregado correctamente.\n");
     }
-
     @Override
     public void modificarDisco(String tituloAModificar) {
         boolean modificado = false;
@@ -89,7 +88,6 @@ public class ColeccionCd extends Coleccion{
             System.out.println("No se encontró un CD con el título ingresado.");
         }
     }
-
     @Override
     public void listarDiscoPorDirectorOInterprete(String directorOInterprete) {
         System.out.println("Lista de los CD's que tengo del interprete '" + directorOInterprete + "'");
@@ -99,9 +97,7 @@ public class ColeccionCd extends Coleccion{
                 System.out.println(cd);
             }
         }
-        System.out.println("\n");
+        System.out.println();
     }
-
-
 }
 
