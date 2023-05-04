@@ -18,8 +18,8 @@ public class Menu {
     // Método del menu de opciones
     public void nuevoMenu(){
         // Instanciar coleccion
-        Coleccion coleccionCd = new ColeccionCd();
-        Coleccion coleccionDvd = new ColeccionDvd();
+        ColeccionDvd coleccionDvd = new ColeccionDvd();
+        ColeccionCd coleccionCd = new ColeccionCd();
 
         // Iniciar un boolean para que termine el programa en falso para que pueda comenzar
         boolean salir = false;

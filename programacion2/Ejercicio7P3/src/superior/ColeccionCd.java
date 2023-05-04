@@ -56,20 +56,20 @@ public class ColeccionCd extends Coleccion{
                 // Inputs
                 System.out.print("Ingrese el título del CD: ");
                 String titulo = teclado.nextLine();
-                System.out.print("Ingrese el género del CD: ");
-                String genero = teclado.nextLine();
                 System.out.print("Ingrese el nombre del interprete: ");
                 String interprete = teclado.nextLine();
+                System.out.print("Ingrese el género del CD: ");
+                String genero = teclado.nextLine();
                 System.out.print("Ingrese la duración del CD: ");
                 int duracion = teclado.nextInt();
                 System.out.print("Ingrese la cantidad de temas en el CD: ");
                 int cantTemas = teclado.nextInt();
                 // Limpiar el buffer de entrada
                 teclado.nextLine();
+                System.out.print("Ingrese un comentario: ");
+                String comentario = teclado.nextLine();
                 System.out.print("¿Tiene el CD? (s/n): ");
                 boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-                System.out.print("Ingrese un comentario (Excelente, Muy Buena, Buena, Regular, Mala): ");
-                String comentario = teclado.nextLine();
 
                 // Realizar los cambios
                 c.setTitulo(titulo);
