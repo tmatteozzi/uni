@@ -4,7 +4,7 @@ import hijos.Cd;
 
 import java.util.Scanner;
 
-public class ColeccionCd extends Coleccion{
+public class ColeccionCd extends Coleccion implements Listable{
     // INICIAR SCANNER PARA INPUT
     static Scanner teclado = new Scanner(System.in);
 

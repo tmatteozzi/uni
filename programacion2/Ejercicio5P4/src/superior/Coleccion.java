@@ -149,8 +149,6 @@ public abstract class Coleccion {
     }
 
     // MÉTODOS PROPIOS DE DVD Y CD
-    // 10 y 11) Listar DVD´s y CD's por director
-    public abstract void listarDiscoPorDirectorOInterprete(String directorOInterprete);
     // 12) Método para devolver la cantidad de temas de un CD
     public int obtenerCantidadCd(String titulo){
         // Inicializar variable en 0 para luego asignarle la cantidad de temas si se encuentra
