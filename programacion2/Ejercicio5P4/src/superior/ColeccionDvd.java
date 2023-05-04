@@ -55,17 +55,17 @@ public class ColeccionDvd extends Coleccion implements Listable{
                 System.out.println("Ingresar los datos del DVD:");
                 System.out.print("Ingrese el título del DVD: ");
                 String titulo = teclado.nextLine();
+                System.out.print("Ingrese el nombre del director: ");
+                String director = teclado.nextLine();
                 System.out.print("Ingrese el género del DVD: ");
                 String genero = teclado.nextLine();
                 System.out.print("Ingrese la duración en minutos del DVD: ");
                 int duracion = teclado.nextInt();
                 teclado.nextLine(); // Limpiar el buffer de entrada
+                System.out.print("Ingrese un comentario: ");
+                String comentario = teclado.nextLine();
                 System.out.print("¿Tiene el DVD? (s/n): ");
                 boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-                System.out.print("Ingrese un comentario (Excelente, Muy Buena, Buena, Regular, Mala): ");
-                String comentario = teclado.nextLine();
-                System.out.print("Ingrese el nombre del director: ");
-                String director = teclado.nextLine();
 
                 // Realizar los cambios
                 d.setTitulo(titulo);

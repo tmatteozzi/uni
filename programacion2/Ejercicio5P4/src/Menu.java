@@ -18,8 +18,8 @@ public class Menu {
     // Método del menu de opciones
     public void nuevoMenu(){
         // Instanciar coleccion
-        Coleccion coleccionCd = new ColeccionCd();
-        Coleccion coleccionDvd = new ColeccionDvd();
+        ColeccionDvd coleccionDvd = new ColeccionDvd();
+        ColeccionCd coleccionCd = new ColeccionCd();
 
         // Iniciar un boolean para que termine el programa en falso para que pueda comenzar
         boolean salir = false;
@@ -159,14 +159,14 @@ public class Menu {
                     System.out.println("INFORME DE DVD's DE UN DIRECTOR EN PARTICULAR");
                     System.out.print("Ingrese el nombre del director del que deseas obtener el listado: ");
                     String directorListado = teclado.nextLine();
-                    ((ColeccionDvd) coleccionDvd).listarDiscoPorDirectorOInterprete(directorListado);
+                    coleccionDvd.listarDiscoPorDirectorOInterprete(directorListado);
                     break;
                 // Listar CD's de un determinado interprete
                 case 11:
                     System.out.println("INFORME DE CD'S DE UN INTERPRETE EN PARTICULAR");
                     System.out.print("Ingrese el nombre del interprete del que deseas obtener el listado: ");
                     String interprete = teclado.nextLine();
-                    ((ColeccionCd) coleccionCd).listarDiscoPorDirectorOInterprete(interprete);
+                    coleccionCd.listarDiscoPorDirectorOInterprete(interprete);
                     break;
                 // Informar la cantidad de temas de un CD según el título (EXCLUSIVO CD)
                 case 12:
