@@ -5,7 +5,7 @@ import superior.ColeccionCd;
 import superior.ColeccionDvd;
 
 public class Menu {
-    public Menu(){
+    public Menu() {
         nuevoMenu();
     }
     // Iniciar scanner para input
@@ -16,7 +16,7 @@ public class Menu {
         return teclado.nextInt();
     }
     // Método del menu de opciones
-    public void nuevoMenu(){
+    public void nuevoMenu() {
         // Instanciar coleccion
         Coleccion coleccionDvd = new ColeccionDvd();
         Coleccion coleccionCd = new ColeccionCd();

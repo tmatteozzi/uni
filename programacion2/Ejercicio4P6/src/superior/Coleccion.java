@@ -2,6 +2,7 @@ package superior;
 
 import hijos.Cd;
 
+import java.net.StandardSocketOptions;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -66,11 +67,19 @@ public abstract class Coleccion {
     public abstract void modificarDisco(String tituloAModificar);
     // 4) Listar todos los discos
     public void listarDiscos() {
-        for (int i = 0; i < coleccion.size(); i++) {
-            Disco d = coleccion.get(i);
-            System.out.println(d);
+        try{
+            if (coleccion.size() == 0){
+                throw new Exception("La lista se encuentra vacia.");
+            }
+            for (int i = 0; i < coleccion.size(); i++) {
+                Disco d = coleccion.get(i);
+                System.out.println(d);
+            }
+            System.out.println();
         }
-        System.out.println();
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     // 5) Listar todos los discos en posesión
     public void listarDiscosEnPosesion() {
