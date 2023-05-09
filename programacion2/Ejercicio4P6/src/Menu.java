@@ -89,7 +89,9 @@ public class Menu {
                 // Listar todos los Discos
                 case 4:
                     System.out.println("LISTAR TODOS LOS DISCOS");
+                    System.out.println("DVDs");
                     coleccionDvd.listarDiscos();
+                    System.out.println("CDs");
                     coleccionCd.listarDiscos();
                     break;
                 // Listar los Discos que tengo
@@ -112,7 +114,7 @@ public class Menu {
                 case 6:
                     System.out.println("LISTAR TODOS LOS DISCOS QUE DUREN MENOS DE UN DETERMINADO TIEMPO");
                     int opcionAListarPorTiempo = elegirOpcion();
-                    System.out.print("Ingrese el tiempo máximo que debe durar el dvd (En minutos): ");
+                    System.out.print("Ingrese el tiempo máximo que debe durar el Disco (En minutos): ");
                     int tiempo = teclado.nextInt();
                     if (opcionAListarPorTiempo == 1){
                         System.out.println("DVD's QUE DURAN MENOS DE " + tiempo + " MINUTOS:");
