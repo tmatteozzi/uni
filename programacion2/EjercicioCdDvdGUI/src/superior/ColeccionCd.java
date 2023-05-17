@@ -2,6 +2,7 @@ package superior;
 
 import hijos.Cd;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class ColeccionCd extends Coleccion implements Listable{
@@ -25,24 +26,20 @@ public class ColeccionCd extends Coleccion implements Listable{
 
     @Override
     public void agregarDisco() {
-        // Inputs
-        System.out.print("Ingrese el título del CD: ");
-        String titulo = teclado.nextLine();
-        System.out.print("Ingrese el nombre del interprete: ");
-        String interprete = teclado.nextLine();
-        System.out.print("Ingrese el género del CD: ");
-        String genero = teclado.nextLine();
-        System.out.print("Ingrese la duración del CD: ");
-        int duracion = teclado.nextInt();
-        System.out.print("Ingrese la cantidad de temas en el CD: ");
-        int cantTemas = teclado.nextInt();
-        // Limpiar el buffer de entrada
-        teclado.nextLine();
-        System.out.print("Ingrese un comentario: ");
-        String comentario = teclado.nextLine();
-        System.out.print("¿Tiene el CD? (s/n): ");
-        boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-        // Una vez ingresados los datos en el input se ingresa el nuevo DVD (Creandolo)
+        String titulo = JOptionPane.showInputDialog("Ingrese el título del CD: ");
+        String interprete = JOptionPane.showInputDialog("Ingrese el nombre del interprete: ");
+        String genero = JOptionPane.showInputDialog("Ingrese el género del CD: ");
+        int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración del CD: "));
+        int cantTemas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de temas en el CD: "));
+        String comentario = JOptionPane.showInputDialog("Ingrese un comentario: ");
+        int resultado = JOptionPane.showConfirmDialog(null, "¿Usted posee el disco?", "Posesión", JOptionPane.YES_NO_OPTION);
+        boolean posesion;
+        if (resultado == JOptionPane.YES_OPTION) {
+            posesion = true;
+        } else {
+            posesion = false;
+        }
+
         coleccion.add(new Cd(titulo, interprete, genero, duracion, cantTemas, comentario, posesion));
         System.out.println("CD agregado correctamente.\n");
     }
@@ -52,25 +49,20 @@ public class ColeccionCd extends Coleccion implements Listable{
         for (int i = 0; i < coleccion.size(); i++) {
             Disco c = coleccion.get(i);
             if (c.getTitulo().equalsIgnoreCase(tituloAModificar)) {
-                // Inputs
-                System.out.print("Ingrese el título del CD: ");
-                String titulo = teclado.nextLine();
-                System.out.print("Ingrese el nombre del interprete: ");
-                String interprete = teclado.nextLine();
-                System.out.print("Ingrese el género del CD: ");
-                String genero = teclado.nextLine();
-                System.out.print("Ingrese la duración del CD: ");
-                int duracion = teclado.nextInt();
-                System.out.print("Ingrese la cantidad de temas en el CD: ");
-                int cantTemas = teclado.nextInt();
-                // Limpiar el buffer de entrada
-                teclado.nextLine();
-                System.out.print("Ingrese un comentario: ");
-                String comentario = teclado.nextLine();
-                System.out.print("¿Tiene el CD? (s/n): ");
-                boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
+                String titulo = JOptionPane.showInputDialog("Ingrese el título del CD: ");
+                String interprete = JOptionPane.showInputDialog("Ingrese el nombre del interprete: ");
+                String genero = JOptionPane.showInputDialog("Ingrese el género del CD: ");
+                int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración del CD: "));
+                int cantTemas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de temas en el CD: "));
+                String comentario = JOptionPane.showInputDialog("Ingrese un comentario: ");
+                int resultado = JOptionPane.showConfirmDialog(null, "¿Usted posee el disco?", "¿Usted posee el disco?", JOptionPane.YES_NO_OPTION);
+                boolean posesion;
+                if (resultado == JOptionPane.YES_OPTION) {
+                    posesion = true;
+                } else {
+                    posesion = false;
+                }
 
-                // Realizar los cambios
                 c.setTitulo(titulo);
                 c.setGenero(genero);
                 c.setDuracion(duracion);

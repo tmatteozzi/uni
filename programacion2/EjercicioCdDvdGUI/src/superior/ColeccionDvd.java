@@ -2,6 +2,7 @@ package superior;
 
 import hijos.Dvd;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class ColeccionDvd extends Coleccion implements Listable{
@@ -25,49 +26,42 @@ public class ColeccionDvd extends Coleccion implements Listable{
 
     @Override
     public void agregarDisco() {
-        // Inputs
-        System.out.print("Ingrese el título del DVD: ");
-        String titulo = teclado.nextLine();
-        System.out.print("Ingrese el nombre del director: ");
-        String director = teclado.nextLine();
-        System.out.print("Ingrese el género del DVD: ");
-        String genero = teclado.nextLine();
-        System.out.print("Ingrese la duración en minutos del DVD: ");
-        int duracion = teclado.nextInt();
-        // Limpiar el buffer de entrada
-        teclado.nextLine();
-        System.out.print("Ingrese un comentario: ");
-        String comentario = teclado.nextLine();
-        System.out.print("¿Tiene el DVD? (s/n): ");
-        boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
-        // Una vez ingresados los datos en el input se ingresa el nuevo DVD (Creandolo)
+        String titulo = JOptionPane.showInputDialog("Ingrese el título del DVD: ");
+        String director = JOptionPane.showInputDialog("Ingrese el nombre del director: ");
+        String genero = JOptionPane.showInputDialog("Ingrese el género del DVD: ");
+        int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración del DVD: "));
+        String comentario = JOptionPane.showInputDialog("Ingrese un comentario: ");
+        int resultado = JOptionPane.showConfirmDialog(null, "¿Usted posee el disco?", "Posesión", JOptionPane.YES_NO_OPTION);
+        boolean posesion;
+        if (resultado == JOptionPane.YES_OPTION) {
+            posesion = true;
+        } else {
+            posesion = false;
+        }
+
         coleccion.add(new Dvd(titulo, director, genero, duracion, comentario, posesion));
         System.out.println("DVD agregado correctamente.\n");
     }
     @Override
     public void modificarDisco(String tituloAModificar) {
-        // Booleano para indicar si ya fue modificado (Empieza en falso)
         boolean modificado = false;
+
         for (int i = 0; i < coleccion.size(); i++) {
             Disco d = coleccion.get(i);
             if (d.getTitulo().equalsIgnoreCase(tituloAModificar)) {
-                // Inputs
-                System.out.println("Ingresar los datos del DVD:");
-                System.out.print("Ingrese el título del DVD: ");
-                String titulo = teclado.nextLine();
-                System.out.print("Ingrese el nombre del director: ");
-                String director = teclado.nextLine();
-                System.out.print("Ingrese el género del DVD: ");
-                String genero = teclado.nextLine();
-                System.out.print("Ingrese la duración en minutos del DVD: ");
-                int duracion = teclado.nextInt();
-                teclado.nextLine(); // Limpiar el buffer de entrada
-                System.out.print("Ingrese un comentario: ");
-                String comentario = teclado.nextLine();
-                System.out.print("¿Tiene el DVD? (s/n): ");
-                boolean posesion = teclado.nextLine().equalsIgnoreCase("s");
+                String titulo = JOptionPane.showInputDialog("Ingrese el título del DVD: ");
+                String director = JOptionPane.showInputDialog("Ingrese el nombre del director: ");
+                String genero = JOptionPane.showInputDialog("Ingrese el género del DVD: ");
+                int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración del DVD: "));
+                String comentario = JOptionPane.showInputDialog("Ingrese un comentario: ");
+                int resultado = JOptionPane.showConfirmDialog(null, "¿Usted posee el disco?", "Posesión", JOptionPane.YES_NO_OPTION);
+                boolean posesion;
+                if (resultado == JOptionPane.YES_OPTION) {
+                    posesion = true;
+                } else {
+                    posesion = false;
+                }
 
-                // Realizar los cambios
                 d.setTitulo(titulo);
                 d.setGenero(genero);
                 d.setDuracion(duracion);
@@ -75,7 +69,6 @@ public class ColeccionDvd extends Coleccion implements Listable{
                 d.setComentario(comentario);
                 ((Dvd) d).setDirector(director);
 
-                // Si lo encontró y modificó cambiar el booleano a true y salir del for
                 modificado = true;
                 break;
             }
