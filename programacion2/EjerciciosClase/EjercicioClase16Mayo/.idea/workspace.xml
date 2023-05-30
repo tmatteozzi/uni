@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adef7440-635c-4af5-b795-66255d69a3dc" name="Changes" comment="&quot;Agregar Ejercicio Clase 16 Mayo&quot;">
-      <change beforePath="$PROJECT_DIR$/../../EjercicioCdDvdGUI/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../EjercicioCdDvdGUI/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../EjercicioCdDvdGUI/Ejercicio4P6.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../EjercicioCdDvdGUI/EjercicioCdDvdGUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../EjercicioCdDvdGUI/src/superior/ColeccionCd.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../EjercicioCdDvdGUI/src/superior/ColeccionCd.java" afterDir="false" />
+    <list default="true" id="adef7440-635c-4af5-b795-66255d69a3dc" name="Changes" comment="random">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +57,8 @@
       <workItem from="1684333033279" duration="851000" />
       <workItem from="1684334634566" duration="304000" />
       <workItem from="1684337287178" duration="766000" />
+      <workItem from="1684356070641" duration="106000" />
+      <workItem from="1684439965626" duration="146000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;Agregar Ejercicio Clase 16 Mayo&quot;">
       <created>1684245267407</created>
@@ -68,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684245267407</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="random">
+      <created>1684356096951</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684356096951</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -76,6 +82,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;Agregar Ejercicio Clase 16 Mayo&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Agregar Ejercicio Clase 16 Mayo&quot;" />
+    <MESSAGE value="random" />
+    <option name="LAST_COMMIT_MESSAGE" value="random" />
   </component>
 </project>
