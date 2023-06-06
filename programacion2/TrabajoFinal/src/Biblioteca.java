@@ -44,6 +44,7 @@ public class Biblioteca {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
     }
     public void eliminarLibro(String titulo) {
         try {
@@ -60,6 +61,7 @@ public class Biblioteca {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
     }
     public void consultarPorTitulo(String titulo) {
         try {
@@ -78,6 +80,7 @@ public class Biblioteca {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
     }
     public void modificarLibro(String titulo, Libro nuevoLibro) {
         try {
@@ -117,6 +120,7 @@ public class Biblioteca {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        System.out.println();
     }
     public void listarAutores() {
         try {
@@ -134,6 +138,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibros() {
         try {
@@ -148,6 +153,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorGenero(String genero) {
         try {
@@ -163,6 +169,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorAutor(String autor) {
         try {
@@ -178,6 +185,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorEditorial(String editorial) {
         try {
@@ -193,6 +201,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorEditorialEnRangoDeAnios(String editorial, int anioInicio, int anioFin) {
         try {
@@ -210,6 +219,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarAutoresPorEditorial(String editorial) {
         try {
@@ -228,6 +238,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorAnio(int anio) {
         try {
@@ -243,6 +254,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorLetraApellidoAutores(char letraInicial) {
         try {
@@ -258,6 +270,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
     public void listarLibrosPorPalabraTitulo(String palabra) {
         try {
@@ -273,6 +286,7 @@ public class Biblioteca {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println();
     }
 
     // MÉTODOS AUXILIARES
