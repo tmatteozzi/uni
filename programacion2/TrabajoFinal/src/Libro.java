@@ -44,7 +44,7 @@ class Libro {
                 ", ISBN = '" + isbn + '\'' +
                 ", Editorial = '" + editorial + '\'' +
                 ", Género = '" + genero + '\'' +
-                ", Autores = " + Arrays.toString(autores) +
+                ", Autor/es = " + Arrays.toString(autores) +
                 ", Cantidad De Páginas = " + cantidadPaginas +
                 ", Año De Edición = " + anioEdicion + '}';
     }

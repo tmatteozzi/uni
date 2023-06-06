@@ -22,7 +22,7 @@ public class Biblioteca {
         }
     }
 
-    public void agregarLibro(Libro libro) throws Exception {
+    public void agregarLibro(Libro libro) {
         try {
             if (!existeLibro(libro.getTitulo())) {
                 // Ejecutar la consulta de inserción
@@ -45,8 +45,7 @@ public class Biblioteca {
             System.out.println(e.getMessage());
         }
     }
-
-    public void eliminarLibro(String titulo) throws Exception {
+    public void eliminarLibro(String titulo) {
         try {
             String sql = "DELETE FROM Libro WHERE titulo = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -62,9 +61,7 @@ public class Biblioteca {
             System.out.println(e.getMessage());
         }
     }
-
-
-    public void consultarPorTitulo(String titulo) throws Exception {
+    public void consultarPorTitulo(String titulo) {
         try {
             String sql = "SELECT * FROM Libro WHERE titulo = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -82,7 +79,6 @@ public class Biblioteca {
             System.out.println(e.getMessage());
         }
     }
-
     public void modificarLibro(String titulo, Libro nuevoLibro) {
         try {
             String sqlSelect = "SELECT id FROM Libro WHERE titulo = ?";
@@ -122,16 +118,14 @@ public class Biblioteca {
             System.out.println(e.getMessage());
         }
     }
-
-
     public void listarAutores() {
         try {
-            String sql = "SELECT DISTINCT autor FROM Libro";
+            String sql = "SELECT DISTINCT autores FROM Libro";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Set<String> autores = new HashSet<>();
             while (resultSet.next()) {
-                String autor = resultSet.getString("autor");
+                String autor = resultSet.getString("autores");
                 autores.add(autor);
             }
             resultSet.close();
@@ -141,7 +135,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarLibros() {
         try {
             String sql = "SELECT * FROM Libro";
@@ -156,7 +149,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarLibrosPorGenero(String genero) {
         try {
             String sql = "SELECT * FROM Libro WHERE genero = ?";
@@ -172,7 +164,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarLibrosPorAutor(String autor) {
         try {
             String sql = "SELECT * FROM Libro WHERE FIND_IN_SET(?, autores) > 0";
@@ -188,8 +179,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
-
     public void listarLibrosPorEditorial(String editorial) {
         try {
             String sql = "SELECT * FROM Libro WHERE editorial = ?";
@@ -205,7 +194,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarLibrosPorEditorialEnRangoDeAnios(String editorial, int anioInicio, int anioFin) {
         try {
             String sql = "SELECT * FROM Libro WHERE editorial = ? AND anioEdicion BETWEEN ? AND ?";
@@ -223,16 +211,15 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarAutoresPorEditorial(String editorial) {
         try {
-            String sql = "SELECT DISTINCT autor FROM Libro WHERE editorial = ?";
+            String sql = "SELECT DISTINCT autores FROM Libro WHERE editorial = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, editorial);
             ResultSet resultSet = statement.executeQuery();
             Set<String> autores = new HashSet<>();
             while (resultSet.next()) {
-                String autor = resultSet.getString("autor");
+                String autor = resultSet.getString("autores");
                 autores.add(autor);
             }
             resultSet.close();
@@ -242,7 +229,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarLibrosPorAnio(int anio) {
         try {
             String sql = "SELECT * FROM Libro WHERE anioEdicion = ?";
@@ -258,10 +244,9 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
-    public void listarLibrosPorApellidoAutor(char letraInicial) {
+    public void listarLibrosPorLetraApellidoAutores(char letraInicial) {
         try {
-            String sql = "SELECT * FROM Libro WHERE autor REGEXP ?";
+            String sql = "SELECT * FROM Libro WHERE autores REGEXP ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "^" + letraInicial);
             ResultSet resultSet = statement.executeQuery();
@@ -274,7 +259,6 @@ public class Biblioteca {
             e.printStackTrace();
         }
     }
-
     public void listarLibrosPorPalabraTitulo(String palabra) {
         try {
             String sql = "SELECT * FROM Libro WHERE titulo LIKE ?";
@@ -291,6 +275,7 @@ public class Biblioteca {
         }
     }
 
+    // MÉTODOS AUXILIARES
     public boolean existeLibro(String titulo) {
         try {
             String sql = "SELECT COUNT(*) FROM Libro WHERE titulo = ?";
@@ -307,7 +292,6 @@ public class Biblioteca {
             return false;
         }
     }
-
     public Libro cargarResultados(ResultSet resultSet) throws SQLException {
         String titulo = resultSet.getString("titulo");
         String isbn = resultSet.getString("isbn");
@@ -317,5 +301,22 @@ public class Biblioteca {
         int cantidadPaginas = resultSet.getInt("cantidadPaginas");
         int anioEdicion = resultSet.getInt("anioEdicion");
         return new Libro(titulo, autores, cantidadPaginas, isbn, anioEdicion, editorial, genero);
+    }
+    public static void imprimirMenu() {
+        System.out.println("1. Dar de alta un libro");
+        System.out.println("2. Dar de baja un libro");
+        System.out.println("3. Consultar por un libro de un determinado título");
+        System.out.println("4. Modificar los datos de un libro");
+        System.out.println("5. Listar todos los autores existentes");
+        System.out.println("6. Listar todos los libros existentes");
+        System.out.println("7. Listar todos los libros de un género determinado");
+        System.out.println("8. Listar todos los libros que posee un autor determinado");
+        System.out.println("9. Listar todos los libros de una editorial determinada.");
+        System.out.println("10. Listar todos los libros de una editorial determinada en un rango de años de edición");
+        System.out.println("11. Listar todos los autores de una determinada editorial");
+        System.out.println("12. Listar todos los libros que fueron editados en un determinado año");
+        System.out.println("13. Listar todos los libros de los autores cuyos apellidos comienzan con una letra determinada");
+        System.out.println("14. Listar todos los libros cuyos títulos contengan una palabra determinada.");
+        System.out.println("15. Salir");
     }
 }
