@@ -115,8 +115,6 @@ public class Biblioteca {
             }
             resultSet.close();
             selectStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -136,7 +134,7 @@ public class Biblioteca {
             statement.close();
             System.out.println("Autores existentes: " + autores);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -151,7 +149,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -167,7 +165,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -183,7 +181,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -199,7 +197,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -217,7 +215,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -236,7 +234,7 @@ public class Biblioteca {
             statement.close();
             System.out.println("Autores de la editorial " + editorial + ": " + autores);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -252,7 +250,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -268,7 +266,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
@@ -284,7 +282,7 @@ public class Biblioteca {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         System.out.println();
     }
