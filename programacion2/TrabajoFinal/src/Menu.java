@@ -15,7 +15,7 @@ public class Menu {
             switch (opcion){
                 case 1:
                     String titulo = JOptionPane.showInputDialog("Ingrese el título del libro: ");
-                    String inputAutores = JOptionPane.showInputDialog("Ingresar el nombre del autor. Si hay más autores, separar con ','.");
+                    String inputAutores = JOptionPane.showInputDialog("Ingresar el apellido del autor. Si hay más autores, separar con ','.");
                     String[] autores = inputAutores.split(",");
                     int cantidadPaginas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de páginas del libro"));
                     String isbn = JOptionPane.showInputDialog("Ingrese el ISBN del libro: ");
@@ -35,7 +35,7 @@ public class Menu {
                 case 4:
                     String tituloAModificar = JOptionPane.showInputDialog("Ingrese el título del libro a modificar: ");
                     String tituloModificado = JOptionPane.showInputDialog("Ingrese el nuevo título del libro: ");
-                    String inputAutoresModificado = JOptionPane.showInputDialog("Ingresar el nuevo nombre del autor. Si hay más autores, separar con ','.");
+                    String inputAutoresModificado = JOptionPane.showInputDialog("Ingresar el nuevo apellido del autor. Si hay más autores, separar con ','.");
                     String[] autoresModificados = inputAutoresModificado.split(",");
                     int cantidadPaginasModificado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de páginas del libro."));
                     String isbnModificado = JOptionPane.showInputDialog("Ingrese el nuevo ISBN del libro: ");
