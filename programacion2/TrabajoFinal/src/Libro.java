@@ -39,13 +39,8 @@ class Libro {
 
     @Override
     public String toString() {
-        return "Libro {" +
-                "Título = '" + titulo + '\'' +
-                ", ISBN = '" + isbn + '\'' +
-                ", Editorial = '" + editorial + '\'' +
-                ", Género = '" + genero + '\'' +
-                ", Autor/es = " + Arrays.toString(autores) +
-                ", Cantidad De Páginas = " + cantidadPaginas +
-                ", Año De Edición = " + anioEdicion + '}';
+        return "- " + titulo.toUpperCase() + ", ISBN: " + isbn + ", Editorial: " + editorial + ", Género: " + genero +
+                ", Autor/es: " + Arrays.toString(autores) + ", Cantidad de Páginas: " + cantidadPaginas +
+                ", Año de Edición: " + anioEdicion;
     }
 }
