@@ -11,10 +11,18 @@ public class Menu extends JFrame {
 
     private void crearGUI() {
         /**                                     CREACIÓN DEL GUI                                                     **/
+        // Crear el marco principal
         setTitle("Menú Biblioteca");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
 
+        // Crear el panel principal con BoxLayout en eje vertical
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        // Crear panel para los botones
+        JPanel buttonPanel = new JPanel(new GridLayout(0, 3, 1, 1));
+
+        // Crear botones
         JButton agregarLibroButton = new JButton("Agregar Libro");
         JButton eliminarLibroButton = new JButton("Eliminar Libro");
         JButton consultarTituloButton = new JButton("Consultar por Título");
@@ -30,25 +38,54 @@ public class Menu extends JFrame {
         JButton listarPorLetraApellidoButton = new JButton("Listar Libros por Letra del Apellido de los Autores");
         JButton listarPorPalabraTituloButton = new JButton("Listar Libros por Palabra en el Título");
         JButton salirButton = new JButton("Salir");
-        JTextArea resultadoTextArea = new JTextArea();
 
-        // AGREGAR LOS BOTONES Y EL TEXT AREA
-        add(agregarLibroButton);
-        add(eliminarLibroButton);
-        add(consultarTituloButton);
-        add(modificarLibroButton);
-        add(listarAutoresButton);
-        add(listarLibrosButton);
-        add(listarPorGeneroButton);
-        add(listarPorAutorButton);
-        add(listarPorEditorialButton);
-        add(listarPorEditorialRangoButton);
-        add(listarAutoresEditorialButton);
-        add(listarPorAnioButton);
-        add(listarPorLetraApellidoButton);
-        add(listarPorPalabraTituloButton);
-        add(salirButton);
-        add(resultadoTextArea);
+        // Personalizar los botones
+        agregarLibroButton.setBackground(Color.white);
+        eliminarLibroButton.setBackground(Color.white);
+        consultarTituloButton.setBackground(Color.white);
+        modificarLibroButton.setBackground(Color.white);
+        listarAutoresButton.setBackground(Color.white);
+        listarLibrosButton.setBackground(Color.white);
+        listarPorGeneroButton.setBackground(Color.white);
+        listarPorAutorButton.setBackground(Color.white);
+        listarPorEditorialButton.setBackground(Color.white);
+        listarPorEditorialRangoButton.setBackground(Color.white);
+        listarAutoresEditorialButton.setBackground(Color.white);
+        listarPorAnioButton.setBackground(Color.white);
+        listarPorLetraApellidoButton.setBackground(Color.white);
+        listarPorPalabraTituloButton.setBackground(Color.white);
+        salirButton.setBackground(Color.white);
+
+        // Crear área de texto y agregar un JScrollPane
+        JTextArea resultadoTextArea = new JTextArea(10, 30);
+        resultadoTextArea.setOpaque(true);
+        resultadoTextArea.setBackground(Color.white);
+        resultadoTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(resultadoTextArea);
+
+        // Agregar botones al panel de botones
+        buttonPanel.add(agregarLibroButton);
+        buttonPanel.add(eliminarLibroButton);
+        buttonPanel.add(consultarTituloButton);
+        buttonPanel.add(modificarLibroButton);
+        buttonPanel.add(listarAutoresButton);
+        buttonPanel.add(listarLibrosButton);
+        buttonPanel.add(listarPorGeneroButton);
+        buttonPanel.add(listarPorAutorButton);
+        buttonPanel.add(listarPorEditorialButton);
+        buttonPanel.add(listarPorEditorialRangoButton);
+        buttonPanel.add(listarAutoresEditorialButton);
+        buttonPanel.add(listarPorAnioButton);
+        buttonPanel.add(listarPorLetraApellidoButton);
+        buttonPanel.add(listarPorPalabraTituloButton);
+        buttonPanel.add(salirButton);
+
+        // Agregar el panel de botones y el JScrollPane al panel principal
+        mainPanel.add(buttonPanel);
+        mainPanel.add(scrollPane);
+
+        // Agregar el panel principal al marco
+        add(mainPanel);
 
         pack();
         setVisible(true);
