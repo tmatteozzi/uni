@@ -1,3 +1,4 @@
+// Autores: Matteozzi, Marzorati y Monzalvo
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,12 +12,13 @@ public class Menu extends JFrame {
 
     private void crearGUI() {
         /**                                     CREACIÓN DEL GUI                                                     **/
-        // Crear el marco principal
+        // Crear la interfaz principal
         setTitle("Menú Biblioteca");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Crear el panel principal con BoxLayout en eje vertical
+        // Crear el panel principal
         JPanel mainPanel = new JPanel();
+        // BoxLayout para que se vea en vertical
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // Crear panel para los botones
@@ -39,7 +41,7 @@ public class Menu extends JFrame {
         JButton listarPorPalabraTituloButton = new JButton("Listar Libros por Palabra en el Título");
         JButton salirButton = new JButton("Salir");
 
-        // Personalizar los botones
+        // Darle color a los botones
         agregarLibroButton.setBackground(Color.white);
         eliminarLibroButton.setBackground(Color.white);
         consultarTituloButton.setBackground(Color.white);
@@ -55,13 +57,6 @@ public class Menu extends JFrame {
         listarPorLetraApellidoButton.setBackground(Color.white);
         listarPorPalabraTituloButton.setBackground(Color.white);
         salirButton.setBackground(Color.white);
-
-        // Crear área de texto y agregar un JScrollPane
-        JTextArea resultadoTextArea = new JTextArea(10, 30);
-        resultadoTextArea.setOpaque(true);
-        resultadoTextArea.setBackground(Color.white);
-        resultadoTextArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(resultadoTextArea);
 
         // Agregar botones al panel de botones
         buttonPanel.add(agregarLibroButton);
@@ -80,11 +75,17 @@ public class Menu extends JFrame {
         buttonPanel.add(listarPorPalabraTituloButton);
         buttonPanel.add(salirButton);
 
+        // Crear text area para listar y agregarle un scroll por si el texto es muy largo
+        JTextArea resultadoTextArea = new JTextArea(10, 30);
+        resultadoTextArea.setBackground(Color.white);
+        resultadoTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(resultadoTextArea);
+
         // Agregar el panel de botones y el JScrollPane al panel principal
         mainPanel.add(buttonPanel);
         mainPanel.add(scrollPane);
 
-        // Agregar el panel principal al marco
+        // Agregar el panel principal a la interfaz
         add(mainPanel);
 
         pack();

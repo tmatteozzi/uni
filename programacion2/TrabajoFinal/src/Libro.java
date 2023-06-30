@@ -1,3 +1,4 @@
+// Autores: Matteozzi, Marzorati y Monzalvo
 import java.util.*;
 
 class Libro {

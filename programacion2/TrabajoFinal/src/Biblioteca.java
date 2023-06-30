@@ -1,3 +1,4 @@
+// Autores: Matteozzi, Marzorati y Monzalvo
 import java.sql.*;
 import java.util.*;
 
@@ -68,29 +69,6 @@ public class Biblioteca {
         System.out.println();
     }
 
-    public String consultarPorTitulo(String titulo) {
-        StringBuilder resultado = new StringBuilder();
-        try {
-            // Si el titulo en la base de datos es igual al parametro, imprimir datos del libro
-            String sql = "SELECT * FROM Libro WHERE titulo = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, titulo);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                // Leer los datos del resultado y mostrarlos
-                resultado.append(cargarResultados(resultSet));
-            } else {
-                throw new Exception("El libro no se encuentra en la biblioteca.");
-            }
-            resultSet.close();
-            statement.close();
-        } catch (Exception e) {
-            resultado.append(e.getMessage());
-        }
-        resultado.append("\n");
-        return resultado.toString();
-    }
-
     public void modificarLibro(String titulo, Libro nuevoLibro) {
         try {
             // Buscar el libro que tenga el titulo que se le pasa por parametro
@@ -130,6 +108,29 @@ public class Biblioteca {
             System.out.println(e.getMessage());
         }
         System.out.println();
+    }
+
+    public String consultarPorTitulo(String titulo) {
+        StringBuilder resultado = new StringBuilder();
+        try {
+            // Si el titulo en la base de datos es igual al parametro, imprimir datos del libro
+            String sql = "SELECT * FROM Libro WHERE titulo = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, titulo);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                // Leer los datos del resultado y mostrarlos
+                resultado.append(cargarResultados(resultSet));
+            } else {
+                throw new Exception("El libro no se encuentra en la biblioteca.");
+            }
+            resultSet.close();
+            statement.close();
+        } catch (Exception e) {
+            resultado.append(e.getMessage());
+        }
+        resultado.append("\n");
+        return resultado.toString();
     }
 
     public String listarAutores() {
@@ -354,8 +355,6 @@ public class Biblioteca {
         }
         return listaLibros.toString();
     }
-
-
 
     // MÉTODOS AUXILIARES
     public boolean existeLibro(String titulo) {
