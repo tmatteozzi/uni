@@ -91,7 +91,6 @@ public class Biblioteca {
                 updateStatement.setInt(7, nuevoLibro.getAnioEdicion());
                 updateStatement.setInt(8, id);
                 int columnasAfectadas = updateStatement.executeUpdate();
-
                 // Si se modifico al menos una columna, entonces se imprime que se modifico correctamente
                 if (columnasAfectadas > 0) {
                     System.out.println("El libro ha sido modificado correctamente.");
@@ -122,7 +121,7 @@ public class Biblioteca {
                 // Leer los datos del resultado y mostrarlos
                 resultado.append(cargarResultados(resultSet));
             } else {
-                throw new Exception("El libro no se encuentra en la biblioteca.");
+                throw new Exception("El libro '" + titulo +  "' no se encuentra en la biblioteca.");
             }
             resultSet.close();
             statement.close();
@@ -161,8 +160,12 @@ public class Biblioteca {
             if (listaAutores.length() > 0) {
                 listaAutores.setLength(listaAutores.length() - 2);
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaAutores.isEmpty()){
+                throw new Exception("No hay autores.");
+            }
+        } catch (Exception e) {
+            listaAutores.append(e.getMessage());
         }
         return listaAutores.toString();
     }
@@ -179,14 +182,18 @@ public class Biblioteca {
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibros.isEmpty()){
+                throw new Exception("No hay libros.");
+            }
+        } catch (Exception e) {
+            listaLibros.append(e.getMessage());
         }
         return listaLibros.toString();
     }
 
     public String listarLibrosPorGenero(String genero) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorGenero = new StringBuilder();
         try {
             // Buscar todos los libros que tengan el genero que se pasa por parametro
             String sql = "SELECT * FROM Libro WHERE genero = ?";
@@ -194,18 +201,22 @@ public class Biblioteca {
             statement.setString(1, genero);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorGenero.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorGenero.isEmpty()){
+                throw new Exception("No hay libros del género: " + genero + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorGenero.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorGenero.toString();
     }
 
     public String listarLibrosPorAutor(String autor) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorAutor = new StringBuilder();
         try {
             // Listar todos los libros que tiene un autor, si el autor es igual al autor pasado por parametro
             String sql = "SELECT * FROM Libro WHERE FIND_IN_SET(?, autores) > 0";
@@ -213,18 +224,22 @@ public class Biblioteca {
             statement.setString(1, autor);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorAutor.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorAutor.isEmpty()){
+                throw new Exception("No hay libros del autor: " + autor + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorAutor.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorAutor.toString();
     }
 
     public String listarLibrosPorEditorial(String editorial) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorEditorial = new StringBuilder();
         try {
             // Listar todos los libros que tengan la editorial que se pasa por parametro
             String sql = "SELECT * FROM Libro WHERE editorial = ?";
@@ -232,18 +247,22 @@ public class Biblioteca {
             statement.setString(1, editorial);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorEditorial.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorEditorial.isEmpty()){
+                throw new Exception("No hay libros de la editorial: " + editorial + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorEditorial.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorEditorial.toString();
     }
 
     public String listarLibrosPorEditorialEnRangoDeAnios(String editorial, int anioInicio, int anioFin) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorEditorialEnRangoDeAnios = new StringBuilder();
         try {
             // Listar todos los libros de una determinada editorial entre el año de inicio y el año final
             String sql = "SELECT * FROM Libro WHERE editorial = ? AND anioEdicion BETWEEN ? AND ?";
@@ -253,18 +272,22 @@ public class Biblioteca {
             statement.setInt(3, anioFin);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorEditorialEnRangoDeAnios.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorEditorialEnRangoDeAnios.isEmpty()){
+                throw new Exception("No hay libros de la editorial: " + editorial + " entre los años: " + anioFin + " y " + anioFin + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorEditorialEnRangoDeAnios.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorEditorialEnRangoDeAnios.toString();
     }
 
     public String listarAutoresPorEditorial(String editorial) {
-        StringBuilder listaAutores = new StringBuilder();
+        StringBuilder listaAutoresPorEditorial = new StringBuilder();
         try {
             // Listar todos los autores que tengan libros en una determinada editorial pasada por parametro
             String sql = "SELECT DISTINCT autores FROM Libro WHERE editorial = ?";
@@ -280,24 +303,28 @@ public class Biblioteca {
             }
             resultSet.close();
             statement.close();
+            // Chequear si la lista está vacía y tirar error
+            if (autores.isEmpty()) {
+                throw new Exception("No hay autores de la editorial: " + editorial + ".");
+            }
 
-            listaAutores.append("Autores de la editorial ").append(editorial).append(": ");
+            listaAutoresPorEditorial.append("Autores de la editorial ").append(editorial).append(": ");
             for (String autor : autores) {
-                listaAutores.append(autor).append(", ");
+                listaAutoresPorEditorial.append(autor).append(", ");
             }
 
             // Eliminar la última coma y espacio
-            if (listaAutores.length() > 0) {
-                listaAutores.setLength(listaAutores.length() - 2);
+            if (listaAutoresPorEditorial.length() > 0) {
+                listaAutoresPorEditorial.setLength(listaAutoresPorEditorial.length() - 2);
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            listaAutoresPorEditorial.append(e.getMessage());
         }
-        return listaAutores.toString();
+        return listaAutoresPorEditorial.toString();
     }
 
     public String listarLibrosPorAnio(int anio) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorAnio = new StringBuilder();
         try {
             // Listar todos los libros en un año determinado pasado por parametro
             String sql = "SELECT * FROM Libro WHERE anioEdicion = ?";
@@ -305,18 +332,22 @@ public class Biblioteca {
             statement.setInt(1, anio);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorAnio.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorAnio.isEmpty()){
+                throw new Exception("No hay libros del año: " + anio + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorAnio.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorAnio.toString();
     }
 
     public String listarLibrosPorLetraApellidoAutores(char letraInicial) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorLetraApellidoAutores = new StringBuilder();
         try {
             // Listar libros donde la primera letra del autor (parametro) sea la primera letra del apellido
             // REGEXP para usar ^
@@ -326,18 +357,22 @@ public class Biblioteca {
             statement.setString(1, "^" + letraInicial);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorLetraApellidoAutores.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorLetraApellidoAutores.isEmpty()){
+                throw new Exception("No hay autores que tengan un apellido que empiece por: " + letraInicial + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorLetraApellidoAutores.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorLetraApellidoAutores.toString();
     }
 
     public String listarLibrosPorPalabraTitulo(String palabra) {
-        StringBuilder listaLibros = new StringBuilder();
+        StringBuilder listaLibrosPorPalabraTitulo = new StringBuilder();
         try {
             // Listar los libros que contengan la palabra pasada por parametro en su nombre
             String sql = "SELECT * FROM Libro WHERE titulo LIKE ?";
@@ -346,14 +381,18 @@ public class Biblioteca {
             statement.setString(1, "%" + palabra + "%");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                listaLibros.append(cargarResultados(resultSet)).append("\n");
+                listaLibrosPorPalabraTitulo.append(cargarResultados(resultSet)).append("\n");
             }
             resultSet.close();
             statement.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // Chequear si la lista está vacia y tirar error
+            if (listaLibrosPorPalabraTitulo.isEmpty()){
+                throw new Exception("No hay libros que incluyan en el título la palabra: " + palabra + ".");
+            }
+        } catch (Exception e) {
+            listaLibrosPorPalabraTitulo.append(e.getMessage());
         }
-        return listaLibros.toString();
+        return listaLibrosPorPalabraTitulo.toString();
     }
 
     // MÉTODOS AUXILIARES
@@ -386,23 +425,5 @@ public class Biblioteca {
         int cantidadPaginas = resultSet.getInt("cantidadPaginas");
         int anioEdicion = resultSet.getInt("anioEdicion");
         return new Libro(titulo, autores, cantidadPaginas, isbn, anioEdicion, editorial, genero);
-    }
-
-    public static void imprimirMenu() {
-        System.out.println("1. Dar de alta un libro");
-        System.out.println("2. Dar de baja un libro");
-        System.out.println("3. Consultar por un libro de un determinado título");
-        System.out.println("4. Modificar los datos de un libro");
-        System.out.println("5. Listar todos los autores existentes");
-        System.out.println("6. Listar todos los libros existentes");
-        System.out.println("7. Listar todos los libros de un género determinado");
-        System.out.println("8. Listar todos los libros que posee un autor determinado");
-        System.out.println("9. Listar todos los libros de una editorial determinada.");
-        System.out.println("10. Listar todos los libros de una editorial determinada en un rango de años de edición");
-        System.out.println("11. Listar todos los autores de una determinada editorial");
-        System.out.println("12. Listar todos los libros que fueron editados en un determinado año");
-        System.out.println("13. Listar todos los libros de los autores cuyos apellidos comienzan con una letra determinada");
-        System.out.println("14. Listar todos los libros cuyos títulos contengan una palabra determinada.");
-        System.out.println("15. Salir");
     }
 }
