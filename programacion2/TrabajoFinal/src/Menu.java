@@ -104,14 +104,12 @@ public class Menu extends JFrame {
             String editorial = JOptionPane.showInputDialog("Ingrese la editorial del libro: ");
             String genero = JOptionPane.showInputDialog("Ingrese el género del libro: ");
             biblioteca.agregarLibro(new Libro(titulo, autores, cantidadPaginas, isbn, anioEdicion, editorial, genero));
-            JOptionPane.showMessageDialog(null, "Libro agregado correctamente");
         });
 
         // ELIMINAR LIBRO
         eliminarLibroButton.addActionListener(e -> {
             String tituloAEliminar = JOptionPane.showInputDialog("Ingrese el título del libro a eliminar: ");
             biblioteca.eliminarLibro(tituloAEliminar);
-            JOptionPane.showMessageDialog(null, "Libro eliminado correctamente");
         });
 
         // CONSULTAR POR TÍTULO
@@ -132,7 +130,6 @@ public class Menu extends JFrame {
             String editorialModificado = JOptionPane.showInputDialog("Ingrese la nueva editorial del libro: ");
             String generoModificado = JOptionPane.showInputDialog("Ingrese el nuevo género del libro: ");
             biblioteca.modificarLibro(tituloAModificar, new Libro(tituloModificado, autoresModificados, cantidadPaginasModificado, isbnModificado, anioEdicionModificado, editorialModificado, generoModificado));
-            JOptionPane.showMessageDialog(null, "Libro modificado correctamente");
         });
 
         // LISTAR AUTORES

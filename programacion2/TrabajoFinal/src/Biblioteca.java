@@ -1,4 +1,5 @@
 // Autores: Matteozzi, Marzorati y Monzalvo
+import javax.swing.*;
 import java.sql.*;
 import java.util.*;
 
@@ -39,12 +40,12 @@ public class Biblioteca {
                 statement.setInt(7, libro.getAnioEdicion());
                 statement.executeUpdate();
                 statement.close();
-                System.out.println("El libro ha sido agregado correctamente.");
+                JOptionPane.showMessageDialog(null, "Libro agregado correctamente");
             } else {
                 throw new Exception("El libro ya existe en la biblioteca.");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         System.out.println();
     }
@@ -59,12 +60,12 @@ public class Biblioteca {
             int columnasBorradas = statement.executeUpdate();
             statement.close();
             if (columnasBorradas > 0) {
-                System.out.println("Eliminado correctamente.");
+                JOptionPane.showMessageDialog(null, "Libro eliminado correctamente");
             } else {
                 throw new Exception("No se encontró ningún libro con el título ingresado.");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         System.out.println();
     }
@@ -93,7 +94,7 @@ public class Biblioteca {
                 int columnasAfectadas = updateStatement.executeUpdate();
                 // Si se modifico al menos una columna, entonces se imprime que se modifico correctamente
                 if (columnasAfectadas > 0) {
-                    System.out.println("El libro ha sido modificado correctamente.");
+                    JOptionPane.showMessageDialog(null, "Libro modificado correctamente");
                 } else {
                     throw new Exception("No se pudo modificar el libro en la base de datos.");
                 }
@@ -104,7 +105,7 @@ public class Biblioteca {
             resultSet.close();
             selectStatement.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         System.out.println();
     }
