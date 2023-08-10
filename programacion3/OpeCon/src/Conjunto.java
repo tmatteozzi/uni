@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Random;
+import java.util.Arrays;
 
 public class Conjunto {
     private int n; // Size del conjunto
@@ -7,23 +6,52 @@ public class Conjunto {
     private int pe; // Elemento a agregar, evaluar o eliminar
     private int[] conj; // Arreglo del conjunto
 
-    public Conjunto(int[] conj, int n, int cont){
+    public Conjunto(int n){
+        this.n = n;
         // Validacion de que n sea un numero positivo
         if (n < 0){
-            System.out.println(n + " no es valido.");
+            System.out.println(n + " NO VALIDO");
+            return;
         }
-        // Crear arreglo de size n
-        conj = generarArregloAleatorio(n);
+        conj = new int[n]; // Crea conjunto de size n
+        cont = 0; // Iniciar contador en 0
+        System.out.println("CONJUNTO CREADO.");
+
     }
 
-    public void agregar(int[] conj, int pe, int n, int cont){
-        existe(conj, pe, cont);
+    public void agregar(int pe) {
+        if (!existe(pe)) {
+            if (cont == n) {
+                System.out.println("CONJUNTO LLENO.");
+            } else {
+                // Agregar si hay un elemento vacio
+                for (int i = 0; i < cont; i++) {
+                    if (conj[i] == 0) {
+                        conj[i] = pe;
+                        System.out.println("ELEMENTO AGREGADO (reemplazando un 0).");
+                        return;
+                    }
+                }
+                // Agregar al final
+                conj[cont] = pe;
+                cont++;
+                System.out.println("ELEMENTO AGREGADO.");
+            }
+        }
     }
 
-    public void eliminar(int[] conj, int pe, int cont){
+    public void eliminar(int pe){
+        if(existe(pe)){
+            for(int i=0; i < cont; i++){
+                if (conj[i] == pe){
+                    conj[i] = 0;
+                    cont--;
+                }
+            }
+        }
     }
 
-    public void cVacio(int cont){
+    public void cVacio(){
         if(cont == 0){
             System.out.println("CONJUNTO VACIO.");
         }
@@ -32,27 +60,26 @@ public class Conjunto {
         }
     }
 
-    public void nElementos(int cont){
-        System.out.println(cont + "ELEMENTOS");
+    public void nElementos(){
+        System.out.println("NUMERO DE ELEMENTOS: " + cont);
     }
 
-    public void existe(int[] conj, int pe, int count){
-        // TODO: 09/08/2023
-    }
-
-    private int[] generarArregloAleatorio(int n) {
-        int[] arregloAleatorio = new int[n];
-        HashSet<Integer> numerosUtilizados = new HashSet<>();
-        Random random = new Random();
-        for (int i = 0; i < n; i++) {
-            int numAleatorio;
-            do {
-                numAleatorio = random.nextInt(); // Generar un número aleatorio
-            } while (numerosUtilizados.contains(numAleatorio)); // Repetir si ya existe en el conjunto
-            arregloAleatorio[i] = numAleatorio;
-            numerosUtilizados.add(numAleatorio);
+    public boolean existe(int pe){
+        if (cont == 0){
+            System.out.println("CONJUNTO VACIO.");
         }
+        for(int i=0; i<n; i++){
+            if(conj[i] == pe){
+                System.out.println("EL ELEMENTO " + pe + " EXISTE");
+                return true;
+            }
+        }
+        System.out.println("EL ELEMENTO " + pe + " NO EXISTE");
+        return false;
+    }
 
-        return arregloAleatorio;
+    @Override
+    public String toString() {
+        return "Conjunto{" + Arrays.toString(conj) + '}';
     }
 }
