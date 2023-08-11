@@ -13,21 +13,29 @@ public abstract class Cubo {
     }
 
     public void cargar(int ancho, int alto, int largo, int valor) {
-        if (validas(ancho, alto, largo)) {
-            if(conjunto[ancho][alto][largo] == 0){
-                conjunto[ancho][alto][largo] = valor;
-            }
-            else {
-                System.out.println("NO SE PUEDE AGREGAR VALOR, YA HAY UN VALOR EXISTENTE. VALOR EXISTENTE: " + conjunto[ancho][alto][largo]);
+        if (valor != 0){
+            if (validas(ancho, alto, largo)) {
+                if(conjunto[ancho][alto][largo] == 0){
+                    conjunto[ancho][alto][largo] = valor;
+                }
+                else {
+                    System.out.println("NO SE PUEDE AGREGAR VALOR, YA HAY UN VALOR EXISTENTE. VALOR EXISTENTE: " + conjunto[ancho][alto][largo]);
+                }
+            } else {
+                System.out.println("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
             }
         } else {
-            System.out.println("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
+            System.out.println("NO SE PUEDE CARGAR EL VALOR '0', UTILICE ANULAR.");
         }
     }
 
     public void modificar(int ancho, int alto, int largo, int valor){
         if(validas(ancho, alto, largo)){
-            conjunto[ancho][alto][largo] = valor;
+            if(conjunto[ancho][alto][largo] != 0){
+                conjunto[ancho][alto][largo] = valor;
+            } else {
+                System.out.println("NO SE PUEDE MODIFICAR UN VALOR QUE NO EXISTE (0)");
+            }
         } else {
             System.out.println("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
         }
