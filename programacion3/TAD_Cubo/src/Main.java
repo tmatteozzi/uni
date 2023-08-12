@@ -57,14 +57,16 @@ public class Main {
                     System.out.println(cubo);
                     break;
                 case 7:
+                    cubo.sumatoria();
+                    break;
+                case 8:
                     System.out.println("FIN DEL PROGRAMA");
                     break;
                 default:
                     System.out.println("OPCION NO VALIDA");
             }
-        } while (opcion != 7);
-
-        scanner.close();
+        } while (opcion != 8);
+        scanner.close(); // Cerrar scanner
     }
 
     public static void imprimirMenu() {
@@ -75,6 +77,7 @@ public class Main {
                 "4. Obtener valor\n" +
                 "5. Mostrar posiciones nulas\n" +
                 "6. Mostrar el contenido del cubo\n" +
-                "7. Salir");
+                "7. Obtener sumatoria de los valores del cubo\n" +
+                "8. Salir");
     }
 }

@@ -111,6 +111,26 @@ public abstract class Cubo {
         return true;
     }
 
+    public void sumatoria(){
+        int sumatoria = 0;
+        try {
+            for (int ancho = 0; ancho < conjunto.length; ancho++) {
+                for (int alto = 0; alto < conjunto[ancho].length; alto++) {
+                    for (int largo = 0; largo < conjunto[ancho][alto].length; largo++) {
+                        sumatoria += conjunto[ancho][alto][largo];
+                    }
+                }
+            }
+            if (sumatoria != 0){
+                System.out.println("LA SUMATORIA DE TODOS LOS VALORES DEL CUBO ES: " + sumatoria);
+            } else{
+                throw new Exception("NO HAY VALORES EN EL CUBO");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
