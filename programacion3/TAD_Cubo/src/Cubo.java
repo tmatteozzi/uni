@@ -4,61 +4,88 @@ public abstract class Cubo {
     int[][][] conjunto;
     Random random = new Random();
     public Cubo(int alto, int ancho, int largo){
-        if (alto != 0 && ancho != 0 && largo != 0){
+        try{
+            if (alto != 0 && ancho != 0 && largo != 0){
             conjunto = new int[alto][ancho][largo];
             alea();
-        } else {
-            System.out.println("HAY DIMENSIONES VACIAS, NO SE CREA EL CUBO.");
+            } else {
+                throw new Exception("HAY DIMENSIONES VACIAS, NO SE CREA EL CUBO.");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
     }
 
     public void cargar(int ancho, int alto, int largo, int valor) {
-        if (valor != 0){
-            if (validas(ancho, alto, largo)) {
-                if(conjunto[ancho][alto][largo] == 0){
-                    conjunto[ancho][alto][largo] = valor;
-                }
-                else {
-                    System.out.println("NO SE PUEDE AGREGAR VALOR, YA HAY UN VALOR EXISTENTE. VALOR EXISTENTE: " + conjunto[ancho][alto][largo]);
+        try{
+            if (valor != 0){
+                if (validas(ancho, alto, largo)) {
+                    if(conjunto[ancho][alto][largo] == 0){
+                        conjunto[ancho][alto][largo] = valor;
+                    }
+                    else {
+                        throw new Exception("NO SE PUEDE AGREGAR VALOR, YA HAY UN VALOR EXISTENTE. VALOR EXISTENTE: " + conjunto[ancho][alto][largo]);
+                    }
+                } else {
+                    throw new Exception("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
                 }
             } else {
-                System.out.println("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
+                throw new Exception("NO SE PUEDE CARGAR EL VALOR '0', UTILICE ANULAR.");
             }
-        } else {
-            System.out.println("NO SE PUEDE CARGAR EL VALOR '0', UTILICE ANULAR.");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void modificar(int ancho, int alto, int largo, int valor){
-        if(validas(ancho, alto, largo)){
-            if(conjunto[ancho][alto][largo] != 0){
-                conjunto[ancho][alto][largo] = valor;
+        try{
+            if(validas(ancho, alto, largo)){
+                if(conjunto[ancho][alto][largo] != 0){
+                    conjunto[ancho][alto][largo] = valor;
+                } else {
+                    throw new Exception("NO SE PUEDE MODIFICAR UN VALOR QUE NO EXISTE (0)");
+                }
             } else {
-                System.out.println("NO SE PUEDE MODIFICAR UN VALOR QUE NO EXISTE (0)");
+                throw new Exception("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
             }
-        } else {
-            System.out.println("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
     }
 
     public void anular(int ancho, int alto, int largo) {
-        if(validas(ancho, alto, largo)){
-            conjunto[ancho][alto][largo] = 0;
-        } else {
-            System.out.println("NO SE PUEDE CARGAR A ESA POSICION YA QUE NO EXISTE.");
+        try {
+            if (validas(ancho, alto, largo)) {
+                conjunto[ancho][alto][largo] = 0;
+            } else {
+                throw new Exception("NO SE PUEDE ANULAR A ESA POSICION YA QUE NO EXISTE.");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     public void nulos(){
-        System.out.println("LISTA POSICIONES NULAS: ");
-        for (int ancho = 0; ancho < conjunto.length; ancho++) {
-            for (int alto = 0; alto < conjunto[ancho].length; alto++) {
-                for (int largo = 0; largo < conjunto[ancho][alto].length; largo++) {
-                    if(conjunto[ancho][alto][largo] == 0){
-                        System.out.println("ANCHO:" + ancho + ", ALTO: " + ", LARGO: " + largo);
+        try {
+            int nulas = 0;
+            System.out.println("LISTA DE POSICIONES NULAS:");
+            for (int ancho = 0; ancho < conjunto.length; ancho++) {
+                for (int alto = 0; alto < conjunto[ancho].length; alto++) {
+                    for (int largo = 0; largo < conjunto[ancho][alto].length; largo++) {
+                        if (conjunto[ancho][alto][largo] == 0) {
+                            System.out.println("ANCHO:" + ancho + ", ALTO: " + alto + ", LARGO: " + largo);
+                            nulas = +1;
+                        }
                     }
                 }
             }
+            if (nulas == 0) {
+                throw new Exception("NO HAY POSICIONES NULAS");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -87,7 +114,6 @@ public abstract class Cubo {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
         for (int i = 0; i < conjunto.length; i++) {
             for (int j = 0; j < conjunto[i].length; j++) {
                 for (int k = 0; k < conjunto[i][j].length; k++) {
@@ -96,7 +122,6 @@ public abstract class Cubo {
                 }
             }
         }
-
         return sb.toString();
     }
 }
