@@ -1,18 +1,22 @@
+import java.util.Arrays;
+
 public class PilaEstatica extends Pila{
     private int[] pila;
     private int tope, size;
+
     public PilaEstatica(String nombrePila, int size) {
         super(nombrePila);
         this.size = size;
         pila = new int[size];
-        tope = -1;
+        tope = 0;
     }
 
     @Override
     public void apilarElemento(int elemento) {
         try{
             if(!pilaLlena()){
-                pila[tope++] = elemento;
+                pila[tope] = elemento;
+                tope++;
                 System.out.println("ELEMENTO " + elemento + " APILADO");
             } else {
                 throw new Exception("NO SE PUEDE APILAR ELEMENTO. PILA LLENA");
@@ -26,8 +30,9 @@ public class PilaEstatica extends Pila{
     public void desapilarElemento() {
         try{
             if(!pilaVacia()){
-                int desapilado = pila[tope];
                 tope--;
+                int desapilado = pila[tope];
+                pila[tope] = 0;
                 System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
             } else{
                 throw new Exception("NO SE PUEDE DESAPILAR UNA LISTA VACIA");
@@ -41,7 +46,7 @@ public class PilaEstatica extends Pila{
     public int topePila() {
         try{
             if (!pilaVacia()) {
-                return topePila();
+                return pila[tope - 1];
             } else {
                 throw new Exception("NO HAY TOPE, LISTA VACIA");
             }
@@ -52,11 +57,16 @@ public class PilaEstatica extends Pila{
     }
     @Override
     public boolean pilaVacia () {
-        return (tope == -1);
+        return (tope == 0);
     }
 
     public boolean pilaLlena () {
-        return (tope == size - 1);
+        return (tope == size);
+    }
+
+    @Override
+    public String toString() {
+        return "Pila Estatica: " + Arrays.toString(pila);
     }
 }
 

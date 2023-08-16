@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class PilaDinamica extends Pila{
     private ArrayList<Integer> pila;
+
     public PilaDinamica(String nombrePila) {
         super(nombrePila);
         pila = new ArrayList<>();
@@ -29,11 +30,25 @@ public class PilaDinamica extends Pila{
 
     @Override
     public int topePila() {
-        return pila.get(pila.size());
+        try {
+            if (!pilaVacia()) {
+                return pila.get(pila.size() - 1);
+            } else {
+                throw new Exception("NO HAY TOPE. PILA VACIA");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
     }
 
     @Override
     public boolean pilaVacia() {
         return (pila.size() == 0);
+    }
+
+    @Override
+    public String toString() {
+        return "Pila Dinamica: " + pila;
     }
 }

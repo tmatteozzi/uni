@@ -10,7 +10,4 @@ public abstract class Pila {
     public abstract void desapilarElemento();
     public abstract int topePila();
     public abstract boolean pilaVacia();
-
-    public String getNombrePila(){ return nombrePila; }
-
 }

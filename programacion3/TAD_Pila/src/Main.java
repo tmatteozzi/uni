@@ -3,30 +3,32 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese una opcion: \n" +
-                "1. Pila Estatica \n" +
-                "2. Pila Dinamica \n" +
-                "3. Otras Operaciones \n" +
-                "4. Salir");
-        int opcionInicial = scanner.nextInt();
+        int opcionInicial;
         do{
+            System.out.println("Ingrese una opcion: \n" +
+                    "1. Pila Estatica \n" +
+                    "2. Pila Dinamica \n" +
+                    "3. Otras Operaciones \n" +
+                    "4. Salir");
+            opcionInicial = scanner.nextInt();
             switch (opcionInicial){
                 case 1:
                     System.out.println("Ingrese el nombre de la pila estatica: ");
                     String nombrePE = scanner.next();
                     System.out.println("Ingrese el size de la pila estatica: ");
                     int sizePE = scanner.nextInt();
-                    PilaEstatica pE = new PilaEstatica(nombrePE, sizePE);
+                    Pila pE = new PilaEstatica(nombrePE, sizePE);
+                    int opcionEstatica;
 
-                    System.out.println("Ingrese una opcion: \n" +
+                    do{
+                        System.out.println("Ingrese una opcion: \n" +
                             "1. Apilar elemento \n" +
                             "2. Desapilar elemento \n" +
                             "3. Tope de pila \n" +
                             "4. Chequear si la pila esta vacia \n" +
                             "5. Chequear si la pila esta llena \n" +
                             "6. Salir");
-                    int opcionEstatica = scanner.nextInt();
-                    do{
+                        opcionEstatica = scanner.nextInt();
                         switch (opcionEstatica){
                             case 1:
                                 System.out.println("INGRESE ELEMENTO A APILAR: ");
@@ -34,9 +36,7 @@ public class Main {
                                 pE.apilarElemento(elementoApilarPE);
                                 break;
                             case 2:
-                                System.out.println("INGRESE ELEMENTO A DESAPILAR: ");
-                                int elementoDesapilarPE = scanner.nextInt();
-                                pE.apilarElemento(elementoDesapilarPE);
+                                pE.desapilarElemento();
                                 break;
                             case 3:
                                 System.out.println("EL ELEMENTO TOPE ES: " + pE.topePila());
@@ -50,7 +50,7 @@ public class Main {
                                     break;
                                 }
                             case 5:
-                                if(pE.pilaLlena()){
+                                if(((PilaEstatica) pE).pilaLlena()){
                                     System.out.println("PILA LLENA.");
                                     break;
                                 } else {
@@ -58,8 +58,10 @@ public class Main {
                                     break;
                                 }
                             case 6:
-                                System.out.print("DE VUELTA AL MENU PRINICPAL.");
+                                System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
+                            case 7:
+                                System.out.println(pE);
                             default:
                                 System.out.println("OPCION NO VALIDA.");
                                 break;
@@ -69,18 +71,17 @@ public class Main {
                 case 2:
                     System.out.println("Ingrese el nombre de la pila dinamica: ");
                     String nombrePD = scanner.next();
-                    System.out.println("Ingrese el size de la pila estatica: ");
-                    int sizePD = scanner.nextInt();
-                    PilaEstatica pD = new PilaEstatica(nombrePD, sizePD);
+                    Pila pD = new PilaDinamica(nombrePD);
+                    int opcionDinamica;
 
-                    System.out.println("Ingrese una opcion: \n" +
-                            "1. Apilar elemento \n" +
-                            "2. Desapilar elemento \n" +
-                            "3. Tope de pila \n" +
-                            "4. Chequear si la pila esta vacia \n" +
-                            "5. Salir");
-                    int opcionDinamica = scanner.nextInt();
                     do{
+                        System.out.println("Ingrese una opcion: \n" +
+                                "1. Apilar elemento \n" +
+                                "2. Desapilar elemento \n" +
+                                "3. Tope de pila \n" +
+                                "4. Chequear si la pila esta vacia \n" +
+                                "5. Salir");
+                        opcionDinamica = scanner.nextInt();
                         switch (opcionDinamica){
                             case 1:
                                 System.out.println("INGRESE ELEMENTO A APILAR: ");
@@ -88,9 +89,7 @@ public class Main {
                                 pD.apilarElemento(elementoApilarPD);
                                 break;
                             case 2:
-                                System.out.println("INGRESE ELEMENTO A DESAPILAR: ");
-                                int elementoDesapilarPD = scanner.nextInt();
-                                pD.apilarElemento(elementoDesapilarPD);
+                                pD.desapilarElemento();
                                 break;
                             case 3:
                                 System.out.println("EL ELEMENTO TOPE ES: " + pD.topePila());
@@ -103,10 +102,11 @@ public class Main {
                                     System.out.println("PILA NO VACIA.");
                                     break;
                                 }
-
                             case 5:
-                                System.out.print("DE VUELTA AL MENU PRINICPAL.");
+                                System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
+                            case 7:
+                                System.out.println(pD);
                             default:
                                 System.out.println("OPCION NO VALIDA.");
                                 break;
