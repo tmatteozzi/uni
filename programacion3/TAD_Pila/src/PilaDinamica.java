@@ -14,18 +14,18 @@ public class PilaDinamica extends Pila{
     }
 
     @Override
-    public void desapilarElemento() {
+    public int desapilarElemento() {
         try{
             if(!pilaVacia()){
                 int desapilado = pila.remove(pila.size() - 1);
-                System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
+                return desapilado;
             } else {
                 throw new Exception("NO SE PUEDE DESAPILAR UNA PILA VACIA");
             }
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-
+    return 0;
     }
 
     @Override

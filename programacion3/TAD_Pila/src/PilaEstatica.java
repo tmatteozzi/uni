@@ -17,7 +17,6 @@ public class PilaEstatica extends Pila{
             if(!pilaLlena()){
                 pila[tope] = elemento;
                 tope++;
-                System.out.println("ELEMENTO " + elemento + " APILADO");
             } else {
                 throw new Exception("NO SE PUEDE APILAR ELEMENTO. PILA LLENA");
             }
@@ -27,19 +26,20 @@ public class PilaEstatica extends Pila{
     }
 
     @Override
-    public void desapilarElemento() {
+    public int desapilarElemento() {
         try{
             if(!pilaVacia()){
                 tope--;
                 int desapilado = pila[tope];
                 pila[tope] = 0;
-                System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
+                return desapilado;
             } else{
                 throw new Exception("NO SE PUEDE DESAPILAR UNA LISTA VACIA");
             }
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+        return 0;
     }
 
     @Override

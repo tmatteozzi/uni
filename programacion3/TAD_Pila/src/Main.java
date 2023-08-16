@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        int opcionInicial;
+        Pila pE = null, pD = null; // Creacion de conjuntos en null para poder usarlo en todos los cases
+        int opcionInicial; // Declaracion de la variable afuera del loop para usarla como opcion adentro
         do{
             System.out.println("Ingrese una opcion: \n" +
                     "1. Pila Estatica \n" +
@@ -17,7 +19,7 @@ public class Main {
                     String nombrePE = scanner.next();
                     System.out.println("Ingrese el size de la pila estatica: ");
                     int sizePE = scanner.nextInt();
-                    Pila pE = new PilaEstatica(nombrePE, sizePE);
+                    pE = new PilaEstatica(nombrePE, sizePE);
                     int opcionEstatica;
 
                     do{
@@ -28,7 +30,8 @@ public class Main {
                             "3. Tope de pila \n" +
                             "4. Chequear si la pila esta vacia \n" +
                             "5. Chequear si la pila esta llena \n" +
-                            "6. Salir");
+                            "6. Imprimir \n" +
+                            "7. Salir");
                         opcionEstatica = scanner.nextInt();
                         switch (opcionEstatica){
                             case 1:
@@ -37,7 +40,10 @@ public class Main {
                                 pE.apilarElemento(elementoApilarPE);
                                 break;
                             case 2:
-                                pE.desapilarElemento();
+                                int desapilado = pE.desapilarElemento();
+                                if (desapilado != 0){
+                                    System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
+                                }
                                 break;
                             case 3:
                                 System.out.println("EL ELEMENTO TOPE ES: " + pE.topePila());
@@ -59,20 +65,20 @@ public class Main {
                                     break;
                                 }
                             case 6:
+                                System.out.println(pE);
+                            case 7:
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
-                            case 7:
-                                System.out.println(pE);
                             default:
                                 System.out.println("OPCION NO VALIDA.");
                                 break;
                         }
-                    } while (opcionEstatica != 6);
+                    } while (opcionEstatica != 7);
                     break;
                 case 2:
                     System.out.println("Ingrese el nombre de la pila dinamica: ");
                     String nombrePD = scanner.next();
-                    Pila pD = new PilaDinamica(nombrePD);
+                    pD = new PilaDinamica(nombrePD);
                     int opcionDinamica;
 
                     do{
@@ -82,7 +88,8 @@ public class Main {
                                 "2. Desapilar elemento \n" +
                                 "3. Tope de pila \n" +
                                 "4. Chequear si la pila esta vacia \n" +
-                                "5. Salir");
+                                "5. Imprimir \n" +
+                                "6. Salir");
                         opcionDinamica = scanner.nextInt();
                         switch (opcionDinamica){
                             case 1:
@@ -91,7 +98,10 @@ public class Main {
                                 pD.apilarElemento(elementoApilarPD);
                                 break;
                             case 2:
-                                pD.desapilarElemento();
+                                int desapilado = pD.desapilarElemento();
+                                if (desapilado != 0){
+                                    System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
+                                }
                                 break;
                             case 3:
                                 System.out.println("EL ELEMENTO TOPE ES: " + pD.topePila());
@@ -105,17 +115,125 @@ public class Main {
                                     break;
                                 }
                             case 5:
+                                System.out.println(pD);
+                            case 6:
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
-                            case 7:
-                                System.out.println(pD);
                             default:
                                 System.out.println("OPCION NO VALIDA.");
                                 break;
                         }
-                    } while (opcionDinamica != 5);
+                    } while (opcionDinamica != 6);
+                    break;
+                case 3:
+                    int opcionOtrasOperaciones;
+                    do{
+                        System.out.println("MENU OTRAS OPERACIONES\n" +
+                                "Ingrese una opcion: \n" +
+                                "1. Identificar de que pila es segun el elemento\n" +
+                                "2. Desapilar elemento \n" +
+                                "3. Salir");
+                        opcionOtrasOperaciones = scanner.nextInt();
+                        switch (opcionOtrasOperaciones){
+                            case 1:
+                                System.out.println("INGRESE ELEMENTO A BUSCAR: ");
+                                int elementoABucar = scanner.nextInt();
+                                identificarPila(pE, pD, elementoABucar);
+                            case 2:
+                                imprimirElementos(pE, pD);
+                            case 3:
+                                System.out.println("DE VUELTA AL MENU PRINICPAL.");
+                                break;
+                            default:
+                                System.out.println("OPCION NO VALIDA.");
+                                break;
+                        }
+                    } while (opcionOtrasOperaciones != 3);
+                    break;
+                case 4:
+                    System.out.println("FIN DEL PROGRAMA.");
+                    break;
+                default:
+                    System.out.println("OPCION NO VALIDA.");
                     break;
             }
         } while (opcionInicial != 4);
     }
+
+    public static void identificarPila(Pila pE, Pila pD, int elementoBusqueda){
+        Stack<Integer> pilaTempEstatica = new Stack<>();
+        Stack<Integer> pilaTempDinamica = new Stack<>();
+
+        boolean encontradoEstatico = false;
+        boolean encontradoDinamico = false;
+
+        // PARTE ESTATICA
+        while (!pE.pilaVacia()) {
+            int elementoEstatica = pE.desapilarElemento();
+            pilaTempEstatica.push(elementoEstatica);
+            // Busqueda de elemento
+            if (elementoEstatica == elementoBusqueda) {
+                encontradoEstatico = true;
+            }
+        }
+        while (!pilaTempEstatica.empty()) {
+            pE.apilarElemento(pilaTempEstatica.pop()); // Volver a apilar en la normal
+        }
+
+        // PARTE DINAMICA
+        while (!pD.pilaVacia()) {
+            int elementoDinamica = pD.desapilarElemento();
+            pilaTempDinamica.push(elementoDinamica);
+            // Busqueda de elemento
+            if (elementoDinamica == elementoBusqueda) {
+                encontradoDinamico = true;
+            }
+        }
+        while (!pilaTempDinamica.empty()) {
+            pD.apilarElemento(pilaTempDinamica.pop()); // Volver a apilar en la normal
+        }
+
+        // RESULTADOS
+        if (encontradoEstatico && encontradoDinamico) {
+            System.out.println("ELEMENTO: " + elementoBusqueda + " ESTA EN AMBAS PILAS.");
+        } else if (encontradoEstatico) {
+            System.out.println("ELEMENTO: " + elementoBusqueda + " ESTA EN LA PILA ESTATICA.");
+        } else if (encontradoDinamico) {
+            System.out.println("ELEMENTO: " + elementoBusqueda + " ESTA EN LA PILA DINAMICA.");
+        } else {
+            System.out.println("ELEMENTO: " + elementoBusqueda + " NO ESTA EN NINGUNA PILA.");
+        }
+    }
+    public static void imprimirElementos(Pila pE, Pila pD){
+        Stack<Integer> pilaTempEstatica = new Stack<>();
+        Stack<Integer> pilaTempDinamica = new Stack<>();
+
+        int contadorEstatico = 0;
+        int contadorDinamico = 0;
+
+        // PARTE ESTATICA
+        System.out.println("LISTA PILA ESTATICA");
+        while(!pE.pilaVacia()){ // Vaciar la pila y cargar a la temporal
+            pilaTempEstatica.push(pE.desapilarElemento());
+        }
+        while (!pilaTempEstatica.empty()){ // Volver a cargar a la pila pero con un contador para ubicar la posicion
+            int elementoEstatica = pilaTempEstatica.pop();
+            pE.apilarElemento(elementoEstatica);
+            contadorEstatico++;
+            System.out.println("ELEMENTO: " + elementoEstatica + " , ORDEN: " + contadorEstatico);
+        }
+
+        // PARTE DINAMICA
+        while(!pD.pilaVacia()){
+            pilaTempDinamica.push(pD.desapilarElemento()); // Vaciar la pila y cargar a la temporal
+        }
+        System.out.println("LISTA PILA DINAMICA");
+        while (!pilaTempDinamica.empty()){ // Volver a cargar a la pila pero con un contador para ubicar la posicion
+            int elementoDinamica = pilaTempDinamica.pop();
+            pD.apilarElemento(elementoDinamica);
+            contadorDinamico++;
+            System.out.println("ELEMENTO: " + elementoDinamica + " , ORDEN: " + contadorDinamico);
+        }
+    }
 }
+
