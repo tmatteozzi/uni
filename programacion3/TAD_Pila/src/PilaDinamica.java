@@ -17,8 +17,7 @@ public class PilaDinamica extends Pila{
     public int desapilarElemento() {
         try{
             if(!pilaVacia()){
-                int desapilado = pila.remove(pila.size() - 1);
-                return desapilado;
+                return pila.remove(pila.size() - 1);
             } else {
                 throw new Exception("NO SE PUEDE DESAPILAR UNA PILA VACIA");
             }

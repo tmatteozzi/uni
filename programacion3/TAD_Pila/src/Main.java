@@ -66,6 +66,7 @@ public class Main {
                                 }
                             case 6:
                                 System.out.println(pE);
+                                break;
                             case 7:
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
@@ -116,6 +117,7 @@ public class Main {
                                 }
                             case 5:
                                 System.out.println(pD);
+                                break;
                             case 6:
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
@@ -131,7 +133,7 @@ public class Main {
                         System.out.println("MENU OTRAS OPERACIONES\n" +
                                 "Ingrese una opcion: \n" +
                                 "1. Identificar de que pila es segun el elemento\n" +
-                                "2. Desapilar elemento \n" +
+                                "2. Imprimir todos los elementos y sus posiciones\n" +
                                 "3. Salir");
                         opcionOtrasOperaciones = scanner.nextInt();
                         switch (opcionOtrasOperaciones){
@@ -139,8 +141,10 @@ public class Main {
                                 System.out.println("INGRESE ELEMENTO A BUSCAR: ");
                                 int elementoABucar = scanner.nextInt();
                                 identificarPila(pE, pD, elementoABucar);
+                                break;
                             case 2:
                                 imprimirElementos(pE, pD);
+                                break;
                             case 3:
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
@@ -195,15 +199,16 @@ public class Main {
 
         // RESULTADOS
         if (encontradoEstatico && encontradoDinamico) {
-            System.out.println("ELEMENTO: " + elementoBusqueda + " ESTA EN AMBAS PILAS.");
+            System.out.println("EL ELEMENTO " + elementoBusqueda + " ESTA EN AMBAS PILAS.");
         } else if (encontradoEstatico) {
-            System.out.println("ELEMENTO: " + elementoBusqueda + " ESTA EN LA PILA ESTATICA.");
+            System.out.println("EL ELEMENTO " + elementoBusqueda + " ESTA EN LA PILA ESTATICA.");
         } else if (encontradoDinamico) {
-            System.out.println("ELEMENTO: " + elementoBusqueda + " ESTA EN LA PILA DINAMICA.");
+            System.out.println("EL ELEMENTO " + elementoBusqueda + " ESTA EN LA PILA DINAMICA.");
         } else {
-            System.out.println("ELEMENTO: " + elementoBusqueda + " NO ESTA EN NINGUNA PILA.");
+            System.out.println("EL ELEMENTO " + elementoBusqueda + " NO ESTA EN NINGUNA PILA.");
         }
     }
+
     public static void imprimirElementos(Pila pE, Pila pD){
         Stack<Integer> pilaTempEstatica = new Stack<>();
         Stack<Integer> pilaTempDinamica = new Stack<>();
