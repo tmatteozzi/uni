@@ -21,7 +21,8 @@ public class Main {
                     int opcionEstatica;
 
                     do{
-                        System.out.println("Ingrese una opcion: \n" +
+                        System.out.println("MENU PILA " + pE.getNombrePila().toUpperCase() + "\n" +
+                            "Ingrese una opcion: \n" +
                             "1. Apilar elemento \n" +
                             "2. Desapilar elemento \n" +
                             "3. Tope de pila \n" +
@@ -75,7 +76,8 @@ public class Main {
                     int opcionDinamica;
 
                     do{
-                        System.out.println("Ingrese una opcion: \n" +
+                        System.out.println("MENU PILA " + pD.getNombrePila().toUpperCase() + "\n" +
+                                "Ingrese una opcion: \n" +
                                 "1. Apilar elemento \n" +
                                 "2. Desapilar elemento \n" +
                                 "3. Tope de pila \n" +
