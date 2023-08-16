@@ -90,10 +90,6 @@ public abstract class Conjunto {
         }
     }
 
-    public abstract Conjunto Union(Conjunto otroConjunto);
-
-    public abstract Conjunto Interseccion(Conjunto otroConjunto);
-
     public boolean Inclusion(Conjunto otroConjunto) {
         for (int i = 0; i < cont; i++) {
             if (!otroConjunto.pertenece(conj[i])) {
@@ -103,5 +99,17 @@ public abstract class Conjunto {
         }
         System.out.println("INCLUSIÓN VERIFICADA");
         return true;
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public int getCont() {
+        return cont;
+    }
+
+    public int[] getConj() {
+        return conj;
     }
 }
