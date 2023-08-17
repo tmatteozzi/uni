@@ -1,13 +1,15 @@
+import java.util.Arrays;
+
 public abstract class Conjunto {
     private int n, cont;
     private int[] conj;
 
-    public Conjunto(int tamano){
+    public Conjunto(int n){
+        this.n = n;
         try {
-            if(tamano > 0){
-                conj = new int[tamano];
+            if(n > 0){
+                conj = new int[n];
                 cont = 0;
-                n = tamano;
                 System.out.println("CONJUNTO CREADO");
             } else{
                 throw new Exception("CONJUNTO NO CREADO, TAMANO INVALIDO");
@@ -17,15 +19,14 @@ public abstract class Conjunto {
         }
     }
 
-    public void ConjuntoVacio() {
+    public void conjuntoVacio() {
         conj = new int[n];
         cont = 0;
     }
 
-    public boolean Esvacio() {
+    public boolean esVacio() {
         try {
             if (cont == 0) {
-                System.out.println("CONJUNTO VACÍO");
                 return true;
             } else {
                 throw new Exception("CONJUNTO NO VACÍO");
@@ -36,11 +37,11 @@ public abstract class Conjunto {
         return false;
     }
 
-    public void añadir(int PE) {
+    public void añadir(int pe) {
         try{
             if (cont < n) {
-                if (!pertenece(PE)) {
-                    conj[cont] = PE;
+                if (!pertenece(pe)) {
+                    conj[cont] = pe;
                     cont++;
                     System.out.println("ELEMENTO AÑADIDO");
                 } else {
@@ -58,19 +59,16 @@ public abstract class Conjunto {
         try {
             for (int i = 0; i < cont; i++) {
                 if (conj[i] == pe) {
-                    System.out.println("EL ELEMENTO YA EXISTE");
                     return true;
                 }
             }
             throw new Exception("EL ELEMENTO NO EXISTE");
-
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
         return false;
     }
 
-    // SEGUIR VIENDO DE ACA PARA ABAJO
     public void retirar(int pe) {
         int indice = -1;
         for (int i = 0; i < cont; i++) {
@@ -90,26 +88,11 @@ public abstract class Conjunto {
         }
     }
 
-    public boolean Inclusion(Conjunto otroConjunto) {
-        for (int i = 0; i < cont; i++) {
-            if (!otroConjunto.pertenece(conj[i])) {
-                System.out.println("NO TODOS LOS ELEMENTOS ESTÁN INCLUIDOS");
-                return false;
-            }
-        }
-        System.out.println("INCLUSIÓN VERIFICADA");
-        return true;
-    }
+    public int getCont() { return cont; }
+    public int[] getConj() { return conj; }
 
-    public int getN() {
-        return n;
-    }
-
-    public int getCont() {
-        return cont;
-    }
-
-    public int[] getConj() {
-        return conj;
+    @Override
+    public String toString() {
+        return "Conjunto: " + Arrays.toString(conj);
     }
 }
