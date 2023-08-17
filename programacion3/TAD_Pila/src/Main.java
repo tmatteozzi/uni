@@ -6,6 +6,17 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Pila pE = null, pD = null; // Creacion de conjuntos en null para poder usarlo en todos los cases
         int opcionInicial; // Declaracion de la variable afuera del loop para usarla como opcion adentro
+        // Creacion pila estatica
+        System.out.println("Ingrese el nombre de la pila estatica: ");
+        String nombrePE = scanner.next();
+        System.out.println("Ingrese el size de la pila estatica: ");
+        int sizePE = scanner.nextInt();
+        pE = new PilaEstatica(nombrePE, sizePE);
+        // Creacion pila dinamica
+        System.out.println("Ingrese el nombre de la pila dinamica: ");
+        String nombrePD = scanner.next();
+        pD = new PilaDinamica(nombrePD);
+        // Menu
         do{
             System.out.println("Ingrese una opcion: \n" +
                     "1. Pila Estatica \n" +
@@ -15,11 +26,6 @@ public class Main {
             opcionInicial = scanner.nextInt();
             switch (opcionInicial){
                 case 1:
-                    System.out.println("Ingrese el nombre de la pila estatica: ");
-                    String nombrePE = scanner.next();
-                    System.out.println("Ingrese el size de la pila estatica: ");
-                    int sizePE = scanner.nextInt();
-                    pE = new PilaEstatica(nombrePE, sizePE);
                     int opcionEstatica;
 
                     do{
@@ -77,11 +83,7 @@ public class Main {
                     } while (opcionEstatica != 7);
                     break;
                 case 2:
-                    System.out.println("Ingrese el nombre de la pila dinamica: ");
-                    String nombrePD = scanner.next();
-                    pD = new PilaDinamica(nombrePD);
                     int opcionDinamica;
-
                     do{
                         System.out.println("MENU PILA " + pD.getNombrePila().toUpperCase() + "\n" +
                                 "Ingrese una opcion: \n" +
