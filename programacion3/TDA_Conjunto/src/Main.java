@@ -154,24 +154,28 @@ public class Main {
     public static Conjunto union(Conjunto c1, Conjunto c2){
         ArrayList<Integer> elementosUnion = new ArrayList<>(); // Crear arraylist para agregar los elementos
         // Recorrer ambos conjuntos y agregar elementos a union
-        for(int i=0; i < c1.getCont(); i++){
-            elementosUnion.add(c1.getConj()[i]);
+        for (int i = 0; i < c1.getCont(); i++) {
+            int elemento = c1.getConj()[i];
+            if (elemento != 0 && !elementosUnion.contains(elemento)) {
+                elementosUnion.add(elemento);
+            }
         }
-        for(int i=0; i < c2.getCont(); i++){
-            elementosUnion.add(c2.getConj()[i]);
+        for (int i = 0; i < c2.getCont(); i++) {
+            int elemento = c2.getConj()[i];
+            if (elemento != 0 && !elementosUnion.contains(elemento)) {
+                elementosUnion.add(elemento);
+            }
         }
         // Nuevo conjunto
         Conjunto conjUnion = new ConjuntoConcreto(elementosUnion.size());
         for(Integer elemento: elementosUnion){
-            if(!conjUnion.pertenece(elemento)){ // Solamente cargar los elementos que no estan duplicados
-                conjUnion.añadir(elemento);
-            }
+            conjUnion.añadir(elemento);
         }
         return conjUnion;
     }
 
     public static Conjunto interseccion(Conjunto c1, Conjunto c2){
-        ArrayList<Integer> elementosInterseccion = new ArrayList<>();
+        ArrayList<Integer> elementosInterseccion = new ArrayList<>(); // Crear arraylist para agregar los elementos
         for(int i=0; i < c1.getCont(); i++){
             if(c2.pertenece(c1.getConj()[i])){
                 elementosInterseccion.add(c1.getConj()[i]);
