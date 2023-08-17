@@ -6,6 +6,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Conjunto c1 = null, c2 = null;
         int opcionInicial;
+        // Creacion de conjuntos al principio para no tener que crear cada vez que entre al menu
+        System.out.println("Ingrese el size del Conjunto 1: ");
+        int nConjunto1 = scanner.nextInt();
+        c1 = new ConjuntoConcreto(nConjunto1);
+        System.out.println("Ingrese el size del Conjunto 2: ");
+        int nConjunto2 = scanner.nextInt();
+        c2 = new ConjuntoConcreto(nConjunto2);
+        // Menu
         do {
             System.out.println("Ingrese una opcion: \n" +
                 "1. Metodos Conjunto 1 \n" +
@@ -15,9 +23,6 @@ public class Main {
             opcionInicial = scanner.nextInt();
             switch (opcionInicial){
                 case 1:
-                    System.out.println("Ingrese el size del conjunto: ");
-                    int nConjunto1 = scanner.nextInt();
-                    c1 = new ConjuntoConcreto(nConjunto1);
                     int opcionC1;
                     do {
                         imprimirMenu();
@@ -62,9 +67,6 @@ public class Main {
                     } while (opcionC1 != 7);
                     break;
                 case 2:
-                    System.out.println("Ingrese el size del conjunto: ");
-                    int nConjunto2 = scanner.nextInt();
-                    c2 = new ConjuntoConcreto(nConjunto2);
                     int opcionC2;
                     do {
                         imprimirMenu();
@@ -111,7 +113,7 @@ public class Main {
                 case 3:
                     int opcionC3;
                     do {
-                        System.out.println("MENU OPERACIONES DE AMBOS CONJUNTOS: \n" +
+                        System.out.println("MENU OPERACIONES DE AMBOS CONJUNTOS \n" +
                                 "Ingrese una opcion: \n" +
                                 "1. Union \n" +
                                 "2. Interseccion \n" +
@@ -193,7 +195,7 @@ public class Main {
 
     public static boolean inclusion(Conjunto c1, Conjunto c2) {
         for (int i = 0; i < c1.getCont(); i++) {
-            if (!c2.pertenece(c1.getConj()[i])) {
+            if (!c2.pertenece(c1.getConj()[i])) { // Chequear q todos los elementos de c1 pertenezcan en c2
                 return false;
             }
         }

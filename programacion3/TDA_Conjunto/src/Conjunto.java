@@ -55,6 +55,26 @@ public abstract class Conjunto {
         }
     }
 
+    public void retirar(int pe) {
+        int posicion = -1;
+        for (int i = 0; i < cont; i++) { // Buscar la posicion donde se encuentra el elemento a retirar
+            if (conj[i] == pe) {
+                posicion = i; // Al encontrar la posicion asignarla y salir
+                break;
+            }
+        }
+        if (posicion != -1) {
+            for (int i = posicion; i < cont - 1; i++) { // Mover elementos atras dspues de retiro
+                conj[i] = conj[i + 1];
+            }
+            conj[cont - 1] = 0; // Poner un 0 (predet) en donde se retiro el elemento
+            cont--;
+            System.out.println("ELEMENTO ELIMINADO");
+        } else {
+            System.out.println("EL ELEMENTO NO EXISTE");
+        }
+    }
+
     public boolean pertenece(int pe) {
         try {
             for (int i = 0; i < cont; i++) {
@@ -67,25 +87,6 @@ public abstract class Conjunto {
             System.out.println(e.getMessage());
         }
         return false;
-    }
-
-    public void retirar(int pe) {
-        int indice = -1;
-        for (int i = 0; i < cont; i++) {
-            if (conj[i] == pe) {
-                indice = i;
-                break;
-            }
-        }
-        if (indice != -1) {
-            for (int i = indice; i < cont - 1; i++) {
-                conj[i] = conj[i + 1];
-            }
-            cont--;
-            System.out.println("ELEMENTO ELIMINADO");
-        } else {
-            System.out.println("EL ELEMENTO NO EXISTE");
-        }
     }
 
     public int getCont() { return cont; }
