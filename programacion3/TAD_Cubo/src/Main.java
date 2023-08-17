@@ -16,13 +16,14 @@ public class Main {
         int opcion;
         do {
             imprimirMenu();
+            int a,b,c;
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese las coordenadas para agregar (ancho, alto, largo): ");
-                    int a = scanner.nextInt();
-                    int b = scanner.nextInt();
-                    int c = scanner.nextInt();
+                    a = scanner.nextInt();
+                    b = scanner.nextInt();
+                    c = scanner.nextInt();
                     System.out.println("Ingrese el valor: ");
                     int valor = scanner.nextInt();
                     cubo.cargar(a, b, c, valor);

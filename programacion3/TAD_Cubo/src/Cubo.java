@@ -75,7 +75,7 @@ public abstract class Cubo {
                 for (int alto = 0; alto < conjunto[ancho].length; alto++) {
                     for (int largo = 0; largo < conjunto[ancho][alto].length; largo++) {
                         if (conjunto[ancho][alto][largo] == 0) {
-                            System.out.println("ANCHO:" + ancho + ", ALTO: " + alto + ", LARGO: " + largo);
+                            System.out.println("ANCHO: " + ancho + ", ALTO: " + alto + ", LARGO: " + largo);
                             nulas = +1;
                         }
                     }
