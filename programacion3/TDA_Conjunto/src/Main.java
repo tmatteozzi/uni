@@ -31,7 +31,7 @@ public class Main {
                             case 1:
                                 System.out.println("Ingrese el elemento a anadir: ");
                                 int eA = scanner.nextInt();
-                                c1.añadir(eA);
+                                c1.agregar(eA);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el elemento a retirar: ");
@@ -75,7 +75,7 @@ public class Main {
                             case 1:
                                 System.out.println("Ingrese el elemento a anadir: ");
                                 int eA = scanner.nextInt();
-                                c2.añadir(eA);
+                                c2.agregar(eA);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el elemento a retirar: ");
@@ -171,7 +171,7 @@ public class Main {
         // Nuevo conjunto
         Conjunto conjUnion = new ConjuntoConcreto(elementosUnion.size());
         for(Integer elemento: elementosUnion){
-            conjUnion.añadir(elemento);
+            conjUnion.agregar(elemento);
         }
         return conjUnion;
     }
@@ -187,7 +187,7 @@ public class Main {
         Conjunto conjInterseccion = new ConjuntoConcreto(elementosInterseccion.size());
         for(Integer elemento: elementosInterseccion){
             if(!conjInterseccion.pertenece(elemento)){ // Solamente cargar los elementos que no estan duplicados
-                conjInterseccion.añadir(elemento);
+                conjInterseccion.agregar(elemento);
             }
         }
         return conjInterseccion;

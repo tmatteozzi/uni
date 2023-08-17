@@ -37,7 +37,7 @@ public abstract class Conjunto {
         return false;
     }
 
-    public void añadir(int pe) {
+    public void agregar(int pe) {
         try{
             if (cont < n) {
                 if (!pertenece(pe)) {
