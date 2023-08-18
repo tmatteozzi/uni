@@ -16,7 +16,7 @@ public class Main {
         int opcion;
         do {
             imprimirMenu();
-            int a,b,c;
+            int a,b,c, valor;
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
@@ -25,7 +25,7 @@ public class Main {
                     b = scanner.nextInt();
                     c = scanner.nextInt();
                     System.out.println("Ingrese el valor: ");
-                    int valor = scanner.nextInt();
+                    valor = scanner.nextInt();
                     cubo.cargar(a, b, c, valor);
                     break;
                 case 2:
