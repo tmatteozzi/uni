@@ -76,7 +76,7 @@ public class ColaVector extends Cola{
                 cola[cont] = 0;
                 cont--;
             } else {
-                throw new Exception("NO SE PUEDE SACAR UN ELEMENTO DE UNA PILA VACIA");
+                throw new Exception("NO SE PUEDE SACAR UN ELEMENTO DE UNA COLA VACIA");
             }
         } catch (Exception e){
             System.out.println(e.getMessage());

@@ -1,76 +1,70 @@
 import java.util.LinkedList;
 
-public class ColaLinked extends Cola{
-    private LinkedList<Integer> cola;
-    public ColaLinked(String nombreCola) {
-        super(nombreCola);
+public class ColaNodo  {
+    private String nombreCola;
+    private LinkedList<Nodo> cola;
+
+    public ColaNodo(String nombreCola) {
+        this.nombreCola = nombreCola;
         cola = new LinkedList<>();
     }
 
-    @Override
     public boolean esVacio() {
         return cola.isEmpty();
     }
 
-    @Override
     public void vaciar() {
-        try{
-            if(!esVacio()){
-                for(Integer elemento: cola){
+        try {
+            if (!esVacio()) {
+                for (Nodo elemento : cola) {
                     cola.remove(elemento);
                 }
                 System.out.println("COLA VACIADA.");
             } else {
-                throw new Exception("NO SE PUEDE VACIAR UNA COLA QUE YA ESTA VACIA.");
+                throw new Exception("NO SE PUEDE VACIAR UNA COLA QUE YA ESTÁ VACIA.");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    @Override
     public long largo() {
         return cola.size();
     }
 
-    @Override
-    public int verPrimero() {
+    public Nodo verPrimero() {
         return cola.getFirst();
     }
 
-    @Override
-    public int verUltimo() {
+    public Nodo verUltimo() {
         return cola.getLast();
     }
 
-    @Override
-    public void enfilar(int nuevoObjeto) {
-        try{
-            if (nuevoObjeto > 0) {
-                cola.add(nuevoObjeto);
+    public void enfilar(Nodo nodo) {
+        try {
+            if (!cola.contains(nodo)) {
+                cola.add(nodo);
             } else {
-                throw new Exception("NO SE PUEDE AGREGAR UN OBJETO MENOR DE 0.");
+                throw new Exception("NO SE PUEDE AGREGAR UN NODO QUE YA PERTENECE");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    @Override
     public void sacar() {
-        try{
-            if(!esVacio()){
+        try {
+            if (!esVacio()) {
                 cola.remove();
             } else {
                 throw new Exception("NO SE PUEDEN SACAR ELEMENTOS DE UNA COLA VACIA.");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    @Override
     public String toString() {
-        return "ColaLinked:" + cola;
+        return "ColaNodo:" + cola;
     }
 }
