@@ -44,10 +44,11 @@ public class ColaLinked extends Cola{
     }
 
     @Override
-    public void enfilar(int nuevoObjeto) {
+    public void enfilar(int nuevoElemento) {
         try{
-            if (nuevoObjeto > 0) {
-                cola.add(nuevoObjeto);
+            if (nuevoElemento > 0) {
+                cola.add(nuevoElemento);
+                System.out.println("ELEMENTO " + nuevoElemento + " ENFILADO.");
             } else {
                 throw new Exception("NO SE PUEDE AGREGAR UN OBJETO MENOR DE 0.");
             }
@@ -60,6 +61,7 @@ public class ColaLinked extends Cola{
     public void sacar() {
         try{
             if(!esVacio()){
+                System.out.println("ELEMENTO " + cola.getFirst() + " ELIMINADO.");
                 cola.remove();
             } else {
                 throw new Exception("NO SE PUEDEN SACAR ELEMENTOS DE UNA COLA VACIA.");
@@ -71,6 +73,6 @@ public class ColaLinked extends Cola{
 
     @Override
     public String toString() {
-        return "ColaLinked:" + cola;
+        return "Cola Linked:" + cola;
     }
 }
