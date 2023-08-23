@@ -16,9 +16,7 @@ public class ColaLinked extends Cola{
     public void vaciar() {
         try{
             if(!esVacio()){
-                for(Integer elemento: cola){
-                    cola.remove(elemento);
-                }
+                cola.clear();
                 System.out.println("COLA VACIADA.");
             } else {
                 throw new Exception("NO SE PUEDE VACIAR UNA COLA QUE YA ESTA VACIA.");
