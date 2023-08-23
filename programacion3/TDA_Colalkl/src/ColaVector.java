@@ -24,10 +24,20 @@ public class ColaVector extends Cola{
 
     @Override
     public void vaciar() {
-        for(int i= 0; i < size; i++){
-            cola[i] = 0;
+        try{
+            if (!esVacio()){
+                for(int i= 0; i < size; i++){
+                    cola[i] = 0;
+                }
+                System.out.println("PILA VACIA");
+            }
+            else{
+                throw new Exception("NO SE PUEDE VACIAR UNA LISTA VACIA");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
-        System.out.println("PILA VACIA");
+
     }
 
     @Override
@@ -47,16 +57,29 @@ public class ColaVector extends Cola{
 
     @Override
     public void enfilar(int nuevoObjeto) {
-        for(int i=0; i < size; i++){
-            if(cola[i] == 0){
-
+        try{
+            if(cont != size){
+                cola[cont] = nuevoObjeto;
+                cont++;
+            } else {
+                throw new Exception("NO SE PUEDE ENFILAR ELEMENTO. COLA LLENA");
             }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
     public void sacar() {
-        cola[cont] = 0;
-        cont--;
+        try{
+            if(!esVacio()){
+                cola[cont] = 0;
+                cont--;
+            } else {
+                throw new Exception("NO SE PUEDE SACAR UN ELEMENTO DE UNA PILA VACIA");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
