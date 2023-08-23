@@ -7,9 +7,10 @@ public abstract class Cola {
     public abstract boolean esVacio();
     public abstract void vaciar();
     public abstract long largo();
-    public abstract int verPrimero();
-    public abstract int verUltimo();
-    public abstract void enfilar(int nuevoObjeto);
+    public abstract Nodo verPrimero();
+    public abstract Nodo verUltimo();
+    public abstract void enfilar(Nodo nuevoNodo);
     public abstract void sacar();
 
+    public String getNombreCola() { return nombreCola; }
 }
