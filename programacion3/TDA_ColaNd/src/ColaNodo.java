@@ -1,12 +1,10 @@
 import java.util.LinkedList;
 
 public class ColaNodo extends Cola {
-    private String nombreCola;
     private LinkedList<Nodo> cola;
 
     public ColaNodo(String nombreCola) {
         super(nombreCola);
-        this.nombreCola = nombreCola;
         cola = new LinkedList<>();
     }
 
