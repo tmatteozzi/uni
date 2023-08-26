@@ -34,22 +34,20 @@ public class Main {
                     System.out.println("EL LARGO DE LA COLA ES DE: " + cola.largo());
                     break;
                 case 4:
-                    System.out.println("EL PRIMER ELEMENTO DE LA COLA ES: " + cola.verPrimero());
+                    if(cola.verPrimero() != null){
+                        System.out.println("EL PRIMER ELEMENTO DE LA COLA ES: " + cola.verPrimero());
+                    }
                     break;
                 case 5:
-                    System.out.println("EL ULTIMO ELEMENTO DE LA COLA ES: " + cola.verUltimo());
+                    if(cola.verPrimero() != null) {
+                        System.out.println("EL ULTIMO ELEMENTO DE LA COLA ES: " + cola.verUltimo());
+                    }
                     break;
                 case 6:
                     System.out.println("INGRESE EL CONTENIDO DEL NODO A ENFILAR: ");
                     int contenido = scanner.nextInt();
                     Nodo nodoAEnfilar = new Nodo(contenido);
                     cola.enfilar(nodoAEnfilar);
-                    if(cola.getCont() == 0){
-                        cola.setPrimera(1);
-                        cola.setUltima(1);
-                    } else if (cola.getCont() > 0) {
-                        cola.setUltima(cola.getCont());
-                    }
                     break;
                 case 7:
                     cola.sacar();
