@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("INGRESE NOMBRE PARA LA COLA: ");
         String nombreCola = scanner.next();
-        Cola cola = new ColaNodo(nombreCola);
+        Cola cola = new ColaConcreta(nombreCola);
         int opcion;
         do{
             System.out.println("MENU " + cola.getNombreCola().toUpperCase() + "\n" +
@@ -40,12 +40,16 @@ public class Main {
                     System.out.println("EL ULTIMO ELEMENTO DE LA COLA ES: " + cola.verUltimo());
                     break;
                 case 6:
-                    System.out.println("INGRESE LA POSICION DEL NODO A ENFILAR: ");
-                    int posicion = scanner.nextInt();
                     System.out.println("INGRESE EL CONTENIDO DEL NODO A ENFILAR: ");
                     int contenido = scanner.nextInt();
-                    Nodo nodoAEnfilar = new Nodo(posicion, contenido);
+                    Nodo nodoAEnfilar = new Nodo(contenido);
                     cola.enfilar(nodoAEnfilar);
+                    if(cola.getCont() == 0){
+                        cola.setPrimera(1);
+                        cola.setUltima(1);
+                    } else if (cola.getCont() > 0) {
+                        cola.setUltima(cola.getCont());
+                    }
                     break;
                 case 7:
                     cola.sacar();
