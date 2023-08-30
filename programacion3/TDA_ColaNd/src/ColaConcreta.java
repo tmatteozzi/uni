@@ -73,17 +73,17 @@ public class ColaConcreta extends Cola{
     public void sacar() {
         try {
             if (!esVacio()) {
+                cont--;
                 // Mueve el puntero 'primero' al siguiente nodo, eliminando el primer nodo actual
                 primero = primero.getSiguiente();
                 Nodo current = primero;
-                int nuevaPosicion = 1;
                 // Al borrar el nodo reorganizar posiciones ej: (1,1) (2,2) -> (1,2) [Al sacar al (1,1)]
+                int nuevaPosicion = 1;
                 while (current != null) {
                     current.setPosicion(nuevaPosicion); // Al prox primer Nodo se le pone la posicion 1
                     nuevaPosicion++;
                     current = current.getSiguiente();
                 }
-                cont--;
                 // Si se elimina el ultimo que quedaba entonces hacer que el contador vuelva a 0 y el ultimo sea 0
                 if (primero == null) {
                     ultimo = null;
