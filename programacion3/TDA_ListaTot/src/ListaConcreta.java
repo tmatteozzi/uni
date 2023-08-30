@@ -9,28 +9,30 @@ public class ListaConcreta extends Lista {
     }
 
     @Override
-    public int localizar(int elementoALocalizar) {
-        int posision = 0;
-        for(Integer elemento: lista){
-            if (elemento == elementoALocalizar){
-                posision = lista.indexOf(elemento);
-            } else{
-                posision = -1;
+    public void localizar(int elementoALocalizar) {
+        try {
+            for (Integer elemento : lista) {
+                if (elemento == elementoALocalizar) {
+                    System.out.println("EL ELEMENTO SE ENCUENTRA EN LA POSICION: " + lista.indexOf(elemento));
+                    return;
+                }
             }
+            throw new Exception("NO SE LOCALIZO EL ELEMENTO.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-        return posision;
     }
 
     @Override
     public void insertar(int elemento){
         lista.add(elemento);
-        System.out.println("ELEMENTO " +elemento + " INSERTADO");
+        System.out.println("ELEMENTO " + elemento + " INSERTADO");
     }
 
     @Override
     public void insertarEnPosicion(int posicion, int elemento) {
         lista.add(posicion, elemento);
-        System.out.println("ELEMENTO " +elemento + " INSERTADO EN LA POSICION: " + posicion);
+        System.out.println("ELEMENTO " + elemento + " INSERTADO EN LA POSICION: " + posicion);
     }
 
     @Override
@@ -78,10 +80,6 @@ public class ListaConcreta extends Lista {
         } return null;
     }
 
-    public boolean esVacia(){
-        return lista.isEmpty();
-    }
-
     @Override
     public void dividirLista(int posicion) {
         try{
@@ -111,8 +109,13 @@ public class ListaConcreta extends Lista {
         }
     }
 
-    public void unirListas(Lista lista1, Lista lista2){
+    @Override
+    public LinkedList<Integer> getLista() {
+        return lista;
+    }
 
+    public boolean esVacia(){
+        return lista.isEmpty();
     }
 
     @Override

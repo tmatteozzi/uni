@@ -24,7 +24,7 @@ public class Main {
                 case 1:
                     System.out.println("INGRESE EL ELEMENTO A LOCALIZAR: ");
                     int elementoALocalizar = scanner.nextInt();
-                    System.out.println("EL ELEMENTO SE ENCUENTRA EN LA POSICION: " + lista.localizar(elementoALocalizar));
+                    lista.localizar(elementoALocalizar);
                     break;
                 case 2:
                     System.out.println("INGRESE EL ELEMENTO A INSERTAR: ");
@@ -51,16 +51,19 @@ public class Main {
                     break;
                 case 7:
                     // Crear la primera lista con algunos elementos
-                    Lista nuevaLista = new ListaConcreta("Lista1");
-                    nuevaLista.insertar(10);
-                    nuevaLista.insertar(20);
-                    nuevaLista.insertar(30);
-
+                    Lista primeraLista = new ListaConcreta("Lista 1");
+                    primeraLista.insertar(10);
+                    primeraLista.insertar(20);
+                    primeraLista.insertar(30);
+                    System.out.println(primeraLista);
                     // Crear la segunda lista con otros elementos
-                    Lista segundaLista = new ListaConcreta("Lista2");
+                    Lista segundaLista = new ListaConcreta("Lista 2");
                     segundaLista.insertar(40);
                     segundaLista.insertar(50);
                     segundaLista.insertar(60);
+                    System.out.println(segundaLista);
+                    // Implementar metodo
+                    unirListas(primeraLista, segundaLista);
                     break;
                 case 8:
                     System.out.println("Ingrese la posición para dividir la lista: ");
@@ -78,5 +81,27 @@ public class Main {
                     break;
             }
         } while (opcion != 10);
+    }
+
+    public static void  unirListas(Lista lista1, Lista lista2) {
+        try {
+            if (lista1 != null && lista2 != null) {
+                Lista listaUnida = new ListaConcreta("Unida");
+
+                for (Integer elemento : lista1.getLista()) {
+                    listaUnida.insertar(elemento);
+                }
+
+                for (Integer elemento : lista2.getLista()) {
+                    listaUnida.insertar(elemento);
+                }
+
+                System.out.println("Listas unidas: " + listaUnida);
+            } else {
+                throw new Exception("UNA DE LAS LISTAS ESTA VACIA NO SE AGREGAN ELEMENTOS.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
