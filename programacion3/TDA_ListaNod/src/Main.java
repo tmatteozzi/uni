@@ -3,92 +3,174 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("INGRESE NOMBRE PARA LA LISTA: ");
-        String nombreLista = scanner.next();
-        Lista lista = new ListaConcreta(nombreLista);
-        int opcion;
+        // Crear listas
+        System.out.println("INGRESE NOMBRE PARA LA LISTA 1: ");
+        String nombreLista1 = scanner.next();
+        Lista lista1 = new ListaConcreta(nombreLista1);
+        System.out.println("INGRESE NOMBRE PARA LA LISTA 2: ");
+        String nombreLista2 = scanner.next();
+        Lista lista2 = new ListaConcreta(nombreLista2);
+        // Menu
+        int opcionPrincipal;
         do{
-            System.out.println("MENU " + lista.getNombreLista().toUpperCase() + "\n" +
-                    "1. Localizar un elemento\n" +
-                    "2. Insertar un elemento\n" +
-                    "3. Insertar un elemento en una posicion determinada\n" +
-                    "4. Eliminar un elemento\n" +
-                    "5. Ordenar los elementos\n" +
-                    "6. Copiar la lista\n" +
-                    "7. Unir varias listas\n" +
-                    "8. Dividir una lista\n" +
-                    "9. Imprimir\n" +
-                    "10. Salir\n");
-            opcion = scanner.nextInt();
-            switch (opcion){
+            System.out.println("MENU PRINICIPAL\n" +
+                    "1. Metodos lista 1\n" +
+                    "2. Metodos lista 2\n" +
+                    "3. Metodos entre listas\n" +
+                    "4. Salir\n");
+            opcionPrincipal = scanner.nextInt();
+            switch (opcionPrincipal){
                 case 1:
-                    System.out.println("INGRESE EL CONTENIDO DEL NODO A LOCALIZAR: ");
-                    int contenidoALocalizar = scanner.nextInt();
-                    lista.localizar(contenidoALocalizar);
+                    int opcion1;
+                    do{
+                        imprimirMenu(lista1);
+                        opcion1 = scanner.nextInt();
+                        switch (opcion1){
+                            case 1:
+                                System.out.println("INGRESE EL CONTENIDO DEL NODO A LOCALIZAR: ");
+                                int contenidoALocalizar = scanner.nextInt();
+                                lista1.localizar(contenidoALocalizar);
+                                break;
+                            case 2:
+                                System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
+                                int contenidoNodo = scanner.nextInt();
+                                Nodo nodoAInsertar = new Nodo(contenidoNodo);
+                                lista1.insertar(nodoAInsertar);
+                                break;
+                            case 3:
+                                System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
+                                int contenidoNodoAInsertar = scanner.nextInt();
+                                Nodo nodoAInsertarEnPosicion = new Nodo(contenidoNodoAInsertar);
+                                System.out.println("INGRESE LA POSICION PARA INSERTAR EL NODO: ");
+                                int posicionAInsertar = scanner.nextInt();
+                                lista1.insertarEnPosicion(posicionAInsertar, nodoAInsertarEnPosicion);
+                                break;
+                            case 4:
+                                System.out.println("INGRESE LA POSICION DEL NODO A ELIMINAR: ");
+                                int posicionNodoAEliminar = scanner.nextInt();
+                                lista1.eliminar(posicionNodoAEliminar);
+                                break;
+                            case 5:
+                                System.out.println("LISTA DE ELEMENTOS ORDENADA: " + lista1.ordenarElementos());
+                                break;
+                            case 6:
+                                System.out.println("LISTA DE ELEMENTOS COPIADA: " + lista1.copiarLista());
+                                break;
+                            case 7:
+                                System.out.println("INGRESE LA POSICION PARA DIVIDIR LA LISTA: ");
+                                int posicionADividir = scanner.nextInt();
+                                lista1.dividirLista(posicionADividir);
+                                break;
+                            case 8:
+                                System.out.println(lista1);
+                                break;
+                            case 9:
+                                System.out.println("DE VUELTA AL MENU PRINCIPAL");
+                                break;
+                            default:
+                                System.out.println("INGRESE UNA OPCION CORRECTA");
+                                break;
+                        }
+                    } while (opcion1 != 9);
                     break;
                 case 2:
-                    System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
-                    int contenidoNodo = scanner.nextInt();
-                    Nodo nodoAInsertar = new Nodo(contenidoNodo);
-                    lista.insertar(nodoAInsertar);
+                    int opcion2;
+                    do{
+                        imprimirMenu(lista2);
+                        opcion2 = scanner.nextInt();
+                        switch (opcion2){
+                            case 1:
+                                System.out.println("INGRESE EL CONTENIDO DEL NODO A LOCALIZAR: ");
+                                int contenidoALocalizar = scanner.nextInt();
+                                lista2.localizar(contenidoALocalizar);
+                                break;
+                            case 2:
+                                System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
+                                int contenidoNodo = scanner.nextInt();
+                                Nodo nodoAInsertar = new Nodo(contenidoNodo);
+                                lista2.insertar(nodoAInsertar);
+                                break;
+                            case 3:
+                                System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
+                                int contenidoNodoAInsertar = scanner.nextInt();
+                                Nodo nodoAInsertarEnPosicion = new Nodo(contenidoNodoAInsertar);
+                                System.out.println("INGRESE LA POSICION PARA INSERTAR EL NODO: ");
+                                int posicionAInsertar = scanner.nextInt();
+                                lista2.insertarEnPosicion(posicionAInsertar, nodoAInsertarEnPosicion);
+                                break;
+                            case 4:
+                                System.out.println("INGRESE LA POSICION DEL NODO A ELIMINAR: ");
+                                int posicionNodoAEliminar = scanner.nextInt();
+                                lista2.eliminar(posicionNodoAEliminar);
+                                break;
+                            case 5:
+                                System.out.println("LISTA DE ELEMENTOS ORDENADA: " + lista2.ordenarElementos());
+                                break;
+                            case 6:
+                                System.out.println("LISTA DE ELEMENTOS COPIADA: " + lista2.copiarLista());
+                                break;
+                            case 7:
+                                System.out.println("INGRESE LA POSICION PARA DIVIDIR LA LISTA: ");
+                                int posicionADividir = scanner.nextInt();
+                                lista2.dividirLista(posicionADividir);
+                                break;
+                            case 8:
+                                System.out.println(lista2);
+                                break;
+                            case 9:
+                                System.out.println("DE VUELTA AL MENU PRINCIPAL");
+                                break;
+                            default:
+                                System.out.println("INGRESE UNA OPCION CORRECTA");
+                                break;
+                        }
+                    } while (opcion2 != 9);
                     break;
                 case 3:
-                    System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
-                    int contenidoNodoAInsertar = scanner.nextInt();
-                    Nodo nodoAInsertarEnPosicion = new Nodo(contenidoNodoAInsertar);
-                    System.out.println("INGRESE LA POSICION PARA INSERTAR EL NODO: ");
-                    int posicionAInsertar = scanner.nextInt();
-                    lista.insertarEnPosicion(posicionAInsertar, nodoAInsertarEnPosicion);
+                    int opcion3;
+                    do{
+                        System.out.println("MENU DE AMBAS LISTAS\n"+
+                                "1. Unir lista 1 con lista 2\n"+
+                                "2. Unir lista 2 con lista 1\n"+
+                                "3. Salir\n");
+                        opcion3 = scanner.nextInt();
+                        switch (opcion3){
+                            case 1:
+                                unirListas(lista1, lista2);
+                                break;
+                            case 2:
+                                unirListas(lista2, lista1);
+                                break;
+                            case 3:
+                                System.out.println("DE VUELTA AL MENU PRINCIPAL");
+                                break;
+                            default:
+                                System.out.println("INGRESE UNA OPCION CORRECTA");
+                                break;
+                        }
+                    } while (opcion3 != 3);
                     break;
                 case 4:
-                    System.out.println("INGRESE LA POSICION DEL NODO A ELIMINAR: ");
-                    int posicionNodoAEliminar = scanner.nextInt();
-                    lista.eliminar(posicionNodoAEliminar);
-                    break;
-                case 5:
-                    System.out.println("LISTA DE ELEMENTOS ORDENADA: " + lista.ordenarElementos());
-                    break;
-                case 6:
-                    System.out.println("LISTA DE ELEMENTOS COPIADA: " + lista.copiarLista());
-                    break;
-                case 7:
-                    // Crear la primera lista con algunos elementos
-                    Lista primeraLista = new ListaConcreta("Lista 1");
-                    Nodo nodo1 = new Nodo(10);
-                    primeraLista.insertar(nodo1);
-                    Nodo nodo2 = new Nodo(20);
-                    primeraLista.insertar(nodo2);
-                    Nodo nodo3 = new Nodo(30);
-                    primeraLista.insertar(nodo3);
-                    System.out.println(primeraLista);
-                    // Crear la segunda lista con otros elementos
-                    Lista segundaLista = new ListaConcreta("Lista 2");
-                    Nodo nodo4 = new Nodo(40);
-                    segundaLista.insertar(nodo4);
-                    Nodo nodo5 = new Nodo(50);
-                    segundaLista.insertar(nodo5);
-                    Nodo nodo6 = new Nodo(60);
-                    segundaLista.insertar(nodo6);
-                    System.out.println(segundaLista);
-                    // Implementar metodo
-                    unirListas(primeraLista, segundaLista);
-                    break;
-                case 8:
-                    System.out.println("INGRESE LA POSICION PARA DIVIDIR LA LISTA: ");
-                    int posicionADividir = scanner.nextInt();
-                    lista.dividirLista(posicionADividir);
-                    break;
-                case 9:
-                    System.out.println(lista);
-                    break;
-                case 10:
                     System.out.println("FIN DEL PROGRAMA");
                     break;
                 default:
                     System.out.println("INGRESE UNA OPCION CORRECTA");
                     break;
             }
-        } while (opcion != 10);
+        } while (opcionPrincipal != 4);
+    }
+
+    public static void imprimirMenu(Lista lista){
+        System.out.println("MENU " + lista.getNombreLista().toUpperCase() + "\n" +
+                "1. Localizar un elemento\n" +
+                "2. Insertar un elemento\n" +
+                "3. Insertar un elemento en una posicion determinada\n" +
+                "4. Eliminar un elemento\n" +
+                "5. Ordenar los elementos\n" +
+                "6. Copiar la lista\n" +
+                "7. Dividir una lista\n" +
+                "8. Imprimir\n" +
+                "9. Salir\n");
     }
 
     public static void unirListas(Lista lista1, Lista lista2) {
