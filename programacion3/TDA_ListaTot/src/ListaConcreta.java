@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class ListaConcreta extends Lista {
     private LinkedList<Integer> lista;
-    public ListaConcreta(String nombreCola) {
-        super(nombreCola);
+    public ListaConcreta(String nombreLista) {
+        super(nombreLista);
         lista = new LinkedList<>();
     }
 
