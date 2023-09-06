@@ -6,6 +6,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Pila pE = null, pD = null; // Creacion de conjuntos en null para poder usarlo en todos los cases
         int opcionInicial; // Declaracion de la variable afuera del loop para usarla como opcion adentro
+        boolean creado1 = false;
+        boolean creado2 = false;
         // Menu
         do{
             System.out.println("Ingrese una opcion: \n" +
@@ -17,7 +19,6 @@ public class Main {
             switch (opcionInicial){
                 case 1:
                     int opcionEstatica;
-                    boolean creado1 = false;
                     do{
                         System.out.println("MENU PILA \n" +
                             "Ingrese una opcion: \n" +
@@ -88,7 +89,6 @@ public class Main {
                     break;
                 case 2:
                     int opcionDinamica;
-                    boolean creado2 = false;
                     do{
                         System.out.println("MENU PILA \n" +
                                 "Ingrese una opcion: \n" +
