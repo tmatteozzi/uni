@@ -6,13 +6,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Conjunto c1 = null, c2 = null;
         int opcionInicial;
-        // Creacion de conjuntos al principio para no tener que crear cada vez que entre al menu
-        System.out.println("Ingrese el size del Conjunto 1: ");
-        int nConjunto1 = scanner.nextInt();
-        c1 = new ConjuntoConcreto(nConjunto1);
-        System.out.println("Ingrese el size del Conjunto 2: ");
-        int nConjunto2 = scanner.nextInt();
-        c2 = new ConjuntoConcreto(nConjunto2);
         // Menu
         do {
             System.out.println("Ingrese una opcion: \n" +
@@ -29,42 +22,52 @@ public class Main {
                         opcionC1 = scanner.nextInt();
                         switch (opcionC1){
                             case 1:
+                                boolean creado = false;
+                                if(!creado){
+                                    System.out.println("Ingrese el size del Conjunto 1: ");
+                                    int nConjunto1 = scanner.nextInt();
+                                    c1 = new ConjuntoConcreto(nConjunto1);
+                                } else {
+                                    System.out.println("Conjunto ya creado!");
+                                }
+                                break;
+                            case 2:
                                 System.out.println("Ingrese el elemento a anadir: ");
                                 int eA = scanner.nextInt();
                                 c1.agregar(eA);
                                 break;
-                            case 2:
+                            case 3:
                                 System.out.println("Ingrese el elemento a retirar: ");
                                 int eR = scanner.nextInt();
                                 c1.retirar(eR);
                                 break;
-                            case 3:
+                            case 4:
                                 System.out.println("Ingrese el elemento para chequear su pertenencia: ");
                                 int eP = scanner.nextInt();
                                 if(c1.pertenece(eP)){
                                     System.out.println("EL ELEMENTO PERTENECE AL CONJUNTO");
                                 }
                                 break;
-                            case 4:
+                            case 5:
                                 if(c1.esVacio()){
                                 System.out.println("CONJUNTO VACÍO");
                                 }
                                 break;
-                            case 5:
+                            case 6:
                                 c1.conjuntoVacio();
                                 System.out.println("CONJUNTO VACIADO");
                                 break;
-                            case 6:
+                            case 7:
                                 System.out.println(c1);
                                 break;
-                            case 7:
+                            case 8:
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
                                 System.out.println("OPCION INVALIDA");
                                 break;
                         }
-                    } while (opcionC1 != 7);
+                    } while (opcionC1 != 8);
                     break;
                 case 2:
                     int opcionC2;
@@ -73,42 +76,52 @@ public class Main {
                         opcionC2 = scanner.nextInt();
                         switch (opcionC2){
                             case 1:
+                                boolean creado = false;
+                                if(!creado){
+                                    System.out.println("Ingrese el size del Conjunto 2: ");
+                                    int nConjunto2 = scanner.nextInt();
+                                    c2 = new ConjuntoConcreto(nConjunto2);
+                                } else {
+                                    System.out.println("Conjunto ya creado!");
+                                }
+                                break;
+                            case 2:
                                 System.out.println("Ingrese el elemento a anadir: ");
                                 int eA = scanner.nextInt();
                                 c2.agregar(eA);
                                 break;
-                            case 2:
+                            case 3:
                                 System.out.println("Ingrese el elemento a retirar: ");
                                 int eR = scanner.nextInt();
                                 c2.retirar(eR);
                                 break;
-                            case 3:
+                            case 4:
                                 System.out.println("Ingrese el elemento para chequear su pertenencia: ");
                                 int eP = scanner.nextInt();
                                 if(c2.pertenece(eP)){
                                     System.out.println("EL ELEMENTO PERTENECE AL CONJUNTO");
                                 }
                                 break;
-                            case 4:
+                            case 5:
                                 if(c2.esVacio()){
                                     System.out.println("CONJUNTO VACÍO");
                                 }
                                 break;
-                            case 5:
+                            case 6:
                                 c2.conjuntoVacio();
                                 System.out.println("CONJUNTO VACIADO");
                                 break;
-                            case 6:
+                            case 7:
                                 System.out.println(c2);
                                 break;
-                            case 7:
+                            case 8:
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
                                 System.out.println("OPCION INVALIDA");
                                 break;
                         }
-                    } while (opcionC2 != 7);
+                    } while (opcionC2 != 8);
                     break;
                 case 3:
                     int opcionC3;
@@ -205,13 +218,14 @@ public class Main {
     public static void imprimirMenu(){
         System.out.println("MENU CONJUNTO \n" +
                 "Ingrese una opcion: \n" +
-                "1. Agregar elemento \n" +
-                "2. Retirar elemento \n" +
-                "3. Chequear si elemento pertenece \n" +
-                "4. Chequear si esta vacio \n" +
-                "5. Vaciar conjunto \n" +
-                "6. Imprimir \n" +
-                "7. Salir");
+                "1. Crear conjunto \n" +
+                "2. Agregar elemento \n" +
+                "3. Retirar elemento \n" +
+                "4. Chequear si elemento pertenece \n" +
+                "5. Chequear si esta vacio \n" +
+                "6. Vaciar conjunto \n" +
+                "7. Imprimir \n" +
+                "8. Salir");
     }
 }
 
