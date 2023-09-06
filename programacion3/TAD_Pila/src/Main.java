@@ -6,16 +6,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Pila pE = null, pD = null; // Creacion de conjuntos en null para poder usarlo en todos los cases
         int opcionInicial; // Declaracion de la variable afuera del loop para usarla como opcion adentro
-        // Creacion pila estatica
-        System.out.println("Ingrese el nombre de la pila estatica: ");
-        String nombrePE = scanner.next();
-        System.out.println("Ingrese el size de la pila estatica: ");
-        int sizePE = scanner.nextInt();
-        pE = new PilaEstatica(nombrePE, sizePE);
-        // Creacion pila dinamica
-        System.out.println("Ingrese el nombre de la pila dinamica: ");
-        String nombrePD = scanner.next();
-        pD = new PilaDinamica(nombrePD);
         // Menu
         do{
             System.out.println("Ingrese una opcion: \n" +
@@ -27,34 +17,48 @@ public class Main {
             switch (opcionInicial){
                 case 1:
                     int opcionEstatica;
-
+                    boolean creado1 = false;
                     do{
-                        System.out.println("MENU PILA " + pE.getNombrePila().toUpperCase() + "\n" +
+                        System.out.println("MENU PILA \n" +
                             "Ingrese una opcion: \n" +
-                            "1. Apilar elemento \n" +
-                            "2. Desapilar elemento \n" +
-                            "3. Tope de pila \n" +
-                            "4. Chequear si la pila esta vacia \n" +
-                            "5. Chequear si la pila esta llena \n" +
-                            "6. Imprimir \n" +
-                            "7. Salir");
+                            "1. Crear pila \n" +
+                            "2. Apilar elemento \n" +
+                            "3. Desapilar elemento \n" +
+                            "4. Tope de pila \n" +
+                            "5. Chequear si la pila esta vacia \n" +
+                            "6. Chequear si la pila esta llena \n" +
+                            "7. Imprimir \n" +
+                            "8. Salir");
                         opcionEstatica = scanner.nextInt();
                         switch (opcionEstatica){
                             case 1:
+                                if(!creado1){
+                                    // Creacion pila estatica
+                                    System.out.println("Ingrese el nombre de la pila estatica: ");
+                                    String nombrePE = scanner.next();
+                                    System.out.println("Ingrese el size de la pila estatica: ");
+                                    int sizePE = scanner.nextInt();
+                                    pE = new PilaEstatica(nombrePE, sizePE);
+                                    creado1 = true;
+                                } else {
+                                    System.out.println("PILA " + pE.getNombrePila().toUpperCase() +" YA CREADA.");
+                                }
+                                break;
+                            case 2:
                                 System.out.println("INGRESE ELEMENTO A APILAR: ");
                                 int elementoApilarPE = scanner.nextInt();
                                 pE.apilarElemento(elementoApilarPE);
                                 break;
-                            case 2:
+                            case 3:
                                 int desapilado = pE.desapilarElemento();
                                 if (desapilado != 0){
                                     System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
                                 }
                                 break;
-                            case 3:
+                            case 4:
                                 System.out.println("EL ELEMENTO TOPE ES: " + pE.topePila());
                                 break;
-                            case 4:
+                            case 5:
                                 if(pE.pilaVacia()){
                                     System.out.println("PILA VACIA.");
                                     break;
@@ -62,7 +66,7 @@ public class Main {
                                     System.out.println("PILA NO VACIA.");
                                     break;
                                 }
-                            case 5:
+                            case 6:
                                 if(((PilaEstatica) pE).pilaLlena()){
                                     System.out.println("PILA LLENA.");
                                     break;
@@ -70,8 +74,68 @@ public class Main {
                                     System.out.println("PILA CON ESPACIO.");
                                     break;
                                 }
-                            case 6:
+                            case 7:
                                 System.out.println(pE);
+                                break;
+                            case 8:
+                                System.out.println("DE VUELTA AL MENU PRINICPAL.");
+                                break;
+                            default:
+                                System.out.println("OPCION NO VALIDA.");
+                                break;
+                        }
+                    } while (opcionEstatica != 8);
+                    break;
+                case 2:
+                    int opcionDinamica;
+                    boolean creado2 = false;
+                    do{
+                        System.out.println("MENU PILA \n" +
+                                "Ingrese una opcion: \n" +
+                                "1. Crear pila \n" +
+                                "2. Apilar elemento \n" +
+                                "3. Desapilar elemento \n" +
+                                "4. Tope de pila \n" +
+                                "5. Chequear si la pila esta vacia \n" +
+                                "6. Imprimir \n" +
+                                "7. Salir");
+                        opcionDinamica = scanner.nextInt();
+                        switch (opcionDinamica){
+                            case 1:
+                                if(!creado2){
+                                    // Creacion pila dinamica
+                                    System.out.println("Ingrese el nombre de la pila dinamica: ");
+                                    String nombrePD = scanner.next();
+                                    pD = new PilaDinamica(nombrePD);
+                                    creado2 = true;
+                                } else {
+                                    System.out.println("PILA " + pD.getNombrePila().toUpperCase() +" YA CREADA.");
+                                }
+                                break;
+                            case 2:
+                                System.out.println("INGRESE ELEMENTO A APILAR: ");
+                                int elementoApilarPD = scanner.nextInt();
+                                pD.apilarElemento(elementoApilarPD);
+                                break;
+                            case 3:
+                                int desapilado = pD.desapilarElemento();
+                                if (desapilado != 0){
+                                    System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
+                                }
+                                break;
+                            case 4:
+                                System.out.println("EL ELEMENTO TOPE ES: " + pD.topePila());
+                                break;
+                            case 5:
+                                if(pD.pilaVacia()){
+                                    System.out.println("PILA VACIA.");
+                                    break;
+                                } else {
+                                    System.out.println("PILA NO VACIA.");
+                                    break;
+                                }
+                            case 6:
+                                System.out.println(pD);
                                 break;
                             case 7:
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
@@ -80,54 +144,7 @@ public class Main {
                                 System.out.println("OPCION NO VALIDA.");
                                 break;
                         }
-                    } while (opcionEstatica != 7);
-                    break;
-                case 2:
-                    int opcionDinamica;
-                    do{
-                        System.out.println("MENU PILA " + pD.getNombrePila().toUpperCase() + "\n" +
-                                "Ingrese una opcion: \n" +
-                                "1. Apilar elemento \n" +
-                                "2. Desapilar elemento \n" +
-                                "3. Tope de pila \n" +
-                                "4. Chequear si la pila esta vacia \n" +
-                                "5. Imprimir \n" +
-                                "6. Salir");
-                        opcionDinamica = scanner.nextInt();
-                        switch (opcionDinamica){
-                            case 1:
-                                System.out.println("INGRESE ELEMENTO A APILAR: ");
-                                int elementoApilarPD = scanner.nextInt();
-                                pD.apilarElemento(elementoApilarPD);
-                                break;
-                            case 2:
-                                int desapilado = pD.desapilarElemento();
-                                if (desapilado != 0){
-                                    System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
-                                }
-                                break;
-                            case 3:
-                                System.out.println("EL ELEMENTO TOPE ES: " + pD.topePila());
-                                break;
-                            case 4:
-                                if(pD.pilaVacia()){
-                                    System.out.println("PILA VACIA.");
-                                    break;
-                                } else {
-                                    System.out.println("PILA NO VACIA.");
-                                    break;
-                                }
-                            case 5:
-                                System.out.println(pD);
-                                break;
-                            case 6:
-                                System.out.println("DE VUELTA AL MENU PRINICPAL.");
-                                break;
-                            default:
-                                System.out.println("OPCION NO VALIDA.");
-                                break;
-                        }
-                    } while (opcionDinamica != 6);
+                    } while (opcionDinamica != 7);
                     break;
                 case 3:
                     int opcionOtrasOperaciones;
