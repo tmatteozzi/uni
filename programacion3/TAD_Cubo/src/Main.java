@@ -3,24 +3,29 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-
         int opcion;
+        boolean creado = false;
+        Cubo cubo = null;
         do {
             imprimirMenu();
             int a,b,c, valor;
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    // Input de datos del cubo
-                    System.out.println("Ingrese las dimensiones del cubo:");
-                    System.out.print("Ancho: ");
-                    int ancho = scanner.nextInt();
-                    System.out.print("Alto: ");
-                    int alto = scanner.nextInt();
-                    System.out.print("Largo: ");
-                    int largo = scanner.nextInt();
-                    Cubo cubo = new CuboConcreto(ancho, alto, largo);
+                    if(!creado){
+                        // Input de datos del cubo
+                        System.out.println("Ingrese las dimensiones del cubo:");
+                        System.out.print("Ancho: ");
+                        int ancho = scanner.nextInt();
+                        System.out.print("Alto: ");
+                        int alto = scanner.nextInt();
+                        System.out.print("Largo: ");
+                        int largo = scanner.nextInt();
+                        cubo = new CuboConcreto(ancho, alto, largo);
+                        creado = true;
+                    } else {
+                        System.out.println("CUBO YA CREADO.");
+                    }
                     break;
                 case 2:
                     System.out.println("Ingrese las coordenadas para agregar (ancho, alto, largo): ");
