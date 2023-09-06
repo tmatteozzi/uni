@@ -17,16 +17,17 @@ public class Main {
             switch (opcionInicial){
                 case 1:
                     int opcionC1;
+                    boolean creado1 = false;
                     do {
                         imprimirMenu();
                         opcionC1 = scanner.nextInt();
                         switch (opcionC1){
                             case 1:
-                                boolean creado = false;
-                                if(!creado){
+                                if(!creado1){
                                     System.out.println("Ingrese el size del Conjunto 1: ");
                                     int nConjunto1 = scanner.nextInt();
                                     c1 = new ConjuntoConcreto(nConjunto1);
+                                    creado1 = true;
                                 } else {
                                     System.out.println("Conjunto ya creado!");
                                 }
@@ -71,16 +72,17 @@ public class Main {
                     break;
                 case 2:
                     int opcionC2;
+                    boolean creado2 = false;
                     do {
                         imprimirMenu();
                         opcionC2 = scanner.nextInt();
                         switch (opcionC2){
                             case 1:
-                                boolean creado = false;
-                                if(!creado){
+                                if(!creado2){
                                     System.out.println("Ingrese el size del Conjunto 2: ");
                                     int nConjunto2 = scanner.nextInt();
                                     c2 = new ConjuntoConcreto(nConjunto2);
+                                    creado2 = true;
                                 } else {
                                     System.out.println("Conjunto ya creado!");
                                 }
