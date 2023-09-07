@@ -92,7 +92,7 @@ public abstract class Cubo {
         for (int ancho = 0; ancho < conjunto.length; ancho++) {
             for (int alto = 0; alto < conjunto[ancho].length; alto++) {
                 for (int largo = 0; largo < conjunto[ancho][alto].length; largo++) {
-                    conjunto[ancho][alto][largo] = random.nextInt(11); // Valores aleatorios del 0 al 10
+                    conjunto[ancho][alto][largo] = random.nextInt(10); // Valores aleatorios del 0 al 9
                 }
             }
         }
