@@ -3,12 +3,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int opcion;
+        int opcion, a, b, c, valor;
         boolean creado = false;
         Cubo cubo = null;
         do {
             imprimirMenu();
-            int a,b,c, valor;
             opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
