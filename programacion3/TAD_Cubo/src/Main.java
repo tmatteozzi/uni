@@ -15,32 +15,11 @@ public class Main {
                     if(!creado){
                         // INPUT DATOS DEL CUBO
                         System.out.println("INGRESE LAS DIMENSIONES DEL CUBO:");
-                        // ANCHO
-                        System.out.print("ANCHO: ");
-                        while (!scanner.hasNextInt()) {
-                            System.out.println("INGRESE UN NUMERO VALIDO PARA EL ANCHO.");
-                            scanner.next(); // Limpiar el buffer del scanner
-                            System.out.print("ANCHO: ");
-                        }
-                        int ancho = scanner.nextInt();
-                        // ALTO
-                        System.out.print("ALTO: ");
-                        while (!scanner.hasNextInt()) {
-                            System.out.println("INGRESE UN NUMERO VALIDO PARA EL ALTO.");
-                            scanner.next(); // Limpiar el buffer del scanner
-                            System.out.print("ALTO: ");
-                        }
-                        int alto = scanner.nextInt();
-                        // LARGO
-                        System.out.print("LARGO: ");
-                        while (!scanner.hasNextInt()) {
-                            System.out.println("INGRESE UN NUMERO VALIDO PARA EL LARGO.");
-                            scanner.next(); // Limpiar el buffer del scanner
-                            System.out.print("LARGO: ");
-                        }
-                        int largo = scanner.nextInt();
+                        a = inputAncho();
+                        b = inputAlto();
+                        c = inputLargo();
                         // CREACION DEL CUBO
-                        cubo = new CuboConcreto(ancho, alto, largo);
+                        cubo = new CuboConcreto(a, b, c);
                         creado = true;
                     } else {
                         System.out.println("CUBO YA CREADO.");
@@ -48,46 +27,34 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("INGRESE COORDENADAS PARA AGREGAR");
-                    System.out.println("ANCHO: ");
-                    a = scanner.nextInt();
-                    System.out.println("ALTO: ");
-                    b = scanner.nextInt();
-                    System.out.println("LARGO: ");
-                    c = scanner.nextInt();
+                    a = inputAncho();
+                    b = inputAlto();
+                    c = inputLargo();
                     System.out.print("INGRESE EL VALOR: ");
                     valor = scanner.nextInt();
                     cubo.cargar(a, b, c, valor);
                     break;
                 case 3:
                     System.out.println("INGRESE COORDENADAS PARA MODIFICAR");
-                    System.out.println("ANCHO: ");
-                    a = scanner.nextInt();
-                    System.out.println("ALTO: ");
-                    b = scanner.nextInt();
-                    System.out.println("LARGO: ");
-                    c = scanner.nextInt();
+                    a = inputAncho();
+                    b = inputAlto();
+                    c = inputLargo();
                     System.out.print("INGRESE EL NUEVO VALOR: ");
                     valor = scanner.nextInt();
                     cubo.modificar(a, b, c, valor);
                     break;
                 case 4:
                     System.out.println("INGRESE LAS COORDENADAS PARA ANULAR");
-                    System.out.println("ANCHO: ");
-                    a = scanner.nextInt();
-                    System.out.println("ALTO: ");
-                    b = scanner.nextInt();
-                    System.out.println("LARGO: ");
-                    c = scanner.nextInt();
+                    a = inputAncho();
+                    b = inputAlto();
+                    c = inputLargo();
                     cubo.anular(a, b, c);
                     break;
                 case 5:
                     System.out.println("INGRESAR LAS COORDENADAS PARA OBTENER EL VALOR");
-                    System.out.println("ANCHO: ");
-                    a = scanner.nextInt();
-                    System.out.println("ALTO: ");
-                    b = scanner.nextInt();
-                    System.out.println("LARGO: ");
-                    c = scanner.nextInt();
+                    a = inputAncho();
+                    b = inputAlto();
+                    c = inputLargo();
                     System.out.println("VALOR: " + cubo.valor(a, b, c));
                     break;
                 case 6:
@@ -120,5 +87,38 @@ public class Main {
                 "7. Mostrar el contenido del cubo\n" +
                 "8. Obtener sumatoria de los valores del cubo\n" +
                 "9. Salir");
+    }
+
+    public static int inputAncho(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("ANCHO: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("INGRESE UN NUMERO VALIDO PARA EL ANCHO.");
+            scanner.next(); // Limpiar el buffer del scanner
+            System.out.print("ANCHO: ");
+        }
+        return scanner.nextInt();
+    }
+
+    public static int inputAlto(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("ALTO: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("INGRESE UN NUMERO VALIDO PARA EL ALTO.");
+            scanner.next(); // Limpiar el buffer del scanner
+            System.out.print("ALTO: ");
+        }
+        return scanner.nextInt();
+    }
+
+    public static int inputLargo(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("LARGO: ");
+        while (!scanner.hasNextInt()) {
+            System.out.println("INGRESE UN NUMERO VALIDO PARA EL LARGO.");
+            scanner.next(); // Limpiar el buffer del scanner
+            System.out.print("LARGO: ");
+        }
+        return scanner.nextInt();
     }
 }
