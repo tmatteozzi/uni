@@ -13,7 +13,26 @@ public class ArbolBinarioConcreto extends ArbolBinario {
 
     @Override
     public Nodo padre(Nodo nodo) {
-        return null; //TODO
+        return encontrarPadre(raiz, nodo);
+    }
+
+    private Nodo encontrarPadre(Nodo actual, Nodo hijoBuscado) {
+        if (actual == null) {
+            return null; // Llegamos a una hoja sin encontrar el nodo
+        }
+
+        if ((actual.getHijoIzquierdo() == hijoBuscado) || (actual.getHijoDerecho() == hijoBuscado)) {
+            return actual; // Encontramos el padre del nodo
+        }
+
+        // Buscamos en el subárbol izquierdo y luego en el subárbol derecho
+        Nodo padreEnIzquierda = encontrarPadre(actual.getHijoIzquierdo(), hijoBuscado);
+        if (padreEnIzquierda != null) {
+            return padreEnIzquierda; // Encontramos el padre en el subárbol izquierdo
+        }
+
+        Nodo padreEnDerecha = encontrarPadre(actual.getHijoDerecho(), hijoBuscado);
+        return padreEnDerecha; // Puede ser null si no encontramos el padre en el subárbol derecho
     }
 
     @Override
@@ -33,16 +52,19 @@ public class ArbolBinarioConcreto extends ArbolBinario {
 
     @Override
     public void insertarHijoIzquierda(Nodo padre, Nodo nodoAInsertar) {
-        try{
-            if(padre.getHijoIzquierdo() == null){
+        try {
+            if (raiz == null) {
+                raiz = nodoAInsertar; // Si no hay raíz, el nodo se convierte en la raíz
+            } else if (padre.getHijoIzquierdo() == null) {
                 padre.setHijoIzquierdo(nodoAInsertar);
             } else {
                 throw new Exception("NO SE PUEDE CARGAR UN NODO A LA IZQUIERDA, POSICION OCUPADA POR: " + padre.getHijoIzquierdo());
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
 
     @Override
     public void insertarHijoDerecha(Nodo padre, Nodo nodoAInsertar) {
@@ -81,6 +103,29 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    public Nodo obtenerNodoPorContenido(int contenido) {
+        return encontrarNodoPorContenido(raiz, contenido);
+    }
+
+    private Nodo encontrarNodoPorContenido(Nodo actual, int contenido) {
+        if (actual == null) {
+            return null; // Llegamos a una hoja sin encontrar el nodo
+        }
+
+        if (actual.getContenido() == contenido) {
+            return actual; // Encontramos el nodo con el contenido deseado
+        }
+
+        // Buscamos en el subárbol izquierdo y luego en el subárbol derecho
+        Nodo nodoEnIzquierda = encontrarNodoPorContenido(actual.getHijoIzquierdo(), contenido);
+        if (nodoEnIzquierda != null) {
+            return nodoEnIzquierda; // Encontramos el nodo en el subárbol izquierdo
+        }
+
+        Nodo nodoEnDerecha = encontrarNodoPorContenido(actual.getHijoDerecho(), contenido);
+        return nodoEnDerecha; // Puede ser null si no encontramos el nodo en el subárbol derecho
     }
 
     @Override
