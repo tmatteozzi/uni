@@ -82,4 +82,25 @@ public class ArbolBinarioConcreto extends ArbolBinario {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        imprimirArbol(raiz, "", sb);
+        return sb.toString();
+    }
+
+    private void imprimirArbol(Nodo nodo, String prefijo, StringBuilder sb) {
+        if (nodo != null) {
+            sb.append(prefijo);
+            sb.append("|-- ");
+            sb.append(nodo.toString());
+            sb.append("\n");
+
+            if (nodo.getHijoIzquierdo() != null || nodo.getHijoDerecho() != null) {
+                imprimirArbol(nodo.getHijoIzquierdo(), prefijo + "|   ", sb);
+                imprimirArbol(nodo.getHijoDerecho(), prefijo + "|   ", sb);
+            }
+        }
+    }
 }

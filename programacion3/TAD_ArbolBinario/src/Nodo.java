@@ -10,25 +10,11 @@ public class Nodo {
     }
 
     public int getContenido() { return contenido; }
-
-    public Nodo getHijoIzquierdo() {
-        return hijoIzquierdo;
-    }
-
-    public void setHijoIzquierdo(Nodo hijoIzquierdo) {
-        this.hijoIzquierdo = hijoIzquierdo;
-    }
-
-    public Nodo getHijoDerecho() {
-        return hijoDerecho;
-    }
-
-    public void setHijoDerecho(Nodo hijoDerecho) {
-        this.hijoDerecho = hijoDerecho;
-    }
+    public Nodo getHijoIzquierdo() { return hijoIzquierdo; }
+    public void setHijoIzquierdo(Nodo hijoIzquierdo) { this.hijoIzquierdo = hijoIzquierdo; }
+    public Nodo getHijoDerecho() { return hijoDerecho; }
+    public void setHijoDerecho(Nodo hijoDerecho) { this.hijoDerecho = hijoDerecho; }
 
     @Override
-    public String toString() {
-        return "(" + contenido + ")";
-    }
+    public String toString() { return "(" + contenido + ")"; }
 }
