@@ -16,25 +16,6 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         return encontrarPadre(raiz, nodo);
     }
 
-    private Nodo encontrarPadre(Nodo actual, Nodo hijoBuscado) {
-        if (actual == null) {
-            return null; // Llegamos a una hoja sin encontrar el nodo
-        }
-
-        if ((actual.getHijoIzquierdo() == hijoBuscado) || (actual.getHijoDerecho() == hijoBuscado)) {
-            return actual; // Encontramos el padre del nodo
-        }
-
-        // Buscamos en el subárbol izquierdo y luego en el subárbol derecho
-        Nodo padreEnIzquierda = encontrarPadre(actual.getHijoIzquierdo(), hijoBuscado);
-        if (padreEnIzquierda != null) {
-            return padreEnIzquierda; // Encontramos el padre en el subárbol izquierdo
-        }
-
-        Nodo padreEnDerecha = encontrarPadre(actual.getHijoDerecho(), hijoBuscado);
-        return padreEnDerecha; // Puede ser null si no encontramos el padre en el subárbol derecho
-    }
-
     @Override
     public Nodo hijoIzquierdo(Nodo padre) {
         return padre.getHijoIzquierdo();
@@ -69,10 +50,14 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     @Override
     public void insertarHijoDerecha(Nodo padre, Nodo nodoAInsertar) {
         try{
-            if(padre.getHijoIzquierdo() != null){
-                padre.setHijoDerecho(nodoAInsertar);
+            if(padre.getHijoDerecho() == null){
+                if (padre.getHijoIzquierdo() != null){
+                    padre.setHijoDerecho(nodoAInsertar);
+                } else {
+                    throw new Exception("NO SE PUEDE CARGAR UN NODO A LA DERECHA, NO HAY NINGUN NODO A LA IZQUIERDA");
+                }
             } else {
-                throw new Exception("NO SE PUEDE CARGAR UN NODO A LA DERECHA, NO HAY NINGUN NODO A LA IZQUIERDA");
+                throw new Exception("YA HAY UN VALOR EN EL HIJO DERECHO.");
             }
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -105,6 +90,24 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         }
     }
 
+    // METODOS AUXILIARES
+    private Nodo encontrarPadre(Nodo actual, Nodo hijoBuscado) {
+        if (actual == null) {
+            return null; // Llegamos a una hoja sin encontrar el nodo
+        }
+        if ((actual.getHijoIzquierdo() == hijoBuscado) || (actual.getHijoDerecho() == hijoBuscado)) {
+            return actual; // Encontramos el padre del nodo
+        }
+
+        // Buscamos en el subárbol izquierdo y luego en el subárbol derecho
+        Nodo padreEnIzquierda = encontrarPadre(actual.getHijoIzquierdo(), hijoBuscado);
+        if (padreEnIzquierda != null) {
+            return padreEnIzquierda; // Encontramos el padre en el subárbol izquierdo
+        }
+        Nodo padreEnDerecha = encontrarPadre(actual.getHijoDerecho(), hijoBuscado);
+        return padreEnDerecha; // Puede ser null si no encontramos el padre en el subárbol derecho
+    }
+
     public Nodo obtenerNodoPorContenido(int contenido) {
         return encontrarNodoPorContenido(raiz, contenido);
     }
@@ -113,7 +116,6 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         if (actual == null) {
             return null; // Llegamos a una hoja sin encontrar el nodo
         }
-
         if (actual.getContenido() == contenido) {
             return actual; // Encontramos el nodo con el contenido deseado
         }
@@ -123,18 +125,17 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         if (nodoEnIzquierda != null) {
             return nodoEnIzquierda; // Encontramos el nodo en el subárbol izquierdo
         }
-
         Nodo nodoEnDerecha = encontrarNodoPorContenido(actual.getHijoDerecho(), contenido);
         return nodoEnDerecha; // Puede ser null si no encontramos el nodo en el subárbol derecho
     }
 
+    // METODOS PARA IMPRIMIR EL ARBOL
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         imprimirArbol(raiz, "", sb);
         return sb.toString();
     }
-
     private void imprimirArbol(Nodo nodo, String prefijo, StringBuilder sb) {
         if (nodo != null) {
             sb.append(prefijo);

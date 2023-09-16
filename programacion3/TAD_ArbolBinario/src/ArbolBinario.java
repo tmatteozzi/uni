@@ -14,4 +14,6 @@ public abstract class ArbolBinario {
     public abstract void insertarHijoDerecha(Nodo padre, Nodo nodoAInsertar);
     public abstract void podarHijoIzquierda(Nodo padre);
     public abstract void podarHijoDerecha(Nodo padre);
+
+    public String getNombreArbol() { return nombreArbol; }
 }

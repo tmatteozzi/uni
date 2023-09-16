@@ -18,16 +18,19 @@ public class Main {
                         arbol = new ArbolBinarioConcreto(nombre);
                         creado = true;
                     } else {
-                        System.out.println("ARBOL YA CREADO.");
+                        System.out.println("ARBOL " + arbol.getNombreArbol().toUpperCase() + " YA CREADO.");
                     }
                     break;
                 case 2:
                     arbol.destruir();
                     break;
                 case 3:
+                    // INPUT
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL PADRE:");
                     int contenidoNodoABuscarPadre = scanner.nextInt();
+                    // BUSCAR AL PADRE
                     Nodo padre = arbol.padre(((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoNodoABuscarPadre));
+                    // RESULTADO
                     if (padre != null){
                         System.out.println(padre);
                     } else {
@@ -35,9 +38,12 @@ public class Main {
                     }
                     break;
                 case 4:
+                    // INPUT
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarIzquierda = scanner.nextInt();
+                    // BUSCAR HIJO DE LA IZQUIERDA
                     Nodo izquierdo = arbol.hijoIzquierdo(((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoNodoABuscarIzquierda));
+                    // RESULTADO
                     if (izquierdo != null){
                         System.out.println(izquierdo);
                     } else {
@@ -45,9 +51,12 @@ public class Main {
                     }
                     break;
                 case 5:
+                    // INPUT
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarDerecha = scanner.nextInt();
+                    // BUSCAR HIJO DE LA DERECHA
                     Nodo derecho = arbol.hijoDerecho(((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoNodoABuscarDerecha));
+                    // RESULTADO
                     if (derecho != null){
                         System.out.println(derecho);
                     } else {
@@ -56,23 +65,26 @@ public class Main {
                     break;
                 case 6:
                     if (arbol != null) {
-                        System.out.println("La raíz del árbol es: " + arbol.raiz().getContenido());
+                        System.out.println("LA RAIZ DEL ARBOL ES: " + arbol.raiz());
                     } else {
-                        System.out.println("No hay un árbol creado.");
+                        System.out.println("NO HAY UN ARBOL CREADO.");
                     }
                     break;
                 case 7:
+                    // SI LA RAIZ NO EXISTE SE AGREGA EL NODO COMO RAIZ
                     if(arbol.raiz() == null){
                         System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA");
                         int valorNodoAIzquierda = scanner.nextInt();
                         Nodo nodoAIzquierda = new Nodo(valorNodoAIzquierda);
                         arbol.insertarHijoIzquierda(null, nodoAIzquierda);
-                    } else {
+                    }
+                    // PERO SI EXISTE SE AGREGA A LA IZQUIERDA
+                    else {
                         System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                         int contenidoPadreParaInsertarIzquierda = scanner.nextInt();
                         Nodo padreParaInsertarIzquierda = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaInsertarIzquierda);
                         if (padreParaInsertarIzquierda != null) {
-                            System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA");
+                            System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA:");
                             int valorNodoAIzquierda = scanner.nextInt();
                             Nodo nodoAIzquierda = new Nodo(valorNodoAIzquierda);
                             arbol.insertarHijoIzquierda(padreParaInsertarIzquierda, nodoAIzquierda);
@@ -86,7 +98,7 @@ public class Main {
                     int contenidoPadreParaInsertarDerecha = scanner.nextInt();
                     Nodo padreParaInsertarDerecha = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaInsertarDerecha);
                     if(padreParaInsertarDerecha != null){
-                        System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA");
+                        System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA DERECHA:");
                         int valorNodoADerecha = scanner.nextInt();
                         Nodo nodoADerecha = new Nodo(valorNodoADerecha);
                         arbol.insertarHijoDerecha(padreParaInsertarDerecha, nodoADerecha);
@@ -95,30 +107,37 @@ public class Main {
                     }
                     break;
                 case 9:
+                    System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
+                    int contenidoPadreParaPodarIzquierda = scanner.nextInt();
+                    Nodo padreParaPodarIzquierda = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaPodarIzquierda);
+                    arbol.podarHijoIzquierda(padreParaPodarIzquierda);
                     break;
                 case 10:
+                    System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
+                    int contenidoPadreParaPodarDerecha = scanner.nextInt();
+                    Nodo padreParaPodarDerecha = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaPodarDerecha);
+                    arbol.podarHijoDerecha(padreParaPodarDerecha);
                     break;
                 case 11:
                     // Imprimir árbol
                     if (arbol != null) {
                         System.out.println(arbol.toString());
                     } else {
-                        System.out.println("No hay un árbol creado.");
+                        System.out.println("NO HAY UN ARBOL CREADO.");
                     }
                     break;
                 case 12:
-                    System.out.println("Saliendo del programa...");
+                    System.out.println("FIN DEL PROGRAMA.");
                     break;
                 default:
-                    System.out.println("Opción no válida. Por favor, elige una opción del menú.");
+                    System.out.println("OPCION INVALIDA.");
                     break;
-
             }
         } while (opcion != 12);
     }
 
     public static void imprimirMenu(){
-        System.out.println("MENU:\n" +
+        System.out.println("MENU: \n" +
                 "1. Crear arbol\n" +
                 "2. Destruir arbol\n" +
                 "3. Encontrar el padre de un nodo\n" +
