@@ -121,7 +121,7 @@ public class Main {
                 case 11:
                     // Imprimir árbol
                     if (arbol != null) {
-                        System.out.println(arbol.toString());
+                        System.out.println(arbol);
                     } else {
                         System.out.println("NO HAY UN ARBOL CREADO.");
                     }

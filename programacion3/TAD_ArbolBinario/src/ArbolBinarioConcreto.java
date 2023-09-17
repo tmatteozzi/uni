@@ -7,29 +7,29 @@ public class ArbolBinarioConcreto extends ArbolBinario {
 
     @Override
     public void destruir() {
-        raiz = null;
-        System.out.println("ARBOL DESTRUIDO.");
+        try{
+            if(!esVacio()){
+                raiz = null;
+                System.out.println("ARBOL DESTRUIDO.");
+            } else {
+                throw new Exception("NO SE PUEDE DESTRUIR UN ARBOL QUE ESTA VACIO.");
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
-    public Nodo padre(Nodo nodo) {
-        return encontrarPadre(raiz, nodo);
-    }
+    public Nodo padre(Nodo nodo) { return encontrarPadre(raiz, nodo); }
 
     @Override
-    public Nodo hijoIzquierdo(Nodo padre) {
-        return padre.getHijoIzquierdo();
-    }
+    public Nodo hijoIzquierdo(Nodo padre) { return padre.getHijoIzquierdo(); }
 
     @Override
-    public Nodo hijoDerecho(Nodo padre) {
-        return padre.getHijoDerecho();
-    }
+    public Nodo hijoDerecho(Nodo padre) { return padre.getHijoDerecho(); }
 
     @Override
-    public Nodo raiz() {
-        return raiz;
-    }
+    public Nodo raiz() { return raiz; }
 
     @Override
     public void insertarHijoIzquierda(Nodo padre, Nodo nodoAInsertar) {
@@ -45,7 +45,6 @@ public class ArbolBinarioConcreto extends ArbolBinario {
             System.out.println(e.getMessage());
         }
     }
-
 
     @Override
     public void insertarHijoDerecha(Nodo padre, Nodo nodoAInsertar) {
@@ -108,9 +107,7 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         return padreEnDerecha; // Puede ser null si no encontramos el padre en el subárbol derecho
     }
 
-    public Nodo obtenerNodoPorContenido(int contenido) {
-        return encontrarNodoPorContenido(raiz, contenido);
-    }
+    public Nodo obtenerNodoPorContenido(int contenido) { return encontrarNodoPorContenido(raiz, contenido); }
 
     private Nodo encontrarNodoPorContenido(Nodo actual, int contenido) {
         if (actual == null) {
@@ -129,6 +126,8 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         return nodoEnDerecha; // Puede ser null si no encontramos el nodo en el subárbol derecho
     }
 
+    public boolean esVacio(){ return raiz == null; }
+
     // METODOS PARA IMPRIMIR EL ARBOL
     @Override
     public String toString() {
@@ -136,11 +135,12 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         imprimirArbol(raiz, "", sb);
         return sb.toString();
     }
+
     private void imprimirArbol(Nodo nodo, String prefijo, StringBuilder sb) {
         if (nodo != null) {
             sb.append(prefijo);
             sb.append("|-- ");
-            sb.append(nodo.toString());
+            sb.append(nodo);
             sb.append("\n");
 
             if (nodo.getHijoIzquierdo() != null || nodo.getHijoDerecho() != null) {
