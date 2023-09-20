@@ -42,10 +42,11 @@ public class Main {
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarIzquierda = scanner.nextInt();
                     // BUSCAR HIJO DE LA IZQUIERDA
-                    Nodo izquierdo = arbol.hijoIzquierdo(arbol.obtenerNodoPorContenido(contenidoNodoABuscarIzquierda));
+                    Nodo padreDelIzquierdo = arbol.obtenerNodoPorContenido(contenidoNodoABuscarIzquierda);
+                    Nodo izquierdo = arbol.hijoIzquierdo(padreDelIzquierdo);
                     // RESULTADO
                     if (izquierdo != null){
-                        System.out.println(izquierdo);
+                        System.out.println("EL HIJO IZQUIERDO DEL NODO " + padreDelIzquierdo + " ES " + izquierdo);
                     } else {
                         System.out.println("EL NODO NO TIENE HIJO IZQUIERDO.");
                     }
@@ -55,10 +56,11 @@ public class Main {
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarDerecha = scanner.nextInt();
                     // BUSCAR HIJO DE LA DERECHA
-                    Nodo derecho = arbol.hijoDerecho(arbol.obtenerNodoPorContenido(contenidoNodoABuscarDerecha));
+                    Nodo padreDelDerecho = arbol.obtenerNodoPorContenido(contenidoNodoABuscarDerecha);
+                    Nodo derecho = arbol.hijoDerecho(padreDelDerecho);
                     // RESULTADO
                     if (derecho != null){
-                        System.out.println(derecho);
+                        System.out.println("EL HIJO DERECHO DEL NODO " + padreDelDerecho + " ES " + derecho);
                     } else {
                         System.out.println("EL NODO NO TIENE HIJO DERECHO.");
                     }
@@ -73,10 +75,11 @@ public class Main {
                 case 7:
                     // SI LA RAIZ NO EXISTE SE AGREGA EL NODO COMO RAIZ
                     if(arbol.raiz() == null){
-                        System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA");
+                        System.out.println("INGRESAR EL VALOR DEL PRIMER NODO:");
                         int valorNodoAIzquierda = scanner.nextInt();
                         Nodo nodoAIzquierda = new Nodo(valorNodoAIzquierda);
                         arbol.insertarHijoIzquierda(null, nodoAIzquierda);
+                        System.out.println("PRIMER NODO INSERTADO. EL NODO " + nodoAIzquierda + " ES LA RAIZ.");
                     }
                     // PERO SI EXISTE SE AGREGA A LA IZQUIERDA
                     else {
@@ -88,8 +91,9 @@ public class Main {
                             int valorNodoAIzquierda = scanner.nextInt();
                             Nodo nodoAIzquierda = new Nodo(valorNodoAIzquierda);
                             arbol.insertarHijoIzquierda(padreParaInsertarIzquierda, nodoAIzquierda);
+                            System.out.println("NODO " + nodoAIzquierda + " INSERTADO COMO HIJO IZQUIERDO DE " + padreParaInsertarIzquierda);
                         } else {
-                            System.out.println("EL PADRE NO EXISTE, NO SE PUEDE INSERTAR");
+                            System.out.println("EL PADRE NO EXISTE, NO SE PUEDE INSERTAR.");
                         }
                     }
                     break;
@@ -102,8 +106,9 @@ public class Main {
                         int valorNodoADerecha = scanner.nextInt();
                         Nodo nodoADerecha = new Nodo(valorNodoADerecha);
                         arbol.insertarHijoDerecha(padreParaInsertarDerecha, nodoADerecha);
+                        System.out.println("NODO " + nodoADerecha + " INSERTADO COMO HIJO IZQUIERDO DE " + padreParaInsertarDerecha);
                     } else {
-                        System.out.println("EL PADRE NO EXISTE, NO SE PUEDE INSERTAR");
+                        System.out.println("EL PADRE NO EXISTE, NO SE PUEDE INSERTAR.");
                     }
                     break;
                 case 9:
@@ -119,7 +124,7 @@ public class Main {
                     arbol.podarHijoDerecha(padreParaPodarDerecha);
                     break;
                 case 11:
-                    // Imprimir árbol
+                    // IMPRIMIR EL ARBOL
                     if (arbol != null) {
                         System.out.println(arbol);
                     } else {

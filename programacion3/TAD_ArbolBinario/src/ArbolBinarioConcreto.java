@@ -84,7 +84,7 @@ public class ArbolBinarioConcreto extends ArbolBinario {
                 if (padre.getHijoIzquierdo() != null){
                     padre.setHijoDerecho(nodoAInsertar);
                 } else {
-                    throw new Exception("NO SE PUEDE CARGAR UN NODO A LA DERECHA, NO HAY NINGUN NODO A LA IZQUIERDA");
+                    throw new Exception("NO SE PUEDE CARGAR UN NODO A LA DERECHA, NO HAY NINGUN NODO A LA IZQUIERDA.");
                 }
             } else {
                 throw new Exception("YA HAY UN VALOR EN EL HIJO DERECHO.");
@@ -96,13 +96,21 @@ public class ArbolBinarioConcreto extends ArbolBinario {
 
     @Override
     public void podarHijoIzquierda(Nodo padre) {
-        try{
-            if(padre.getHijoIzquierdo() != null){
+        try {
+            if (padre.getHijoIzquierdo() != null) {
+                // PRIMERO PODAR LA RAMA IZQUIERDA
                 padre.setHijoIzquierdo(null);
+                // REACOMODAR RAMA DERECHA A LA IZQUIERDA (NO PUEDE HABER SOLO RAMA DERECHA)
+                Nodo nuevaRamaDerecha = padre.getHijoDerecho();
+                if (nuevaRamaDerecha != null) {
+                    padre.setHijoIzquierdo(nuevaRamaDerecha);
+                    padre.setHijoDerecho(null); // PODAR LA RAMA DERECHA ANTERIOR
+                }
+                System.out.println("RAMA IZQUIERDA PODADA.");
             } else {
                 throw new Exception("NO SE PUEDE PODAR UN HIJO QUE NO EXISTE.");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -112,6 +120,7 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         try{
             if(padre.getHijoDerecho() != null){
                 padre.setHijoDerecho(null);
+                System.out.println("RAMA DERECHA PODADA.");
             } else {
                 throw new Exception("NO SE PUEDE PODAR UN HIJO QUE NO EXISTE.");
             }
@@ -124,6 +133,7 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     @Override
     public Nodo obtenerNodoPorContenido(int contenido) { return encontrarNodoPorContenido(raiz, contenido); }
 
+    // BUSCAR NODO POR RECORRIDO DE AMPLITUD
     private Nodo encontrarNodoPorContenido(Nodo raiz, int contenido) {
         // SE UTILIZA LA LINKED LIST COMO COLA PARA NO TENER QUE HACER LAS FUNCIONES DE COLA
         Queue<Nodo> cola = new LinkedList<>();
@@ -152,21 +162,23 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        imprimirArbol(raiz, "", sb);
+        imprimirArbol(raiz, "", true, sb);
         return sb.toString();
     }
-
-    private void imprimirArbol(Nodo nodo, String prefijo, StringBuilder sb) {
+    private void imprimirArbol(Nodo nodo, String prefijo, boolean esHijoIzquierdo, StringBuilder sb) {
         if (nodo != null) {
             sb.append(prefijo);
-            sb.append("|-- ");
+            if (prefijo.isEmpty()) {
+                sb.append("RAIZ-- ");
+            } else if (esHijoIzquierdo) {
+                sb.append("L-- ");
+            } else {
+                sb.append("R-- ");
+            }
             sb.append(nodo);
             sb.append("\n");
-
-            if (nodo.getHijoIzquierdo() != null || nodo.getHijoDerecho() != null) {
-                imprimirArbol(nodo.getHijoIzquierdo(), prefijo + "|   ", sb);
-                imprimirArbol(nodo.getHijoDerecho(), prefijo + "|   ", sb);
-            }
+            imprimirArbol(nodo.getHijoIzquierdo(), prefijo + (esHijoIzquierdo ? "|   " : "    "), true, sb);
+            imprimirArbol(nodo.getHijoDerecho(), prefijo + (esHijoIzquierdo ? "|   " : "    "), false, sb);
         }
     }
 }
