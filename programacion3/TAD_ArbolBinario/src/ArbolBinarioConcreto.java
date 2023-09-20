@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ArbolBinarioConcreto extends ArbolBinario {
     private Nodo raiz;
 
@@ -21,6 +24,34 @@ public class ArbolBinarioConcreto extends ArbolBinario {
 
     @Override
     public Nodo padre(Nodo nodo) { return encontrarPadre(raiz, nodo); }
+
+    // BUSCAR PADRE POR RECORRIDO DE AMPLITUD
+    private Nodo encontrarPadre(Nodo raiz, Nodo hijoBuscado) {
+        // SE UTILIZA LA LINKED LIST COMO COLA PARA NO TENER QUE HACER LAS FUNCIONES DE COLA
+        Queue<Nodo> cola = new LinkedList<>();
+        cola.offer(raiz);
+
+        while (!cola.isEmpty()) {
+            // SACAR ELEMENTO DE LA COLA PARA EVALUAR SI ES EL PADRE
+            Nodo actual = cola.poll();
+
+            if (actual.getHijoIzquierdo() != null) {
+                if (actual.getHijoIzquierdo() == hijoBuscado) {
+                    return actual;
+                }
+                // SI NO SE ENCONTRO EL PADRE AGREGAR EL HIJO A LA COLA PARA PROCESARLO EN OTRA ITERACION
+                cola.offer(actual.getHijoIzquierdo());
+            }
+            if (actual.getHijoDerecho() != null) {
+                if (actual.getHijoDerecho() == hijoBuscado) {
+                    return actual;
+                }
+                // SI NO SE ENCONTRO EL PADRE AGREGAR EL HIJO A LA COLA PARA PROCESARLO EN OTRA ITERACION
+                cola.offer(actual.getHijoDerecho());
+            }
+        }
+        return null;
+    }
 
     @Override
     public Nodo hijoIzquierdo(Nodo padre) { return padre.getHijoIzquierdo(); }
@@ -90,40 +121,29 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     }
 
     // METODOS AUXILIARES
-    private Nodo encontrarPadre(Nodo actual, Nodo hijoBuscado) {
-        if (actual == null) {
-            return null; // Llegamos a una hoja sin encontrar el nodo
-        }
-        if ((actual.getHijoIzquierdo() == hijoBuscado) || (actual.getHijoDerecho() == hijoBuscado)) {
-            return actual; // Encontramos el padre del nodo
-        }
-
-        // Buscamos en el subárbol izquierdo y luego en el subárbol derecho
-        Nodo padreEnIzquierda = encontrarPadre(actual.getHijoIzquierdo(), hijoBuscado);
-        if (padreEnIzquierda != null) {
-            return padreEnIzquierda; // Encontramos el padre en el subárbol izquierdo
-        }
-        Nodo padreEnDerecha = encontrarPadre(actual.getHijoDerecho(), hijoBuscado);
-        return padreEnDerecha; // Puede ser null si no encontramos el padre en el subárbol derecho
-    }
-
+    @Override
     public Nodo obtenerNodoPorContenido(int contenido) { return encontrarNodoPorContenido(raiz, contenido); }
 
-    private Nodo encontrarNodoPorContenido(Nodo actual, int contenido) {
-        if (actual == null) {
-            return null; // Llegamos a una hoja sin encontrar el nodo
-        }
-        if (actual.getContenido() == contenido) {
-            return actual; // Encontramos el nodo con el contenido deseado
-        }
+    private Nodo encontrarNodoPorContenido(Nodo raiz, int contenido) {
+        // SE UTILIZA LA LINKED LIST COMO COLA PARA NO TENER QUE HACER LAS FUNCIONES DE COLA
+        Queue<Nodo> cola = new LinkedList<>();
+        cola.offer(raiz);
 
-        // Buscamos en el subárbol izquierdo y luego en el subárbol derecho
-        Nodo nodoEnIzquierda = encontrarNodoPorContenido(actual.getHijoIzquierdo(), contenido);
-        if (nodoEnIzquierda != null) {
-            return nodoEnIzquierda; // Encontramos el nodo en el subárbol izquierdo
+        while (!cola.isEmpty()) {
+            Nodo actual = cola.poll();
+            // CHEQUEAR SI EL CONTENIDO SE ENCUENTRA EN EL ACTUAL
+            if (actual.getContenido() == contenido) {
+                return actual;
+            }
+            // SI NO SE ENCUENTRA EN EL ACTUAL SE AGREGAN LOS HIJOS A LA COLA PARA LA PROX ITERACION
+            if (actual.getHijoIzquierdo() != null) {
+                cola.offer(actual.getHijoIzquierdo());
+            }
+            if (actual.getHijoDerecho() != null) {
+                cola.offer(actual.getHijoDerecho());
+            }
         }
-        Nodo nodoEnDerecha = encontrarNodoPorContenido(actual.getHijoDerecho(), contenido);
-        return nodoEnDerecha; // Puede ser null si no encontramos el nodo en el subárbol derecho
+        return null;
     }
 
     public boolean esVacio(){ return raiz == null; }

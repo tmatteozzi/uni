@@ -29,7 +29,7 @@ public class Main {
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL PADRE:");
                     int contenidoNodoABuscarPadre = scanner.nextInt();
                     // BUSCAR AL PADRE
-                    Nodo padre = arbol.padre(((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoNodoABuscarPadre));
+                    Nodo padre = arbol.padre(arbol.obtenerNodoPorContenido(contenidoNodoABuscarPadre));
                     // RESULTADO
                     if (padre != null){
                         System.out.println(padre);
@@ -42,7 +42,7 @@ public class Main {
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarIzquierda = scanner.nextInt();
                     // BUSCAR HIJO DE LA IZQUIERDA
-                    Nodo izquierdo = arbol.hijoIzquierdo(((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoNodoABuscarIzquierda));
+                    Nodo izquierdo = arbol.hijoIzquierdo(arbol.obtenerNodoPorContenido(contenidoNodoABuscarIzquierda));
                     // RESULTADO
                     if (izquierdo != null){
                         System.out.println(izquierdo);
@@ -55,7 +55,7 @@ public class Main {
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarDerecha = scanner.nextInt();
                     // BUSCAR HIJO DE LA DERECHA
-                    Nodo derecho = arbol.hijoDerecho(((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoNodoABuscarDerecha));
+                    Nodo derecho = arbol.hijoDerecho(arbol.obtenerNodoPorContenido(contenidoNodoABuscarDerecha));
                     // RESULTADO
                     if (derecho != null){
                         System.out.println(derecho);
@@ -82,7 +82,7 @@ public class Main {
                     else {
                         System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                         int contenidoPadreParaInsertarIzquierda = scanner.nextInt();
-                        Nodo padreParaInsertarIzquierda = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaInsertarIzquierda);
+                        Nodo padreParaInsertarIzquierda = arbol.obtenerNodoPorContenido(contenidoPadreParaInsertarIzquierda);
                         if (padreParaInsertarIzquierda != null) {
                             System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA:");
                             int valorNodoAIzquierda = scanner.nextInt();
@@ -96,7 +96,7 @@ public class Main {
                 case 8:
                     System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                     int contenidoPadreParaInsertarDerecha = scanner.nextInt();
-                    Nodo padreParaInsertarDerecha = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaInsertarDerecha);
+                    Nodo padreParaInsertarDerecha = arbol.obtenerNodoPorContenido(contenidoPadreParaInsertarDerecha);
                     if(padreParaInsertarDerecha != null){
                         System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA DERECHA:");
                         int valorNodoADerecha = scanner.nextInt();
@@ -109,13 +109,13 @@ public class Main {
                 case 9:
                     System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                     int contenidoPadreParaPodarIzquierda = scanner.nextInt();
-                    Nodo padreParaPodarIzquierda = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaPodarIzquierda);
+                    Nodo padreParaPodarIzquierda = arbol.obtenerNodoPorContenido(contenidoPadreParaPodarIzquierda);
                     arbol.podarHijoIzquierda(padreParaPodarIzquierda);
                     break;
                 case 10:
                     System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                     int contenidoPadreParaPodarDerecha = scanner.nextInt();
-                    Nodo padreParaPodarDerecha = ((ArbolBinarioConcreto) arbol).obtenerNodoPorContenido(contenidoPadreParaPodarDerecha);
+                    Nodo padreParaPodarDerecha = arbol.obtenerNodoPorContenido(contenidoPadreParaPodarDerecha);
                     arbol.podarHijoDerecha(padreParaPodarDerecha);
                     break;
                 case 11:
