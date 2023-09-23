@@ -4,11 +4,11 @@ import java.util.Stack;
 public class Main {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        Pila pE = null, pD = null; // Creacion de conjuntos en null para poder usarlo en todos los cases
-        int opcionInicial; // Declaracion de la variable afuera del loop para usarla como opcion adentro
+        Pila pE = null, pD = null;
+        int opcionInicial;
         boolean creado1 = false;
         boolean creado2 = false;
-        // Menu
+        // MENU
         do{
             System.out.println("Ingrese una opcion: \n" +
                     "1. Pila Estatica \n" +
@@ -194,26 +194,26 @@ public class Main {
         while (!pE.pilaVacia()) {
             int elementoEstatica = pE.desapilarElemento();
             pilaTempEstatica.push(elementoEstatica);
-            // Busqueda de elemento
+            // BUSCAR ELEMENTO
             if (elementoEstatica == elementoBusqueda) {
                 encontradoEstatico = true;
             }
         }
         while (!pilaTempEstatica.empty()) {
-            pE.apilarElemento(pilaTempEstatica.pop()); // Volver a apilar en la normal
+            pE.apilarElemento(pilaTempEstatica.pop()); // VOLVER A APILAR EN LA NORMAL
         }
 
         // PARTE DINAMICA
         while (!pD.pilaVacia()) {
             int elementoDinamica = pD.desapilarElemento();
             pilaTempDinamica.push(elementoDinamica);
-            // Busqueda de elemento
+            // BUSCAR ELEMENTO
             if (elementoDinamica == elementoBusqueda) {
                 encontradoDinamico = true;
             }
         }
         while (!pilaTempDinamica.empty()) {
-            pD.apilarElemento(pilaTempDinamica.pop()); // Volver a apilar en la normal
+            pD.apilarElemento(pilaTempDinamica.pop()); // VOLVER A APILAR EN LA NORMAL
         }
 
         // RESULTADOS
@@ -237,10 +237,10 @@ public class Main {
 
         // PARTE ESTATICA
         System.out.println("LISTA PILA ESTATICA");
-        while(!pE.pilaVacia()){ // Vaciar la pila y cargar a la temporal
+        while(!pE.pilaVacia()){ // VACIAR PILA Y CARGAR A TEMP
             pilaTempEstatica.push(pE.desapilarElemento());
         }
-        while (!pilaTempEstatica.empty()){ // Volver a cargar a la pila pero con un contador para ubicar la posicion
+        while (!pilaTempEstatica.empty()){ // VOLVER A CARGAR A NORMAL PERO CON CONTADOR PARA POSICIONES
             int elementoEstatica = pilaTempEstatica.pop();
             pE.apilarElemento(elementoEstatica);
             contadorEstatico++;
@@ -249,10 +249,10 @@ public class Main {
 
         // PARTE DINAMICA
         while(!pD.pilaVacia()){
-            pilaTempDinamica.push(pD.desapilarElemento()); // Vaciar la pila y cargar a la temporal
+            pilaTempDinamica.push(pD.desapilarElemento()); // VACIAR PILA Y CARGAR A TEMP
         }
-        System.out.println("LISTA PILA DINAMICA");
-        while (!pilaTempDinamica.empty()){ // Volver a cargar a la pila pero con un contador para ubicar la posicion
+        System.out.println("\nLISTA PILA DINAMICA");
+        while (!pilaTempDinamica.empty()){ // VOLVER A CARGAR A NORMAL PERO CON CONTADOR PARA POSICIONES
             int elementoDinamica = pilaTempDinamica.pop();
             pD.apilarElemento(elementoDinamica);
             contadorDinamico++;

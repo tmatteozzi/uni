@@ -46,7 +46,7 @@ public class PilaEstatica extends Pila{
     public int topePila() {
         try{
             if (!pilaVacia()) {
-                return pila[tope - 1];
+                return pila[tope - 1]; // PARA DEVOLVER EL TOPE SE LE RESTA 1. EJ PILA DE 3 ELEMENTOS (0,1,2) EL TOPE ES 3 - 1
             } else {
                 throw new Exception("NO HAY TOPE, LISTA VACIA");
             }
@@ -56,17 +56,11 @@ public class PilaEstatica extends Pila{
         return 0;
     }
     @Override
-    public boolean pilaVacia () {
-        return (tope == 0);
-    }
+    public boolean pilaVacia () { return (tope == 0); }
 
-    public boolean pilaLlena () {
-        return (tope == size);
-    }
+    public boolean pilaLlena () { return (tope == size); }
 
     @Override
-    public String toString() {
-        return "Pila Estatica: " + Arrays.toString(pila);
-    }
+    public String toString() { return "Pila Estatica: " + Arrays.toString(pila); }
 }
 

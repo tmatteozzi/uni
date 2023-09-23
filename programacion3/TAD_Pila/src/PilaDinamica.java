@@ -9,9 +9,7 @@ public class PilaDinamica extends Pila{
     }
 
     @Override
-    public void apilarElemento(int elemento) {
-        pila.add(elemento);
-    }
+    public void apilarElemento(int elemento) { pila.add(elemento); }
 
     @Override
     public int desapilarElemento() {
@@ -31,7 +29,7 @@ public class PilaDinamica extends Pila{
     public int topePila() {
         try {
             if (!pilaVacia()) {
-                return pila.get(pila.size() - 1);
+                return pila.get(pila.size() - 1); // PARA DEVOLVER EL TOPE SE LE RESTA 1. EJ PILA DE 3 ELEMENTOS (0,1,2) EL TOPE ES 3 - 1
             } else {
                 throw new Exception("NO HAY TOPE. PILA VACIA");
             }
@@ -42,12 +40,8 @@ public class PilaDinamica extends Pila{
     }
 
     @Override
-    public boolean pilaVacia() {
-        return (pila.size() == 0);
-    }
+    public boolean pilaVacia() { return (pila.size() == 0); }
 
     @Override
-    public String toString() {
-        return "Pila Dinamica: " + pila;
-    }
+    public String toString() { return "Pila Dinamica: " + pila; }
 }
