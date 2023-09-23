@@ -1,6 +1,7 @@
 public class ColaConcreta extends Cola{
     private int cont;
     private Nodo primero, ultimo;
+
     public ColaConcreta(String nombreCola) {
         super(nombreCola);
         primero = null;
@@ -9,9 +10,7 @@ public class ColaConcreta extends Cola{
     }
 
     @Override
-    public boolean esVacio() {
-        return primero == null;
-    }
+    public boolean esVacio() { return primero == null; }
 
     @Override
     public void vaciar() {
@@ -21,9 +20,7 @@ public class ColaConcreta extends Cola{
     }
 
     @Override
-    public long largo() {
-        return cont;
-    }
+    public long largo() { return cont; }
 
     @Override
     public Nodo verPrimero() {
@@ -76,13 +73,13 @@ public class ColaConcreta extends Cola{
                 cont--;
                 // Mueve el puntero 'primero' al siguiente nodo, eliminando el primer nodo actual
                 primero = primero.getSiguiente();
-                Nodo current = primero;
+                Nodo actual = primero;
                 // Al borrar el nodo reorganizar posiciones ej: (1,1) (2,2) -> (1,2) [Al sacar al (1,1)]
                 int nuevaPosicion = 1;
-                while (current != null) {
-                    current.setPosicion(nuevaPosicion); // Al prox primer Nodo se le pone la posicion 1
+                while (actual != null) {
+                    actual.setPosicion(nuevaPosicion); // Al prox primer Nodo se le pone la posicion 1
                     nuevaPosicion++;
-                    current = current.getSiguiente();
+                    actual = actual.getSiguiente();
                 }
                 // Si se elimina el ultimo que quedaba entonces hacer que el contador vuelva a 0 y el ultimo sea 0
                 if (primero == null) {
@@ -101,12 +98,12 @@ public class ColaConcreta extends Cola{
         if (primero == null) {
             return "COLA VACIA.";
         }
-        StringBuilder result = new StringBuilder();
-        Nodo current = primero;
-        while (current != null) {
-            result.append(current).append(" ");
-            current = current.getSiguiente();
+        StringBuilder resultado = new StringBuilder();
+        Nodo actual = primero;
+        while (actual != null) {
+            resultado.append(actual).append(" ");
+            actual = actual.getSiguiente();
         }
-        return "Cola: [ " + result.toString() + "]";
+        return "Cola: [ " + resultado + "]";
     }
 }

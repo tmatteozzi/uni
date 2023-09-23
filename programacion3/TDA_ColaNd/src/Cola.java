@@ -1,5 +1,6 @@
 public abstract class Cola {
     private String nombreCola;
+
     public Cola(String nombreCola){ this.nombreCola = nombreCola; }
 
     public abstract boolean esVacio();
