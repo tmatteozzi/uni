@@ -72,7 +72,7 @@ public class Main {
                     System.out.println("OPCION NO VALIDA");
             }
         } while (opcion != 9);
-        scanner.close(); // Cerrar scanner
+        scanner.close();
     }
 
     public static void imprimirMenu() {

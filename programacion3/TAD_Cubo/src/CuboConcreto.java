@@ -105,9 +105,7 @@ public class CuboConcreto extends Cubo {
     }
 
     @Override
-    public int valor(int ancho, int alto, int largo){
-        return conjunto[ancho][alto][largo];
-    }
+    public int valor(int ancho, int alto, int largo){ return conjunto[ancho][alto][largo]; }
 
     @Override
     public boolean validas(int ancho, int alto, int largo){
