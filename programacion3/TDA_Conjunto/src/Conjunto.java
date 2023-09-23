@@ -57,17 +57,17 @@ public abstract class Conjunto {
 
     public void retirar(int pe) {
         int posicion = -1;
-        for (int i = 0; i < cont; i++) { // Buscar la posicion donde se encuentra el elemento a retirar
+        for (int i = 0; i < cont; i++) { // BUSCAR EN QUE POSICION SE ENCUENTRA EL ELEMENTO
             if (conj[i] == pe) {
-                posicion = i; // Al encontrar la posicion asignarla y salir
+                posicion = i; // SI SE ENCUENTRA SALIR
                 break;
             }
         }
         if (posicion != -1) {
-            for (int i = posicion; i < cont - 1; i++) { // Mover elementos atras dspues de retiro
+            for (int i = posicion; i < cont - 1; i++) { // MOVER ELEMENTOS DESPUES DE RETIRAR
                 conj[i] = conj[i + 1];
             }
-            conj[cont - 1] = 0; // Poner un 0 (predet) en donde se retiro el elemento
+            conj[cont - 1] = 0; // PONER UN 0 DONDE SE RETIRO EL ELEMENTO
             cont--;
             System.out.println("ELEMENTO ELIMINADO");
         } else {

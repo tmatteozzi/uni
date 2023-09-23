@@ -6,7 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Conjunto c1 = null, c2 = null;
         int opcionInicial;
-        // Menu
+        // MENU
         do {
             System.out.println("Ingrese una opcion: \n" +
                 "1. Metodos Conjunto 1 \n" +
@@ -169,8 +169,8 @@ public class Main {
     }
 
     public static Conjunto union(Conjunto c1, Conjunto c2){
-        ArrayList<Integer> elementosUnion = new ArrayList<>(); // Crear arraylist para agregar los elementos
-        // Recorrer ambos conjuntos y agregar elementos a union
+        ArrayList<Integer> elementosUnion = new ArrayList<>(); // ARRAYLIST TEMPORAL PARA GUARDAR ELEM
+        // RECORRER AMBOS CONJUNTOS Y AGREGAR ELEMENTOS A LA LISTA TEMP (SIN QUE SE REPITAN)
         for (int i = 0; i < c1.getCont(); i++) {
             int elemento = c1.getConj()[i];
             if (elemento != 0 && !elementosUnion.contains(elemento)) {
@@ -183,7 +183,7 @@ public class Main {
                 elementosUnion.add(elemento);
             }
         }
-        // Nuevo conjunto
+        // NUEVO CONJUNTO CON LA INTERSECCION
         Conjunto conjUnion = new ConjuntoConcreto(elementosUnion.size());
         for(Integer elemento: elementosUnion){
             conjUnion.agregar(elemento);
@@ -192,16 +192,16 @@ public class Main {
     }
 
     public static Conjunto interseccion(Conjunto c1, Conjunto c2){
-        ArrayList<Integer> elementosInterseccion = new ArrayList<>(); // Crear arraylist para agregar los elementos
+        ArrayList<Integer> elementosInterseccion = new ArrayList<>(); // ARRAYLIST TEMPORAL PARA GUARDAR ELEM
         for(int i=0; i < c1.getCont(); i++){
             if(c2.pertenece(c1.getConj()[i])){
                 elementosInterseccion.add(c1.getConj()[i]);
             }
         }
-        // Nuevo conjunto
+        // NUEVO CONJUNTO CON LA INTERSECCION
         Conjunto conjInterseccion = new ConjuntoConcreto(elementosInterseccion.size());
         for(Integer elemento: elementosInterseccion){
-            if(!conjInterseccion.pertenece(elemento)){ // Solamente cargar los elementos que no estan duplicados
+            if(!conjInterseccion.pertenece(elemento)){ // CARGAR SIN DUPLICADOS
                 conjInterseccion.agregar(elemento);
             }
         }
@@ -210,7 +210,7 @@ public class Main {
 
     public static boolean inclusion(Conjunto c1, Conjunto c2) {
         for (int i = 0; i < c1.getCont(); i++) {
-            if (!c2.pertenece(c1.getConj()[i])) { // Chequear q todos los elementos de c1 pertenezcan en c2
+            if (!c2.pertenece(c1.getConj()[i])) { // CHEQUEAR QUE TODOS LOS ELEMENTOS DE C1 ESTEN EN C2
                 return false;
             }
         }
