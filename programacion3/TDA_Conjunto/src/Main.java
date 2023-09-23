@@ -24,26 +24,26 @@ public class Main {
                         switch (opcionC1){
                             case 1:
                                 if(!creado1){
-                                    System.out.println("Ingrese el size del Conjunto 1: ");
+                                    System.out.println("INGRESAR EL SIZE DEL CONJUNTO: ");
                                     int nConjunto1 = scanner.nextInt();
                                     c1 = new ConjuntoConcreto(nConjunto1);
                                     creado1 = true;
                                 } else {
-                                    System.out.println("Conjunto ya creado!");
+                                    System.out.println("CONJUNTO YA CREADO!");
                                 }
                                 break;
                             case 2:
-                                System.out.println("Ingrese el elemento a anadir: ");
+                                System.out.println("INGRESAR ELEMENTO A AÑADIR: ");
                                 int eA = scanner.nextInt();
                                 c1.agregar(eA);
                                 break;
                             case 3:
-                                System.out.println("Ingrese el elemento a retirar: ");
+                                System.out.println("INGRESAR ELEMENTO A RETIRAR: ");
                                 int eR = scanner.nextInt();
                                 c1.retirar(eR);
                                 break;
                             case 4:
-                                System.out.println("Ingrese el elemento para chequear su pertenencia: ");
+                                System.out.println("INGRESAR ELEMENTO PARA CHEQUEAR PERTENENCIA: ");
                                 int eP = scanner.nextInt();
                                 if(c1.pertenece(eP)){
                                     System.out.println("EL ELEMENTO PERTENECE AL CONJUNTO");
@@ -79,26 +79,26 @@ public class Main {
                         switch (opcionC2){
                             case 1:
                                 if(!creado2){
-                                    System.out.println("Ingrese el size del Conjunto 2: ");
+                                    System.out.println("INGRESAR EL SIZE DEL CONJUNTO: ");
                                     int nConjunto2 = scanner.nextInt();
                                     c2 = new ConjuntoConcreto(nConjunto2);
                                     creado2 = true;
                                 } else {
-                                    System.out.println("Conjunto ya creado!");
+                                    System.out.println("CONJUNTO YA CREADO!");
                                 }
                                 break;
                             case 2:
-                                System.out.println("Ingrese el elemento a anadir: ");
+                                System.out.println("INGRESAR ELEMENTO A AÑADIR: ");
                                 int eA = scanner.nextInt();
                                 c2.agregar(eA);
                                 break;
                             case 3:
-                                System.out.println("Ingrese el elemento a retirar: ");
+                                System.out.println("INGRESAR ELEMENTO A RETIRAR: ");
                                 int eR = scanner.nextInt();
                                 c2.retirar(eR);
                                 break;
                             case 4:
-                                System.out.println("Ingrese el elemento para chequear su pertenencia: ");
+                                System.out.println("INGRESAR ELEMENTO A CHEQUEAR PERTENENCIA: ");
                                 int eP = scanner.nextInt();
                                 if(c2.pertenece(eP)){
                                     System.out.println("EL ELEMENTO PERTENECE AL CONJUNTO");
