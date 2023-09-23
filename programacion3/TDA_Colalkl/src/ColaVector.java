@@ -19,9 +19,7 @@ public class ColaVector extends Cola{
     }
 
     @Override
-    public boolean esVacio() {
-        return (cont == 0);
-    }
+    public boolean esVacio() { return (cont == 0); }
 
     @Override
     public void vaciar() {
@@ -30,6 +28,7 @@ public class ColaVector extends Cola{
                 for(int i= 0; i < size; i++){
                     cola[i] = 0;
                 }
+                cont = 0;
                 System.out.println("COLA VACIADA.");
             }
             else{
@@ -41,19 +40,13 @@ public class ColaVector extends Cola{
     }
 
     @Override
-    public long largo() {
-        return cont;
-    }
+    public long largo() { return cont; }
 
     @Override
-    public int verPrimero() {
-        return cola[0];
-    }
+    public int verPrimero() { return cola[0]; }
 
     @Override
-    public int verUltimo() {
-        return cola[cont - 1];
-    }
+    public int verUltimo() { return cola[cont - 1]; }
 
     @Override
     public void enfilar(int nuevoElemento) {
@@ -75,9 +68,10 @@ public class ColaVector extends Cola{
         try{
             if(!esVacio()){
                 System.out.println("ELEMENTO " + cola[0] + " ELIMINADO.");
-                for (int i = 0; i < cont - 1; i++) {
+                for (int i = 0; i < cont - 1; i++) { // MOVER ELEMENTOS
                     cola[i] = cola[i + 1];
                 }
+                // ELIMINAR EL ELEMENTO
                 cola[cont - 1] = 0;
                 cont--;
             } else {
@@ -89,7 +83,5 @@ public class ColaVector extends Cola{
     }
 
     @Override
-    public String toString() {
-        return "Cola Vector:" + Arrays.toString(cola);
-    }
+    public String toString() { return "Cola Vector:" + Arrays.toString(cola); }
 }

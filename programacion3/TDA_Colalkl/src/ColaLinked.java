@@ -8,9 +8,7 @@ public class ColaLinked extends Cola{
     }
 
     @Override
-    public boolean esVacio() {
-        return cola.isEmpty();
-    }
+    public boolean esVacio() { return cola.isEmpty(); }
 
     @Override
     public void vaciar() {
@@ -27,19 +25,13 @@ public class ColaLinked extends Cola{
     }
 
     @Override
-    public long largo() {
-        return cola.size();
-    }
+    public long largo() { return cola.size(); }
 
     @Override
-    public int verPrimero() {
-        return cola.getFirst();
-    }
+    public int verPrimero() { return cola.getFirst(); }
 
     @Override
-    public int verUltimo() {
-        return cola.getLast();
-    }
+    public int verUltimo() { return cola.getLast(); }
 
     @Override
     public void enfilar(int nuevoElemento) {
@@ -70,7 +62,5 @@ public class ColaLinked extends Cola{
     }
 
     @Override
-    public String toString() {
-        return "Cola Linked:" + cola;
-    }
+    public String toString() { return "Cola Linked:" + cola; }
 }
