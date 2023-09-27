@@ -2,17 +2,20 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ArbolBinarioConcreto extends ArbolBinario {
+    // ATRIBUTOS
     private Nodo raiz;
 
+    // CONSTRUCTOR
     public ArbolBinarioConcreto(String nombreArbol) {
         super(nombreArbol);
     }
 
+    // METODOS HEREDADOS DE CLASE ABSTRACTA
     @Override
     public void destruir() {
         try{
-            if(!esVacio()){
-                raiz = null;
+            if(!esVacio()){ // VALIDACION DE ARBOL VACIO
+                raiz = null; // AL PONER LA RAIZ NULA SE DESTRUYE EL ARBOL
                 System.out.println("ARBOL DESTRUIDO.");
             } else {
                 throw new Exception("NO SE PUEDE DESTRUIR UN ARBOL QUE ESTA VACIO.");
@@ -23,13 +26,15 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     }
 
     @Override
-    public Nodo padre(Nodo nodo) { return encontrarPadre(raiz, nodo); }
+    public Nodo padre(Nodo nodo) {
+        return encontrarPadre(raiz, nodo); // LLAMADO A METODO AUXILIAR PARA ENCONTRAR EL PADRE
+    }
 
     // BUSCAR PADRE POR RECORRIDO DE AMPLITUD
     private Nodo encontrarPadre(Nodo raiz, Nodo hijoBuscado) {
         // SE UTILIZA LA LINKED LIST COMO COLA PARA NO TENER QUE HACER LAS FUNCIONES DE COLA
         Queue<Nodo> cola = new LinkedList<>();
-        cola.offer(raiz);
+        cola.offer(raiz); // PRIMERO SE AGREGA LA RAIZ A LA COLA PARA COMENZAR A BUSCAR
 
         while (!cola.isEmpty()) {
             // SACAR ELEMENTO DE LA COLA PARA EVALUAR SI ES EL PADRE
@@ -54,21 +59,21 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     }
 
     @Override
-    public Nodo hijoIzquierdo(Nodo padre) { return padre.getHijoIzquierdo(); }
+    public Nodo hijoIzquierdo(Nodo padre) { return padre.getHijoIzquierdo(); } // DEVOLVER EL HIJO IZQUIERDO CON EL GETTER DEL NODO
 
     @Override
-    public Nodo hijoDerecho(Nodo padre) { return padre.getHijoDerecho(); }
+    public Nodo hijoDerecho(Nodo padre) { return padre.getHijoDerecho(); } // DEVOLVER EL HIJO DERECHO CON EL GETTER DEL NODO
 
     @Override
-    public Nodo raiz() { return raiz; }
+    public Nodo raiz() { return raiz; } // DEVUELVE LA RAIZ
 
     @Override
     public void insertarHijoIzquierda(Nodo padre, Nodo nodoAInsertar) {
         try {
             if (raiz == null) {
-                raiz = nodoAInsertar; // Si no hay raíz, el nodo se convierte en la raíz
+                raiz = nodoAInsertar; // SI NO HAY RAIZ EL NODO A INSERTAR ES LA RAIZ
             } else if (padre.getHijoIzquierdo() == null) {
-                padre.setHijoIzquierdo(nodoAInsertar);
+                padre.setHijoIzquierdo(nodoAInsertar); // INSERTAR EL NODO COMO HIJO DEL PADRE DEL LADO IZQUIERDO SI NO HAY UNO EN LA POSICION
             } else {
                 throw new Exception("NO SE PUEDE CARGAR UN NODO A LA IZQUIERDA, POSICION OCUPADA POR: " + padre.getHijoIzquierdo());
             }
@@ -80,9 +85,9 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     @Override
     public void insertarHijoDerecha(Nodo padre, Nodo nodoAInsertar) {
         try{
-            if(padre.getHijoDerecho() == null){
-                if (padre.getHijoIzquierdo() != null){
-                    padre.setHijoDerecho(nodoAInsertar);
+            if(padre.getHijoDerecho() == null){ // SI NO HAY HIJO DERECHO
+                if (padre.getHijoIzquierdo() != null){ // Y SI HAY HIJO IZQUIERDO
+                    padre.setHijoDerecho(nodoAInsertar); // CARGAR NODO COMO HIJO
                 } else {
                     throw new Exception("NO SE PUEDE CARGAR UN NODO A LA DERECHA, NO HAY NINGUN NODO A LA IZQUIERDA.");
                 }
@@ -119,7 +124,7 @@ public class ArbolBinarioConcreto extends ArbolBinario {
     public void podarHijoDerecha(Nodo padre) {
         try{
             if(padre.getHijoDerecho() != null){
-                padre.setHijoDerecho(null);
+                padre.setHijoDerecho(null); // PODAR SI EL HIJO DERECHO EXISTE
                 System.out.println("RAMA DERECHA PODADA.");
             } else {
                 throw new Exception("NO SE PUEDE PODAR UN HIJO QUE NO EXISTE.");
@@ -131,13 +136,15 @@ public class ArbolBinarioConcreto extends ArbolBinario {
 
     // METODOS AUXILIARES
     @Override
-    public Nodo obtenerNodoPorContenido(int contenido) { return encontrarNodoPorContenido(raiz, contenido); }
+    public Nodo obtenerNodoPorContenido(int contenido) {
+        return encontrarNodoPorContenido(raiz, contenido); // LLAMADO A METODO AUXILIAR PARA ENCONTRAR EL NODO POR CONTENIDO
+    }
 
     // BUSCAR NODO POR RECORRIDO DE AMPLITUD
     private Nodo encontrarNodoPorContenido(Nodo raiz, int contenido) {
         // SE UTILIZA LA LINKED LIST COMO COLA PARA NO TENER QUE HACER LAS FUNCIONES DE COLA
         Queue<Nodo> cola = new LinkedList<>();
-        cola.offer(raiz);
+        cola.offer(raiz); // PRIMERO SE AGREGA LA RAIZ A LA COLA PARA COMENZAR A BUSCAR
 
         while (!cola.isEmpty()) {
             Nodo actual = cola.poll();
@@ -156,7 +163,7 @@ public class ArbolBinarioConcreto extends ArbolBinario {
         return null;
     }
 
-    public boolean esVacio(){ return raiz == null; }
+    public boolean esVacio(){ return raiz == null; } // SI LA RAIZ ES NULL ENTONCES ESTA VACIO
 
     // METODOS PARA IMPRIMIR EL ARBOL
     @Override
@@ -179,6 +186,8 @@ public class ArbolBinarioConcreto extends ArbolBinario {
             sb.append("\n");
             imprimirArbol(nodo.getHijoIzquierdo(), prefijo + (esHijoIzquierdo ? "|   " : "    "), true, sb);
             imprimirArbol(nodo.getHijoDerecho(), prefijo + (esHijoIzquierdo ? "|   " : "    "), false, sb);
+        } else {
+            System.out.println("ARBOL VACIO.");
         }
     }
 }

@@ -1,16 +1,23 @@
+// CONSIGNA:
+// Diseñe y construya usted su propia versión del TAD Árbol Binario cumpliendo con:
+    // Desarrollar una interfaz gráfica de usuario que maneje menú de Barras y/o botones gráficos.
+    // Documentar debidamente las líneas de código que por su complejidad así lo requieran.
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // INICIALIZACION DE SCANNER
+        // ATRIBUTOS
         int opcion;
-        boolean creado = false;
+        boolean creado = false; // VALIDADOR DE CREACION DE ARBOL
         ArbolBinario arbol = null;
+        // MENU
         do{
-            imprimirMenu();
+            imprimirMenu(); // METODO STATIC PARA IMPRIMIR MENU
             opcion = scanner.nextInt();
             switch (opcion){
-                case 1:
+                case 1: // METODO PARA CREAR ARBOL
                     if(!creado){
                         // INPUT DATOS
                         System.out.println("INGRESE EL NOMBRE DEL ARBOL:");
@@ -21,10 +28,10 @@ public class Main {
                         System.out.println("ARBOL " + arbol.getNombreArbol().toUpperCase() + " YA CREADO.");
                     }
                     break;
-                case 2:
+                case 2: // METODO PARA DESTRUIR EL ARBOL
                     arbol.destruir();
                     break;
-                case 3:
+                case 3: // METODO PARA BUSCAR EL PADRE DE UN NODO
                     // INPUT
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL PADRE:");
                     int contenidoNodoABuscarPadre = scanner.nextInt();
@@ -37,7 +44,7 @@ public class Main {
                         System.out.println("EL NODO NO TIENE PADRE.");
                     }
                     break;
-                case 4:
+                case 4: // METODO PARA ENCONTRAR EL HIJO DE LA IZQUIERDA DE UN NODO
                     // INPUT
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
                     int contenidoNodoABuscarIzquierda = scanner.nextInt();
@@ -51,9 +58,9 @@ public class Main {
                         System.out.println("EL NODO NO TIENE HIJO IZQUIERDO.");
                     }
                     break;
-                case 5:
+                case 5: // METODO PARA ENCONTRAR EL HIJO DE LA DERECHA DE UN NODO
                     // INPUT
-                    System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA IZQUIERDA:");
+                    System.out.println("INGRESE EL NODO PARA BUSCAR AL HIJO DE LA DERECHA:");
                     int contenidoNodoABuscarDerecha = scanner.nextInt();
                     // BUSCAR HIJO DE LA DERECHA
                     Nodo padreDelDerecho = arbol.obtenerNodoPorContenido(contenidoNodoABuscarDerecha);
@@ -65,14 +72,15 @@ public class Main {
                         System.out.println("EL NODO NO TIENE HIJO DERECHO.");
                     }
                     break;
-                case 6:
+                case 6: // METODO PARA OBTENER RAIZ
+                    // SI EL ARBOL NO ESTA VACIO IMPRIME RAIZ
                     if (arbol != null) {
                         System.out.println("LA RAIZ DEL ARBOL ES: " + arbol.raiz());
                     } else {
                         System.out.println("NO HAY UN ARBOL CREADO.");
                     }
                     break;
-                case 7:
+                case 7: // METODO PARA INSERTAR NODO HIJO A LA IZQUIERDA
                     // SI LA RAIZ NO EXISTE SE AGREGA EL NODO COMO RAIZ
                     if(arbol.raiz() == null){
                         System.out.println("INGRESAR EL VALOR DEL PRIMER NODO:");
@@ -83,9 +91,11 @@ public class Main {
                     }
                     // PERO SI EXISTE SE AGREGA A LA IZQUIERDA
                     else {
+                        // INPUT NODO PADRE PARA AGREGAR HIJO
                         System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                         int contenidoPadreParaInsertarIzquierda = scanner.nextInt();
                         Nodo padreParaInsertarIzquierda = arbol.obtenerNodoPorContenido(contenidoPadreParaInsertarIzquierda);
+                        // SI EXISTE NODO PADRE ENTONCES INSERTAR HIJO A LA IZQUIERDA
                         if (padreParaInsertarIzquierda != null) {
                             System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA IZQUIERDA:");
                             int valorNodoAIzquierda = scanner.nextInt();
@@ -97,10 +107,12 @@ public class Main {
                         }
                     }
                     break;
-                case 8:
+                case 8: // METODO PARA INSERTAR NODO HIJO A LA DERECHA
+                    // INPUT NODO PADRE PARA AGREGAR HIJO
                     System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                     int contenidoPadreParaInsertarDerecha = scanner.nextInt();
                     Nodo padreParaInsertarDerecha = arbol.obtenerNodoPorContenido(contenidoPadreParaInsertarDerecha);
+                    // SI EXISTE NODO PADRE ENTONCES INSERTAR HIJO A LA DERECHA
                     if(padreParaInsertarDerecha != null){
                         System.out.println("INGRESAR EL VALOR DEL NODO PARA AGREGAR A LA DERECHA:");
                         int valorNodoADerecha = scanner.nextInt();
@@ -111,20 +123,19 @@ public class Main {
                         System.out.println("EL PADRE NO EXISTE, NO SE PUEDE INSERTAR.");
                     }
                     break;
-                case 9:
+                case 9: // METODO PARA PODAR HIJO DE LA IZQUIERDA
                     System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                     int contenidoPadreParaPodarIzquierda = scanner.nextInt();
                     Nodo padreParaPodarIzquierda = arbol.obtenerNodoPorContenido(contenidoPadreParaPodarIzquierda);
                     arbol.podarHijoIzquierda(padreParaPodarIzquierda);
                     break;
-                case 10:
+                case 10: // METODO PARA PODAR HIJO DE LA DERECHA
                     System.out.println("INGRESE EL CONTENIDO DEL NODO PADRE:");
                     int contenidoPadreParaPodarDerecha = scanner.nextInt();
                     Nodo padreParaPodarDerecha = arbol.obtenerNodoPorContenido(contenidoPadreParaPodarDerecha);
                     arbol.podarHijoDerecha(padreParaPodarDerecha);
                     break;
-                case 11:
-                    // IMPRIMIR EL ARBOL
+                case 11: // METODO PARA IMPRIMIR ARBOL
                     if (arbol != null) {
                         System.out.println(arbol);
                     } else {
