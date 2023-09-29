@@ -36,11 +36,12 @@ public class Main {
                     // INPUT
                     System.out.println("INGRESE EL NODO PARA BUSCAR AL PADRE:");
                     int contenidoNodoABuscarPadre = scanner.nextInt();
+                    Nodo nodoABuscarPadre = arbol.obtenerNodoPorContenido(contenidoNodoABuscarPadre);
                     // BUSCAR AL PADRE
-                    Nodo padre = arbol.padre(arbol.obtenerNodoPorContenido(contenidoNodoABuscarPadre));
+                    Nodo padre = arbol.padre(nodoABuscarPadre);
                     // RESULTADO
                     if (padre != null){
-                        System.out.println(padre);
+                        System.out.println("EL PADRE DE " + nodoABuscarPadre+ " ES " + padre);
                     } else {
                         System.out.println("EL NODO NO TIENE PADRE.");
                     }
