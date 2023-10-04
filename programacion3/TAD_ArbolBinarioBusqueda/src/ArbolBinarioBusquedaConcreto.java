@@ -51,67 +51,71 @@ public class ArbolBinarioBusquedaConcreto extends ArbolBinarioBusqueda{
 
     @Override
     public void eliminar(Nodo nodo) {
-        // COMENZAR A BUSCAR EL NODO DESDE RAIZ
-        Nodo nodoActual = raiz;
-        Nodo padreNodo = null;
-        // EXTRAER CONTENIDO
-        int contenido = nodo.getContenido();
-        boolean esHijoIzquierdo = false;
-
-        while (nodoActual != null && nodoActual.getContenido() != contenido) {
-            padreNodo = nodoActual;
-
-            if (contenido < nodoActual.getContenido()) {
-                nodoActual = nodoActual.getHijoIzquierdo();
-                esHijoIzquierdo = true;
-            } else {
-                nodoActual = nodoActual.getHijoDerecho();
-                esHijoIzquierdo = false;
+        try{
+            // COMENZAR A BUSCAR EL NODO DESDE RAIZ
+            Nodo nodoActual = raiz;
+            Nodo padreNodo = null;
+            // EXTRAER CONTENIDO
+            int contenido = nodo.getContenido();
+            boolean esHijoIzquierdo = false;
+            // ENCONTRAR EL NODO Y ASIGNARLO A NODO ACTUAL Y VER SI ES HIJO IZQUIERDO O NO
+            while (nodoActual != null && nodoActual.getContenido() != contenido) {
+                padreNodo = nodoActual;
+                if (contenido < nodoActual.getContenido()) {
+                    nodoActual = nodoActual.getHijoIzquierdo();
+                    esHijoIzquierdo = true;
+                } else {
+                    nodoActual = nodoActual.getHijoDerecho();
+                    esHijoIzquierdo = false;
+                }
             }
-        }
-
-        if (nodoActual == null) {
-            System.out.println("EL NODO " + nodo + " NO ESTA EN EL ARBOL.");
-            return;
-        }
-
-        // NODO A ELIMINAR ES UNA HOJA
-        if (nodoActual.getHijoIzquierdo() == null && nodoActual.getHijoDerecho() == null) {
-            if (nodoActual == raiz) { // SI ES LA RAIZ BORRARLA
-                raiz = null;
-            } else if (esHijoIzquierdo) { // SI ES HIJO IZQUIERDO ELIMINARLO
-                padreNodo.setHijoIzquierdo(null);
-            } else { // SI ES HIJO DERECHO ELIMINARLO
-                padreNodo.setHijoDerecho(null);
+            // SI ES NULL ENTONCES NO SE ENCUENTRA EN EL ARBOL
+            if (nodoActual == null) {
+                throw new Exception("EL NODO " + nodo + " NO ESTA EN EL ARBOL.");
             }
-        }
-        // NODO A ELIMINAR TIENE SOLO UN HIJO
-        else if (nodoActual.getHijoDerecho() == null) {
-            if (nodoActual == raiz) {
-                raiz = nodoActual.getHijoIzquierdo();
-            } else if (esHijoIzquierdo) {
-                padreNodo.setHijoIzquierdo(nodoActual.getHijoIzquierdo());
-            } else {
-                padreNodo.setHijoDerecho(nodoActual.getHijoIzquierdo());
+            // CASO 1: NODO A ELIMINAR ES UNA HOJA
+            if (nodoActual.getHijoIzquierdo() == null && nodoActual.getHijoDerecho() == null) {
+                if (nodoActual == raiz) { // SI ES LA RAIZ BORRARLA
+                    raiz = null;
+                } else if (esHijoIzquierdo) { // SI ES HIJO IZQUIERDO ELIMINARLO
+                    padreNodo.setHijoIzquierdo(null);
+                } else { // SI ES HIJO DERECHO ELIMINARLO
+                    padreNodo.setHijoDerecho(null);
+                }
             }
-        } else if (nodoActual.getHijoIzquierdo() == null) {
-            if (nodoActual == raiz) {
-                raiz = nodoActual.getHijoDerecho();
-            } else if (esHijoIzquierdo) {
-                padreNodo.setHijoIzquierdo(nodoActual.getHijoDerecho());
-            } else {
-                padreNodo.setHijoDerecho(nodoActual.getHijoDerecho());
+            // CASO 2: NODO A ELIMINAR TIENE SOLO 1 HIJO
+            // HIJO IZQUIERDO
+            else if (nodoActual.getHijoDerecho() == null) {
+                if (nodoActual == raiz) {
+                    raiz = nodoActual.getHijoIzquierdo(); // SI EL NODO A ELIMINAR ES LA RAIZ REEMPLAZARLA POR EL HIJO IZQUIERDO
+                } else if (esHijoIzquierdo) {
+                    padreNodo.setHijoIzquierdo(nodoActual.getHijoIzquierdo()); // SI ES UN NODO EN CUALQUIER POSICION, ELIMINAR Y REEMPLAZAR POR HIJO IZQUIERDO
+                } else {
+                    padreNodo.setHijoDerecho(nodoActual.getHijoIzquierdo()); // SINO REEMPLAZAR EL HIJO DERECHO DEL PADRE POR EL HIJO IZQUIERDO DEL NODO
+                }
+            // HIJO DERECHO
+            } else if (nodoActual.getHijoIzquierdo() == null) {
+                if (nodoActual == raiz) {
+                    raiz = nodoActual.getHijoDerecho(); // SI EL NODO A ELIMINAR ES LA RAIZ REEMPLAZARLA POR EL HIJO DERECHO
+                } else if (esHijoIzquierdo) {
+                    padreNodo.setHijoIzquierdo(nodoActual.getHijoDerecho()); // SI ES UN NODO EN CUALQUIER POSICION, ELIMINAR Y REEMPLAZAR POR HIJO DERECHO
+                } else {
+                    padreNodo.setHijoDerecho(nodoActual.getHijoDerecho()); // SINO REEMPLAZAR EL HIJO DERECHO DEL PADRE POR EL HIJO DERECHO DEL NODO
+                }
             }
-        }
-        // Caso 3: Nodo a eliminar tiene dos hijos
-        else {
-            Nodo sucesor = obtenerSucesor(nodoActual);
-            nodoActual.setContenido(sucesor.getContenido());
-        }
-
-        // SI EL NODO A ELIMINAR ES LA RAIZ ENTONCES REACOMODAR
-        if (padreNodo == null) {
-            raiz = nodoActual;
+            // CASO 3: NODO A ELIMINAR TIENE DOS HIJOS
+            else {
+                // OBTENER EL NODO SUCESOR CON METODO AUXILIAR
+                Nodo sucesor = obtenerSucesor(nodoActual);
+                // CAMBIAR EL NODO ACTUAL POR EL SUCESOR
+                nodoActual.setContenido(sucesor.getContenido());
+            }
+            // SI EL NODO A ELIMINAR ES LA RAIZ ENTONCES REACOMODAR
+            if (padreNodo == null) {
+                raiz = nodoActual;
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -149,7 +153,9 @@ public class ArbolBinarioBusquedaConcreto extends ArbolBinarioBusqueda{
     public boolean esVacio(){ return raiz == null; }
 
     private Nodo obtenerSucesor(Nodo nodo) {
+        // ASIGNAR EL HIJO DERECHO DEL NODO COMO SUCESOR
         Nodo sucesor = nodo.getHijoDerecho();
+        // SI EL HIJO IZQUIERDO NO ES NULO ENTONCES QUE ESE SEA EL SUCESOR
         while (sucesor.getHijoIzquierdo() != null) {
             sucesor = sucesor.getHijoIzquierdo();
         }

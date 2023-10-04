@@ -13,5 +13,6 @@ public abstract class ArbolBinarioBusqueda {
     public abstract String inOrder();
     public abstract void destruir();
 
+    // GETTER
     public String getNombreArbol() { return nombreArbol; }
 }

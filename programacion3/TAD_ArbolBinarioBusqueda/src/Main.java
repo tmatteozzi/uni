@@ -1,12 +1,11 @@
 /***
-
- Desarrollar una implementación en Java que cumpla con los siguientes métodos y Requerimientos:
- - Creación y construcción de un ABB.
- - Inserción de Nodos, después de que el Árbol ya se encuentre creado y construido.
- - Eliminación de un Nodo en un ABB.
- - Recorrido InOrden del ABB. Imprimir la secuencia del recorrido.
- - Destruir el ABB.
-
+CONSIGNA
+Desarrollar una implementación en Java que cumpla con los siguientes métodos y Requerimientos:
+- Creación y construcción de un ABB.
+- Inserción de Nodos, después de que el Árbol ya se encuentre creado y construido.
+- Eliminación de un Nodo en un ABB.
+- Recorrido InOrden del ABB. Imprimir la secuencia del recorrido.
+- Destruir el ABB.
  ***/
 import java.util.Scanner;
 public class Main {
@@ -21,19 +20,20 @@ public class Main {
             imprimirMenu(); // METODO STATIC PARA IMPRIMIR MENU
             opcion = scanner.nextInt();
             switch (opcion){
-                case 1:
+                case 1: // CREAR ARBOL
                     if(!creado){
                         // INPUT DATOS
                         System.out.println("INGRESE EL NOMBRE DEL ARBOL:");
                         String nombre = scanner.next();
                         arbol = new ArbolBinarioBusquedaConcreto(nombre);
-                        creado = true;
+                        creado = true; // AL CREAR EL ARBOL SE PONE COMO TRUE PARA INDICAR QUE FUE CREADO
                     } else {
                         System.out.println("ARBOL " + arbol.getNombreArbol().toUpperCase() + " YA CREADO.");
                     }
                     break;
-                case 2:
+                case 2: // INGRESAR UN NODO
                     if(creado){
+                        // INPUT
                         System.out.println("INGRESAR EL CONTENIDO DEL NODO A INGRESAR: ");
                         int contenido = scanner.nextInt();
                         Nodo nodoAIngresar = new Nodo(contenido);
@@ -42,8 +42,9 @@ public class Main {
                         System.out.println("NO SE PUEDE INGRESAR NODOS SI NO HAY UN ARBOL CREADO");
                     }
                     break;
-                case 3:
+                case 3: // ELIMINAR UN NODO
                     if(creado){
+                        // INPUT
                         System.out.println("INGRESAR EL CONTENIDO DEL NODO A ELIMINAR: ");
                         int contenido = scanner.nextInt();
                         Nodo nodoAEliminar = new Nodo(contenido);
@@ -52,21 +53,21 @@ public class Main {
                         System.out.println("NO SE PUEDE ELIMINAR NODOS SI NO HAY UN ARBOL CREADO");
                     }
                     break;
-                case 4:
+                case 4: // IMPRIMIR INORDER
                     if(creado){
                         System.out.println("EL RECORRIDO INORDER ES: " + arbol.inOrder());
                     } else {
                         System.out.println("NO HAY UN ARBOL CREADO. NO SE PUEDE HACER EL INORDER");
                     }
                     break;
-                case 5:
+                case 5: // DESTRUIR ARBOL
                     if(creado){
                         arbol.destruir();
                     } else {
                         System.out.println("NO SE PUEDE DESTRUIR UN ARBOL QUE NO SE CREO.");
                     }
                     break;
-                case 6:
+                case 6: // IMPRIMIR ARBOL
                     if(creado){
                         System.out.println(arbol);
                     } else {
