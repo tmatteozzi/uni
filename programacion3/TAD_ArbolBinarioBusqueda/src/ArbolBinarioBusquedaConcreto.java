@@ -107,8 +107,14 @@ public class ArbolBinarioBusquedaConcreto extends ArbolBinarioBusqueda{
             else {
                 // OBTENER EL NODO SUCESOR CON METODO AUXILIAR
                 Nodo sucesor = obtenerSucesor(nodoActual);
+                // SI EL SUCESOR TIENE HIJO DERECHO SEGUIR BUSCANDO SUCESORES
+                while (sucesor.getHijoDerecho() != null) {
+                    sucesor = obtenerSucesor(sucesor);
+                }
                 // CAMBIAR EL NODO ACTUAL POR EL SUCESOR
                 nodoActual.setContenido(sucesor.getContenido());
+                // ELIMINAR SUCESOR PARA QUE NO SE REPITA
+                eliminar(sucesor);
             }
             // SI EL NODO A ELIMINAR ES LA RAIZ ENTONCES REACOMODAR
             if (padreNodo == null) {
@@ -163,12 +169,6 @@ public class ArbolBinarioBusquedaConcreto extends ArbolBinarioBusqueda{
     }
 
     // METODOS PARA IMPRIMIR EL ARBOL
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        imprimirArbol(raiz, "", true, sb);
-        return sb.toString();
-    }
     private void imprimirArbol(Nodo nodo, String prefijo, boolean esHijoIzquierdo, StringBuilder sb) {
         if (nodo != null) {
             sb.append(prefijo);
@@ -183,8 +183,17 @@ public class ArbolBinarioBusquedaConcreto extends ArbolBinarioBusqueda{
             sb.append("\n");
             imprimirArbol(nodo.getHijoIzquierdo(), prefijo + (esHijoIzquierdo ? "|   " : "    "), true, sb);
             imprimirArbol(nodo.getHijoDerecho(), prefijo + (esHijoIzquierdo ? "|   " : "    "), false, sb);
-        } else {
-            System.out.println("ARBOL VACIO.");
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (raiz != null) {
+            imprimirArbol(raiz, "", true, sb);
+        } else {
+            sb.append("ARBOL VACIO.");
+        }
+        return sb.toString();
     }
 }
