@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TDA_ListaNod.iml" filepath="$PROJECT_DIR$/TDA_ListaNod.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TAD_ColaNd.iml" filepath="$PROJECT_DIR$/TAD_ColaNd.iml" />
     </modules>
   </component>
 </project>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TDA_Conjunto.iml" filepath="$PROJECT_DIR$/TDA_Conjunto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TAD_Conjunto.iml" filepath="$PROJECT_DIR$/TAD_Conjunto.iml" />
     </modules>
   </component>
 </project>

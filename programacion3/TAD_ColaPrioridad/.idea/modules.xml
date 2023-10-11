@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TDA_Bicola.iml" filepath="$PROJECT_DIR$/TDA_Bicola.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TAD_ColaPrioridad.iml" filepath="$PROJECT_DIR$/TAD_ColaPrioridad.iml" />
     </modules>
   </component>
 </project>
