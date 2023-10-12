@@ -1,13 +1,16 @@
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class ListaConcreta extends Lista {
+    // ATRIBUTOS
     private LinkedList<Integer> lista;
+
+    // CONSTRUCTOR
     public ListaConcreta(String nombreLista) {
         super(nombreLista);
         lista = new LinkedList<>();
     }
 
+    // METODOS HEREDADOS
     @Override
     public void localizar(int elementoALocalizar) {
         try {
@@ -114,10 +117,12 @@ public class ListaConcreta extends Lista {
         return lista;
     }
 
+    // METODOS AUXILIARES
     public boolean esVacia(){
         return lista.isEmpty();
     }
 
+    // TOSTRING
     @Override
     public String toString() {
         return "LISTA " + getNombreLista().toUpperCase() + " = " + lista;
