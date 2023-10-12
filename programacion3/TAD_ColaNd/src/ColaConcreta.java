@@ -1,7 +1,9 @@
 public class ColaConcreta extends Cola{
+    // ATRIBUTOS
     private int cont;
     private Nodo primero, ultimo;
 
+    // CONSTRUCTOR
     public ColaConcreta(String nombreCola) {
         super(nombreCola);
         primero = null;
@@ -9,6 +11,7 @@ public class ColaConcreta extends Cola{
         cont = 0;
     }
 
+    // METODOS HEREDADOS
     @Override
     public boolean esVacio() { return primero == null; }
 
@@ -94,6 +97,8 @@ public class ColaConcreta extends Cola{
         }
     }
 
+    // TOSTRING
+    @Override
     public String toString() {
         if (primero == null) {
             return "COLA VACIA.";
