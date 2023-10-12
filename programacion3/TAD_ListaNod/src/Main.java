@@ -1,3 +1,12 @@
+/***
+Desarrollar un Producto de Software que cumpla con las siguientes características.
+    -Diseñar y Construir en Java un TAD de nombre LISTANOD.  Implementar con el TAD nodo.
+    -Que cumpla con las buenas prácticas de documentación de código.
+    -Que presente un menú de trabajo tipo gráfico de barras.
+    -El TAD se basará en las especificaciones para listas presentes en la lámina  8 de esta presentación.
+    -Probar y verificar que la implementación se encuentra trabajando correctamente.
+*/
+
 import java.util.Scanner;
 
 public class Main {
@@ -26,18 +35,18 @@ public class Main {
                         imprimirMenu(lista1);
                         opcion1 = scanner.nextInt();
                         switch (opcion1){
-                            case 1:
+                            case 1: // LOCALIZAR NODO POR CONTENIDO
                                 System.out.println("INGRESE EL CONTENIDO DEL NODO A LOCALIZAR: ");
                                 int contenidoALocalizar = scanner.nextInt();
                                 lista1.localizar(contenidoALocalizar);
                                 break;
-                            case 2:
+                            case 2: // INSERTAR NODO
                                 System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
                                 int contenidoNodo = scanner.nextInt();
                                 Nodo nodoAInsertar = new Nodo(contenidoNodo);
                                 lista1.insertar(nodoAInsertar);
                                 break;
-                            case 3:
+                            case 3: // INSERTAR NODO EN POSICION
                                 System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
                                 int contenidoNodoAInsertar = scanner.nextInt();
                                 Nodo nodoAInsertarEnPosicion = new Nodo(contenidoNodoAInsertar);
@@ -45,26 +54,26 @@ public class Main {
                                 int posicionAInsertar = scanner.nextInt();
                                 lista1.insertarEnPosicion(posicionAInsertar, nodoAInsertarEnPosicion);
                                 break;
-                            case 4:
+                            case 4: // ELIMINAR NODO SEGUN POSICION
                                 System.out.println("INGRESE LA POSICION DEL NODO A ELIMINAR: ");
                                 int posicionNodoAEliminar = scanner.nextInt();
                                 lista1.eliminar(posicionNodoAEliminar);
                                 break;
-                            case 5:
+                            case 5: // ORDERNAR LISTA
                                 System.out.println("LISTA DE ELEMENTOS ORDENADA: " + lista1.ordenarElementos());
                                 break;
-                            case 6:
+                            case 6: // COPIAR LISTA
                                 System.out.println("LISTA DE ELEMENTOS COPIADA: " + lista1.copiarLista());
                                 break;
-                            case 7:
+                            case 7: // DIVIDIR LISTA EN POSICION
                                 System.out.println("INGRESE LA POSICION PARA DIVIDIR LA LISTA: ");
                                 int posicionADividir = scanner.nextInt();
                                 lista1.dividirLista(posicionADividir);
                                 break;
-                            case 8:
+                            case 8: // IMPRIMIR LISTA
                                 System.out.println(lista1);
                                 break;
-                            case 9:
+                            case 9: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -79,18 +88,18 @@ public class Main {
                         imprimirMenu(lista2);
                         opcion2 = scanner.nextInt();
                         switch (opcion2){
-                            case 1:
+                            case 1: // LOCALIZAR NODO POR CONTENIDO
                                 System.out.println("INGRESE EL CONTENIDO DEL NODO A LOCALIZAR: ");
                                 int contenidoALocalizar = scanner.nextInt();
                                 lista2.localizar(contenidoALocalizar);
                                 break;
-                            case 2:
+                            case 2: // INSERTAR NODO
                                 System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
                                 int contenidoNodo = scanner.nextInt();
                                 Nodo nodoAInsertar = new Nodo(contenidoNodo);
                                 lista2.insertar(nodoAInsertar);
                                 break;
-                            case 3:
+                            case 3: // INSERTAR NODO EN POSICION
                                 System.out.println("INGRESE EL CONTENIDO DEL NODO A INSERTAR: ");
                                 int contenidoNodoAInsertar = scanner.nextInt();
                                 Nodo nodoAInsertarEnPosicion = new Nodo(contenidoNodoAInsertar);
@@ -98,26 +107,26 @@ public class Main {
                                 int posicionAInsertar = scanner.nextInt();
                                 lista2.insertarEnPosicion(posicionAInsertar, nodoAInsertarEnPosicion);
                                 break;
-                            case 4:
+                            case 4: // ELIMINAR NODO
                                 System.out.println("INGRESE LA POSICION DEL NODO A ELIMINAR: ");
                                 int posicionNodoAEliminar = scanner.nextInt();
                                 lista2.eliminar(posicionNodoAEliminar);
                                 break;
-                            case 5:
+                            case 5: // ORDENAR LISTA
                                 System.out.println("LISTA DE ELEMENTOS ORDENADA: " + lista2.ordenarElementos());
                                 break;
-                            case 6:
+                            case 6: // COPIAR LISTA
                                 System.out.println("LISTA DE ELEMENTOS COPIADA: " + lista2.copiarLista());
                                 break;
-                            case 7:
+                            case 7: // DIVIDIR LISTA EN POSICION
                                 System.out.println("INGRESE LA POSICION PARA DIVIDIR LA LISTA: ");
                                 int posicionADividir = scanner.nextInt();
                                 lista2.dividirLista(posicionADividir);
                                 break;
-                            case 8:
+                            case 8: // IMPRIMIR LISTA
                                 System.out.println(lista2);
                                 break;
-                            case 9:
+                            case 9: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -135,13 +144,13 @@ public class Main {
                                 "3. Salir\n");
                         opcion3 = scanner.nextInt();
                         switch (opcion3){
-                            case 1:
+                            case 1: // UNIR AMBAS LISTAS (LA UNO PRIMERO)
                                 unirListas(lista1, lista2);
                                 break;
-                            case 2:
+                            case 2: // UNIR AMBAS LISTAS (LA DOS PRIMERO)
                                 unirListas(lista2, lista1);
                                 break;
-                            case 3:
+                            case 3: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -150,7 +159,7 @@ public class Main {
                         }
                     } while (opcion3 != 3);
                     break;
-                case 4:
+                case 4: // FINALIZAR
                     System.out.println("FIN DEL PROGRAMA");
                     break;
                 default:
@@ -177,13 +186,13 @@ public class Main {
         try {
             if (lista1 != null && lista2 != null) {
                 ListaConcreta listaUnida = new ListaConcreta("Union");
-                // Iterar a través de la primera lista y copiar los nodos a la lista unida
+                // INSERTAR ELEMENTOS DE LA PRIMERA LISTA EN LA LISTA UNIDA
                 Nodo current1 = lista1.getPrimero();
                 while (current1 != null) {
                     listaUnida.insertar(new Nodo(current1.getContenido()));
                     current1 = current1.getSiguiente();
                 }
-                // Iterar a través de la segunda lista y copiar los nodos a la lista unida
+                // INSERTAR ELEMENTOS DE LA SEGUNDA LISTA EN LA LISTA UNIDA
                 Nodo current2 = lista2.getPrimero();
                 while (current2 != null) {
                     listaUnida.insertar(new Nodo(current2.getContenido()));

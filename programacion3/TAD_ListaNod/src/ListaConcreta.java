@@ -1,7 +1,9 @@
 public class ListaConcreta extends Lista {
+    // ATRIBUTOS
     private int cont;
     private Nodo primero, ultimo;
 
+    // CONSTRUCTOR
     public ListaConcreta(String nombreCola) {
         super(nombreCola);
         primero = null;
@@ -9,6 +11,7 @@ public class ListaConcreta extends Lista {
         cont = 0;
     }
 
+    // METODOS HEREDADOS
     @Override
     public Nodo getPrimero() {
         return primero;
@@ -225,6 +228,7 @@ public class ListaConcreta extends Lista {
         }
     }
 
+    // METODOS AUXILIARES
     public boolean esVacia(){
         return primero == null;
     }
@@ -239,6 +243,7 @@ public class ListaConcreta extends Lista {
         }
     }
 
+    // TOSTRING
     @Override
     public String toString() {
         if (primero == null) {
