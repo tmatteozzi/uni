@@ -1,9 +1,21 @@
+/***
+Desarrollar un Producto de Software que cumpla con las siguientes características.
+    -Diseñar y Construir en Java un TAD de nombre COLALKL. Implementar con el TAD LinkedList.
+    -Que cumpla con las buenas prácticas de documentación de código.
+    -Que presente un menú de trabajo tipo gráfico de barras.
+    -El TAD se basará en las especificaciones para colas presentes en la lámina  8 de esta presentación.
+    -Probar y verificar que la implementación se encuentra trabajando correctamente.
+ */
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // INICIALIZACION DE SCANNER
         Scanner scanner = new Scanner(System.in);
+        // CREACION DE CONJUNTOS
         Cola cV = null, cL = null;
+        // VALIDADORES
         boolean creado1 = false;
         boolean creado2 = false;
         // MENU
@@ -31,7 +43,7 @@ public class Main {
                                 "10. Salir\n");
                         opcionVector = scanner.nextInt();
                         switch (opcionVector){
-                            case 1:
+                            case 1: // CREAR COLA
                                 if(!creado1){
                                     // COLA VECTOR
                                     System.out.println("INGRESE EL NOMBRE PARA LA COLA VECTOR");
@@ -44,37 +56,37 @@ public class Main {
                                     System.out.println("COLA " + cV.getNombreCola().toUpperCase() + " YA CREADA.");
                                 }
                                 break;
-                            case 2:
+                            case 2: // CHEQUEAR SI ESTA VACIO
                                 if(cV.esVacio()){
-                                    System.out.println("LA LISTA ESTA VACIA");
+                                    System.out.println("LA COLA ESTA VACIA");
                                 } else {
-                                    System.out.println("LA LISTA NO ESTA VACIA");
+                                    System.out.println("LA COLA NO ESTA VACIA");
                                 }
                                 break;
-                            case 3:
+                            case 3: // VACIAR LA COLA
                                 cV.vaciar();
                                 break;
-                            case 4:
+                            case 4: // CHEQUEAR EL LARGO DE LA COLA
                                 System.out.println("EL LARGO DE LA COLA ES DE: " + cV.largo());
                                 break;
-                            case 5:
+                            case 5: // VER EL PRIMER ELEMENTO DE LA COLA
                                 System.out.println("EL PRIMER ELEMENTO DE LA COLA ES: " + cV.verPrimero());
                                 break;
-                            case 6:
+                            case 6: // VER EL ULTIMO ELEMENTO DE LA COLA
                                 System.out.println("EL ULTIMO ELEMENTO DE LA COLA ES: " + cV.verUltimo());
                                 break;
-                            case 7:
+                            case 7: // ENFILAR ELEMENTO
                                 System.out.println("INGRESE EL ELEMENTO A ENFILAR: ");
                                 int elementoAEnfilar = scanner.nextInt();
                                 cV.enfilar(elementoAEnfilar);
                                 break;
-                            case 8:
+                            case 8: // SACAR UN ELEMENTO DE LA COLA
                                 cV.sacar();
                                 break;
-                            case 9:
+                            case 9: // IMPRIMIR COLA
                                 System.out.println(cV);
                                 break;
-                            case 10:
+                            case 10: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -99,7 +111,7 @@ public class Main {
                                 "10. Salir\n");
                         opcionLinked = scanner.nextInt();
                         switch (opcionLinked){
-                            case 1:
+                            case 1: // CREAR COLA
                                 if(!creado2){
                                     // COLA LINKED LIST
                                     System.out.println("INGRESE EL NOMBRE PARA LA COLA LINKED");
@@ -110,37 +122,37 @@ public class Main {
                                     System.out.println("COLA " + cL.getNombreCola().toUpperCase() + " YA CREADA.");
                                 }
                                 break;
-                            case 2:
+                            case 2: // CHEQUEAR SI LA COLA ESTA VACIA
                                 if(cL.esVacio()){
-                                    System.out.println("LA LISTA ESTA VACIA");
+                                    System.out.println("LA COLA ESTA VACIA");
                                 } else {
-                                    System.out.println("LA LISTA NO ESTA VACIA");
+                                    System.out.println("LA COLA NO ESTA VACIA");
                                 }
                                 break;
-                            case 3:
+                            case 3: // VACIAR COLA
                                 cL.vaciar();
                                 break;
-                            case 4:
+                            case 4: // CHEQUEAR EL LARGO DE LA COLA
                                 System.out.println("EL LARGO DE LA COLA ES DE: " + cL.largo());
                                 break;
-                            case 5:
+                            case 5: // VER EL PRIMER ELEMENTO DE LA COLA
                                 System.out.println("EL PRIMER ELEMENTO DE LA COLA ES: " + cL.verPrimero());
                                 break;
-                            case 6:
+                            case 6: // VER EL ULTIMO ELEMENTO DE LA COLA
                                 System.out.println("EL ULTIMO ELEMENTO DE LA COLA ES: " + cL.verUltimo());
                                 break;
-                            case 7:
+                            case 7: // ENFILAR ELEMENTO
                                 System.out.println("INGRESE EL ELEMENTO A ENFILAR: ");
                                 int elementoAEnfilar = scanner.nextInt();
                                 cL.enfilar(elementoAEnfilar);
                                 break;
-                            case 8:
+                            case 8: // SACAR ELEMENTO DE LA COLA
                                 cL.sacar();
                                 break;
-                            case 9:
+                            case 9: // IMPRIMIR
                                 System.out.println(cL);
                                 break;
-                            case 10:
+                            case 10: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -149,7 +161,7 @@ public class Main {
                         }
                     } while (opcionLinked != 10);
                     break;
-                case 3:
+                case 3: // FINALIZAR
                     System.out.println("FIN DEL PROGRAMA");
                     break;
                 default:

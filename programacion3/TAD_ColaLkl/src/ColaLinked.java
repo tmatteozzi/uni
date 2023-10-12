@@ -1,12 +1,16 @@
 import java.util.LinkedList;
 
 public class ColaLinked extends Cola{
+    // ATRIBUTOS
     private LinkedList<Integer> cola;
+
+    // CONSTRUCTOR
     public ColaLinked(String nombreCola) {
         super(nombreCola);
         cola = new LinkedList<>();
     }
 
+    // METODOS HEREDADOS
     @Override
     public boolean esVacio() { return cola.isEmpty(); }
 
@@ -61,6 +65,7 @@ public class ColaLinked extends Cola{
         }
     }
 
+    // TOSTRING
     @Override
     public String toString() { return "Cola Linked:" + cola; }
 }

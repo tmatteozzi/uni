@@ -1,8 +1,11 @@
 import java.util.Arrays;
 
 public class ColaVector extends Cola{
+    // ATRIBUTOS
     private int[] cola;
     private int cont, size;
+
+    // CONSTRUCTOR
     public ColaVector(String nombreCola, int size) {
         super(nombreCola);
         try{
@@ -18,6 +21,7 @@ public class ColaVector extends Cola{
         }
     }
 
+    // METODOS HEREDADOS
     @Override
     public boolean esVacio() { return (cont == 0); }
 
@@ -82,6 +86,7 @@ public class ColaVector extends Cola{
         }
     }
 
+    // TOSTRING
     @Override
     public String toString() { return "Cola Vector:" + Arrays.toString(cola); }
 }
