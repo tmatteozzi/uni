@@ -1,6 +1,8 @@
 public abstract class Cubo {
+    // CONSTRUCTOR
     public Cubo(){}
 
+    // METODOS
     public abstract void cargar(int ancho, int alto, int largo, int valor);
     public abstract void modificar(int ancho, int alto, int largo, int valor);
     public abstract void anular(int ancho, int alto, int largo);

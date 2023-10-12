@@ -1,9 +1,11 @@
 import java.util.Random;
 
 public class CuboConcreto extends Cubo {
+    // ATRIBUTOS
     int[][][] conjunto;
     Random random = new Random();
 
+    // CONSTRUCTOR
     public CuboConcreto(int alto, int ancho, int largo){
         try{
             if (alto != 0 && ancho != 0 && largo != 0){
@@ -17,10 +19,12 @@ public class CuboConcreto extends Cubo {
         }
     }
 
+    // METODOS HEREDADOS
     @Override
     public void cargar(int ancho, int alto, int largo, int valor) {
         try{
             if (valor != 0){
+                // SI LA POSICION PASADA POR PARAMETRO ES VALIDA AGREGAR EL VALOR
                 if (validas(ancho, alto, largo)) {
                     if(conjunto[ancho][alto][largo] == 0){
                         conjunto[ancho][alto][largo] = valor;
@@ -42,6 +46,7 @@ public class CuboConcreto extends Cubo {
     @Override
     public void modificar(int ancho, int alto, int largo, int valor){
         try{
+            // SI LA POSICION PASADA POR PARAMETRO ES VALIDA MODIFICAR EL VALOR POR EL VALOR DEL PARAMETRO
             if(validas(ancho, alto, largo)){
                 if(conjunto[ancho][alto][largo] != 0){
                     conjunto[ancho][alto][largo] = valor;
@@ -60,6 +65,7 @@ public class CuboConcreto extends Cubo {
     @Override
     public void anular(int ancho, int alto, int largo) {
         try {
+            // SI LA POSICION PASADA POR PARAMETRO ES VALIDA ANULAR EL VALOR (PONER COMO '0')
             if (validas(ancho, alto, largo)) {
                 conjunto[ancho][alto][largo] = 0;
             } else {
@@ -73,6 +79,7 @@ public class CuboConcreto extends Cubo {
     @Override
     public void nulos(){
         try {
+            // RECORRER LAS 3 CAPAZ E IMPRIMIR LAS POSICIONES DONDE EL VALOR ES IGUAL A 0
             int nulas = 0;
             System.out.println("LISTA DE POSICIONES NULAS:");
             for (int ancho = 0; ancho < conjunto.length; ancho++) {
@@ -95,6 +102,7 @@ public class CuboConcreto extends Cubo {
 
     @Override
     public void alea(){
+        // MODIFICAR EL CUBO CON ELEMENTOS ALEATORIO
         for (int ancho = 0; ancho < conjunto.length; ancho++) {
             for (int alto = 0; alto < conjunto[ancho].length; alto++) {
                 for (int largo = 0; largo < conjunto[ancho][alto].length; largo++) {
@@ -105,7 +113,10 @@ public class CuboConcreto extends Cubo {
     }
 
     @Override
-    public int valor(int ancho, int alto, int largo){ return conjunto[ancho][alto][largo]; }
+    public int valor(int ancho, int alto, int largo){
+        // OBTENER EL VALOR DE UN ELEMENTO SEGUN LA POSICION
+        return conjunto[ancho][alto][largo];
+    }
 
     @Override
     public boolean validas(int ancho, int alto, int largo){
@@ -118,6 +129,7 @@ public class CuboConcreto extends Cubo {
 
     @Override
     public void sumatoria() {
+        // SUMAR CADA ELEMENTO DE CADA CAPA
         for (int largo = 0; largo < conjunto[0][0].length; largo++) {
             int sumatoria = 0;
             for (int ancho = 0; ancho < conjunto.length; ancho++) {
@@ -129,6 +141,7 @@ public class CuboConcreto extends Cubo {
         }
     }
 
+    // TOSTRING
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

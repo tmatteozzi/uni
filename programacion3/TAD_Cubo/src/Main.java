@@ -1,16 +1,28 @@
+/***
+ Desarrollar un Producto de Software que cumpla con las siguientes características:
+-Que instancie los objetos del TAD CUBO.
+-Que cumpla con las buenas prácticas de documentación de código.
+-Que en un menú permita ejecutar todas las operaciones del TAD CUBO.
+-Probar que todas las operaciones del menú funcionan correctamente.
+-Diseñe una operación que sea capaz de realizar todas las sumatorias de los datos contenidos para cada capa de profundidad
+ */
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // INICIALIZAR SCANNER
         Scanner scanner = new Scanner(System.in);
+        // INICIALIZAR VARIABLES
         int opcion, a, b, c, valor;
+        // VALIDADOR
         boolean creado = false;
         Cubo cubo = null;
         do {
             imprimirMenu();
             opcion = scanner.nextInt();
             switch (opcion) {
-                case 1:
+                case 1: // CREAR CUBO
                     if(!creado){
                         // INPUT DATOS DEL CUBO
                         System.out.println("INGRESE LAS DIMENSIONES DEL CUBO:");
@@ -24,7 +36,7 @@ public class Main {
                         System.out.println("CUBO YA CREADO.");
                     }
                     break;
-                case 2:
+                case 2: // AGREGAR VALOR SEGUN COORDENADAS
                     System.out.println("INGRESE COORDENADAS PARA AGREGAR");
                     a = inputAncho();
                     b = inputAlto();
@@ -33,7 +45,7 @@ public class Main {
                     valor = scanner.nextInt();
                     cubo.cargar(a, b, c, valor);
                     break;
-                case 3:
+                case 3: // MODIFICAR VALOR SEGUN COORDENADAS
                     System.out.println("INGRESE COORDENADAS PARA MODIFICAR");
                     a = inputAncho();
                     b = inputAlto();
@@ -42,30 +54,30 @@ public class Main {
                     valor = scanner.nextInt();
                     cubo.modificar(a, b, c, valor);
                     break;
-                case 4:
+                case 4: // ANULAR VALOR SEGUN POSICION
                     System.out.println("INGRESE LAS COORDENADAS PARA ANULAR");
                     a = inputAncho();
                     b = inputAlto();
                     c = inputLargo();
                     cubo.anular(a, b, c);
                     break;
-                case 5:
+                case 5: // OBTENER VALOR SEGUN COORDENADAS
                     System.out.println("INGRESAR LAS COORDENADAS PARA OBTENER EL VALOR");
                     a = inputAncho();
                     b = inputAlto();
                     c = inputLargo();
                     System.out.println("VALOR: " + cubo.valor(a, b, c));
                     break;
-                case 6:
+                case 6: // IMPRIMIR POSICIONES NULAS DEL CUBO
                     cubo.nulos();
                     break;
-                case 7:
+                case 7: // IMPRIMIR CUBO
                     System.out.println(cubo);
                     break;
-                case 8:
+                case 8: // SUMATORIA POR CAPAS
                     cubo.sumatoria();
                     break;
-                case 9:
+                case 9: // FINALIZAR
                     System.out.println("FIN DEL PROGRAMA");
                     break;
                 default:
