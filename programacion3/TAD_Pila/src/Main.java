@@ -1,11 +1,21 @@
+/***
+Desarrollar un Producto de Software que cumpla con las siguientes características:
+    -Diseñar y construir en Java un TAD (clase) tipo pila estática.
+    -Diseñar y construir en Java un TAD (clase) tipo pila dinámica.
+    -Diseñar y construir  en Java una clase tipo Main. (Modo gráfico)
+*/
+
 import java.util.Scanner;
 import java.util.Stack;
 
 public class Main {
     public static void main(String[] args){
+        // INICIALIZACION DE SCANNERS
         Scanner scanner = new Scanner(System.in);
+        // CREACION DE LAS PILAS
         Pila pE = null, pD = null;
         int opcionInicial;
+        // VALIDADORES
         boolean creado1 = false;
         boolean creado2 = false;
         // MENU
@@ -32,7 +42,7 @@ public class Main {
                             "8. Salir");
                         opcionEstatica = scanner.nextInt();
                         switch (opcionEstatica){
-                            case 1:
+                            case 1: // CREAR PILA
                                 if(!creado1){
                                     // Creacion pila estatica
                                     System.out.println("Ingrese el nombre de la pila estatica: ");
@@ -45,21 +55,21 @@ public class Main {
                                     System.out.println("PILA " + pE.getNombrePila().toUpperCase() +" YA CREADA.");
                                 }
                                 break;
-                            case 2:
+                            case 2: // APILAR ELEMENTO
                                 System.out.println("INGRESE ELEMENTO A APILAR: ");
                                 int elementoApilarPE = scanner.nextInt();
                                 pE.apilarElemento(elementoApilarPE);
                                 break;
-                            case 3:
+                            case 3: // DESAPILAR
                                 int desapilado = pE.desapilarElemento();
                                 if (desapilado != 0){
                                     System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
                                 }
                                 break;
-                            case 4:
+                            case 4: // CHEQUEAR TOPE DE PILA
                                 System.out.println("EL ELEMENTO TOPE ES: " + pE.topePila());
                                 break;
-                            case 5:
+                            case 5: // CHEQUEAR SI PILA ESTA VACIA
                                 if(pE.pilaVacia()){
                                     System.out.println("PILA VACIA.");
                                     break;
@@ -67,7 +77,7 @@ public class Main {
                                     System.out.println("PILA NO VACIA.");
                                     break;
                                 }
-                            case 6:
+                            case 6: // CHEQUEAR SI PILA ESTA LLENA
                                 if(((PilaEstatica) pE).pilaLlena()){
                                     System.out.println("PILA LLENA.");
                                     break;
@@ -75,10 +85,10 @@ public class Main {
                                     System.out.println("PILA CON ESPACIO.");
                                     break;
                                 }
-                            case 7:
+                            case 7: // IMPRIMIR PILA
                                 System.out.println(pE);
                                 break;
-                            case 8:
+                            case 8: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
                             default:
@@ -101,7 +111,7 @@ public class Main {
                                 "7. Salir");
                         opcionDinamica = scanner.nextInt();
                         switch (opcionDinamica){
-                            case 1:
+                            case 1: // CREAR PILA
                                 if(!creado2){
                                     // Creacion pila dinamica
                                     System.out.println("Ingrese el nombre de la pila dinamica: ");
@@ -112,21 +122,21 @@ public class Main {
                                     System.out.println("PILA " + pD.getNombrePila().toUpperCase() +" YA CREADA.");
                                 }
                                 break;
-                            case 2:
+                            case 2: // APILAR ELEMENTO
                                 System.out.println("INGRESE ELEMENTO A APILAR: ");
                                 int elementoApilarPD = scanner.nextInt();
                                 pD.apilarElemento(elementoApilarPD);
                                 break;
-                            case 3:
+                            case 3: // DESAPILAR ELEMENTO
                                 int desapilado = pD.desapilarElemento();
                                 if (desapilado != 0){
                                     System.out.println("EL ELEMENTO " + desapilado + " HA SIDO DESAPILADO");
                                 }
                                 break;
-                            case 4:
+                            case 4: // CHEQUEAR TOPE
                                 System.out.println("EL ELEMENTO TOPE ES: " + pD.topePila());
                                 break;
-                            case 5:
+                            case 5: // CHEQUEAR SI PILA ESTA VACIA
                                 if(pD.pilaVacia()){
                                     System.out.println("PILA VACIA.");
                                     break;
@@ -134,10 +144,10 @@ public class Main {
                                     System.out.println("PILA NO VACIA.");
                                     break;
                                 }
-                            case 6:
+                            case 6: // IMPRIMIR
                                 System.out.println(pD);
                                 break;
-                            case 7:
+                            case 7: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
                             default:
@@ -148,6 +158,7 @@ public class Main {
                     break;
                 case 3:
                     int opcionOtrasOperaciones;
+                    // MENU OTRAS OPCIONES
                     do{
                         System.out.println("MENU OTRAS OPERACIONES\n" +
                                 "Ingrese una opcion: \n" +
@@ -156,15 +167,15 @@ public class Main {
                                 "3. Salir");
                         opcionOtrasOperaciones = scanner.nextInt();
                         switch (opcionOtrasOperaciones){
-                            case 1:
+                            case 1: // IDENTIFICAR DE QUE PILA ES UN ELEMENTO
                                 System.out.println("INGRESE ELEMENTO A BUSCAR: ");
                                 int elementoABucar = scanner.nextInt();
                                 identificarPila(pE, pD, elementoABucar);
                                 break;
-                            case 2:
+                            case 2: // IMPRIMIR ELEMENTOS DE AMBAS PILAS
                                 imprimirElementos(pE, pD);
                                 break;
-                            case 3:
+                            case 3: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINICPAL.");
                                 break;
                             default:
@@ -174,6 +185,7 @@ public class Main {
                     } while (opcionOtrasOperaciones != 3);
                     break;
                 case 4:
+                    // FINALIZAR PROGRAMA
                     System.out.println("FIN DEL PROGRAMA.");
                     break;
                 default:
@@ -184,9 +196,10 @@ public class Main {
     }
 
     public static void identificarPila(Pila pE, Pila pD, int elementoBusqueda){
+        // CREAR TEMP DE CADA TIPO
         Stack<Integer> pilaTempEstatica = new Stack<>();
         Stack<Integer> pilaTempDinamica = new Stack<>();
-
+        // INDICADORES SI ENCONTRO EL ELEMENTO EN ALGUNA DE LAS PILAS
         boolean encontradoEstatico = false;
         boolean encontradoDinamico = false;
 
@@ -202,7 +215,6 @@ public class Main {
         while (!pilaTempEstatica.empty()) {
             pE.apilarElemento(pilaTempEstatica.pop()); // VOLVER A APILAR EN LA NORMAL
         }
-
         // PARTE DINAMICA
         while (!pD.pilaVacia()) {
             int elementoDinamica = pD.desapilarElemento();
@@ -215,7 +227,6 @@ public class Main {
         while (!pilaTempDinamica.empty()) {
             pD.apilarElemento(pilaTempDinamica.pop()); // VOLVER A APILAR EN LA NORMAL
         }
-
         // RESULTADOS
         if (encontradoEstatico && encontradoDinamico) {
             System.out.println("EL ELEMENTO " + elementoBusqueda + " ESTA EN AMBAS PILAS.");
@@ -229,9 +240,10 @@ public class Main {
     }
 
     public static void imprimirElementos(Pila pE, Pila pD){
+        // TEMPORALES DE CADA TIPO
         Stack<Integer> pilaTempEstatica = new Stack<>();
         Stack<Integer> pilaTempDinamica = new Stack<>();
-
+        // CONTADORES
         int contadorEstatico = 0;
         int contadorDinamico = 0;
 

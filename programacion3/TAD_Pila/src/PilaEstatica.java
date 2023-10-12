@@ -1,9 +1,11 @@
 import java.util.Arrays;
 
 public class PilaEstatica extends Pila{
+    // ATRIBUTOS
     private int[] pila;
     private int tope, size;
 
+    // CONSTRUCTOR
     public PilaEstatica(String nombrePila, int size) {
         super(nombrePila);
         this.size = size;
@@ -11,6 +13,7 @@ public class PilaEstatica extends Pila{
         tope = 0;
     }
 
+    // METODOS HEREDADOS
     @Override
     public void apilarElemento(int elemento) {
         try{
@@ -58,8 +61,10 @@ public class PilaEstatica extends Pila{
     @Override
     public boolean pilaVacia () { return (tope == 0); }
 
+    // METODOS AUXILIARES
     public boolean pilaLlena () { return (tope == size); }
 
+    // TOSTRING
     @Override
     public String toString() { return "Pila Estatica: " + Arrays.toString(pila); }
 }

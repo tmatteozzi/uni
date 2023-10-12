@@ -1,13 +1,16 @@
 import java.util.ArrayList;
 
 public class PilaDinamica extends Pila{
+    // ATRIBUTOS
     private ArrayList<Integer> pila;
 
+    // CONSTRUCTOR
     public PilaDinamica(String nombrePila) {
         super(nombrePila);
         pila = new ArrayList<>();
     }
 
+    // MNETODOS HEREDADOS
     @Override
     public void apilarElemento(int elemento) { pila.add(elemento); }
 
@@ -42,6 +45,7 @@ public class PilaDinamica extends Pila{
     @Override
     public boolean pilaVacia() { return (pila.size() == 0); }
 
+    // TOSTRING
     @Override
     public String toString() { return "Pila Dinamica: " + pila; }
 }
