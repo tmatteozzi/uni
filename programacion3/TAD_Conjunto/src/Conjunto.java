@@ -1,7 +1,8 @@
 public abstract class Conjunto {
-
+    // CONSTRUCTOR
     public Conjunto(){}
 
+    // METODOS
     public abstract void conjuntoVacio();
     public abstract boolean esVacio();
     public abstract void agregar(int pe);
