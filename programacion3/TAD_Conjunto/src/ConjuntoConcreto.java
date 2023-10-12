@@ -1,8 +1,11 @@
 import java.util.Arrays;
 
 public class ConjuntoConcreto extends Conjunto{
+    // ATRIBUTOS
     private int n, cont;
     private int[] conj;
+
+    // CONSTRUCTOR
     public ConjuntoConcreto(int n){
         super();
         this.n = n;
@@ -19,6 +22,7 @@ public class ConjuntoConcreto extends Conjunto{
         }
     }
 
+    // METODOS HEREDADOS
     @Override
     public void conjuntoVacio() {
         conj = new int[n];
@@ -100,6 +104,7 @@ public class ConjuntoConcreto extends Conjunto{
     @Override
     public int[] getConj() { return conj; }
 
+    // TOSTRING
     @Override
     public String toString() {
         return "Conjunto: " + Arrays.toString(conj);

@@ -1,8 +1,19 @@
+/***
+Diseñar y construir el TAD CONJUNTO. Pautas generales:
+    -Colección no ordenada de datos (números enteros) de tamaño N.
+    -No existen datos duplicados.
+    -Operaciones básicas de añadir y eliminar elementos de uno en uno.
+    -Determinar si un dato dado ya pertenece al CONJUNTO.
+    -Determinar si el conjunto está vacío y también el número de elementos que contiene.
+    -Mostrar todos los elementos del conjunto.
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        // INICIALIZACION DE SCANNER
         Scanner scanner = new Scanner(System.in);
         Conjunto c1 = null, c2 = null;
         int opcionInicial;
@@ -16,13 +27,15 @@ public class Main {
             opcionInicial = scanner.nextInt();
             switch (opcionInicial){
                 case 1:
+                    // OPCION MENU PRIMER CONJUNTO
                     int opcionC1;
+                    // VALIDADOR
                     boolean creado1 = false;
                     do {
                         imprimirMenu();
                         opcionC1 = scanner.nextInt();
                         switch (opcionC1){
-                            case 1:
+                            case 1: // CREAR CONJUNTO
                                 if(!creado1){
                                     System.out.println("INGRESAR EL SIZE DEL CONJUNTO: ");
                                     int nConjunto1 = scanner.nextInt();
@@ -32,36 +45,36 @@ public class Main {
                                     System.out.println("CONJUNTO YA CREADO!");
                                 }
                                 break;
-                            case 2:
+                            case 2: // INGRESAR ELEMENTO A CONJUNTO
                                 System.out.println("INGRESAR ELEMENTO A AÑADIR: ");
                                 int eA = scanner.nextInt();
                                 c1.agregar(eA);
                                 break;
-                            case 3:
+                            case 3: // RETIRAR ELEMENTO DEL CONJUNTO
                                 System.out.println("INGRESAR ELEMENTO A RETIRAR: ");
                                 int eR = scanner.nextInt();
                                 c1.retirar(eR);
                                 break;
-                            case 4:
+                            case 4: // CHEQUEAR PERTENENCIA DE ELEMENTO AL CONJUNTOI
                                 System.out.println("INGRESAR ELEMENTO PARA CHEQUEAR PERTENENCIA: ");
                                 int eP = scanner.nextInt();
                                 if(c1.pertenece(eP)){
                                     System.out.println("EL ELEMENTO PERTENECE AL CONJUNTO");
                                 }
                                 break;
-                            case 5:
+                            case 5: // CHEQUEAR SI EL CONJUNTO ESTA VACIO
                                 if(c1.esVacio()){
                                 System.out.println("CONJUNTO VACÍO");
                                 }
                                 break;
-                            case 6:
+                            case 6: // VACIAR CONJUNTO
                                 c1.conjuntoVacio();
                                 System.out.println("CONJUNTO VACIADO");
                                 break;
-                            case 7:
+                            case 7: // IMPRIMIR CONJUNTO
                                 System.out.println(c1);
                                 break;
-                            case 8:
+                            case 8: // SALIR AL MENU PRINCIPAL
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -72,12 +85,13 @@ public class Main {
                     break;
                 case 2:
                     int opcionC2;
+                    // VALIDADOR
                     boolean creado2 = false;
                     do {
                         imprimirMenu();
                         opcionC2 = scanner.nextInt();
                         switch (opcionC2){
-                            case 1:
+                            case 1: // CREAR CONJUNTO
                                 if(!creado2){
                                     System.out.println("INGRESAR EL SIZE DEL CONJUNTO: ");
                                     int nConjunto2 = scanner.nextInt();
@@ -87,36 +101,36 @@ public class Main {
                                     System.out.println("CONJUNTO YA CREADO!");
                                 }
                                 break;
-                            case 2:
+                            case 2: // AGREGAR ELEMENTO AL CONJUNTO
                                 System.out.println("INGRESAR ELEMENTO A AÑADIR: ");
                                 int eA = scanner.nextInt();
                                 c2.agregar(eA);
                                 break;
-                            case 3:
+                            case 3: // RETIRAR ELEMENTO
                                 System.out.println("INGRESAR ELEMENTO A RETIRAR: ");
                                 int eR = scanner.nextInt();
                                 c2.retirar(eR);
                                 break;
-                            case 4:
+                            case 4: // CHEQUEAR SI ELEMENTO PERTENECE AL CONJUNTO
                                 System.out.println("INGRESAR ELEMENTO A CHEQUEAR PERTENENCIA: ");
                                 int eP = scanner.nextInt();
                                 if(c2.pertenece(eP)){
                                     System.out.println("EL ELEMENTO PERTENECE AL CONJUNTO");
                                 }
                                 break;
-                            case 5:
+                            case 5: // CHEQUEAR SI EL CONJUNTO ESTA VACIO
                                 if(c2.esVacio()){
                                     System.out.println("CONJUNTO VACÍO");
                                 }
                                 break;
-                            case 6:
+                            case 6: // VACIAR CONJUNTO
                                 c2.conjuntoVacio();
                                 System.out.println("CONJUNTO VACIADO");
                                 break;
-                            case 7:
+                            case 7: // IMPRIMIR
                                 System.out.println(c2);
                                 break;
-                            case 8:
+                            case 8: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -127,6 +141,7 @@ public class Main {
                     break;
                 case 3:
                     int opcionC3;
+                    // MENU DE OPCIONES DE AMBOS CONJUNTOS
                     do {
                         System.out.println("MENU OPERACIONES DE AMBOS CONJUNTOS \n" +
                                 "Ingrese una opcion: \n" +
@@ -136,20 +151,20 @@ public class Main {
                                 "4. Salir");
                         opcionC3 = scanner.nextInt();
                         switch (opcionC3){
-                            case 1:
+                            case 1: // UNIR CONJUNTOS
                                 System.out.println("UNION AMBOS CONJUNTOS: " + union(c1, c2));
                                 break;
-                            case 2:
-                                System.out.println("UNION AMBOS CONJUNTOS: " + interseccion(c1, c2));
+                            case 2: // INTERSECCIONAR CONJUNTOS
+                                System.out.println("INTERSECCION DE AMBOS CONJUNTOS: " + interseccion(c1, c2));
                                 break;
-                            case 3:
+                            case 3: // CHEQUEAR INCLUSION DE UN CONJUNTO EN OTRO
                                 if(inclusion(c1, c2)){
                                     System.out.println("INCLUSIÓN VERIFICADA");
                                 } else {
                                     System.out.println("NO TODOS LOS ELEMENTOS ESTÁN INCLUIDOS");
                                 }
                                 break;
-                            case 4:
+                            case 4: // SALIR
                                 System.out.println("DE VUELTA AL MENU PRINCIPAL");
                                 break;
                             default:
@@ -158,7 +173,7 @@ public class Main {
                         }
                     } while (opcionC3 != 4);
                     break;
-                case 4:
+                case 4: // FIN DEL PROGRAMA
                     System.out.println("FIN DEL PROGRAMA");
                     break;
                 default:
