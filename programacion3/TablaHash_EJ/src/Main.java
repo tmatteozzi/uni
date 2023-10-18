@@ -129,6 +129,7 @@ public class Main {
                     break;
             }
         } while (opcionInicial != 3);
+        scanner.close();
     }
 
     public static void imprimirMenu(){
