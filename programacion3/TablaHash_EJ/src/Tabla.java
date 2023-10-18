@@ -14,7 +14,7 @@ public class Tabla {
 
     // HASH GENERADOR DE POSICION
     public int hash(Elemento e){
-        int clave = e.getDni();
+        int clave = e.getDni(); // USAR DNI COMO CLAVE
         return clave % size;
     }
 
