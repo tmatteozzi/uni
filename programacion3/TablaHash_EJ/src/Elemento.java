@@ -17,7 +17,6 @@ public class Elemento {
     // GETTERS & SETTERS
     public int getDni() { return dni; }
     public Elemento getSiguiente() { return siguiente; }
-
     public void setSiguiente(Elemento siguiente) { this.siguiente = siguiente; }
 
     // TOSTRING
@@ -30,5 +29,4 @@ public class Elemento {
         }
         return sb.toString();
     }
-
 }

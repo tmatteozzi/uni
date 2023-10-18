@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /***
 Desarrollar un Producto de Software que cumpla con las siguientes características.
     -Construir una Tabla (Array) de tamaño 10 en Java que contenga las siguientes columnas: (DNI, Apellidos, Nombres, Email, Celular, Dirección).
@@ -10,6 +8,8 @@ Desarrollar un Producto de Software que cumpla con las siguientes característic
     -La columna clave a ser tomada en cuenta debe ser la del DNI.
     -Al final imprima en forma tabular las 2 Tablas, primero la tabla sin Hash y después la tabla con Hash.
 */
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
