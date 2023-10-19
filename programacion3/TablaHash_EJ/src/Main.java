@@ -13,131 +13,116 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // INICIALIZACION DE SCANNER
         Scanner scanner = new Scanner(System.in);
-        Tabla t1 = null, t2 = null;
-        int opcionInicial;
-        do {
-            System.out.println("Ingrese una opcion: \n" +
-                    "1. Tabla 1 \n" +
-                    "2. Tabla 2 \n" +
-                    "3. Salir");
-            opcionInicial = scanner.nextInt();
-            switch (opcionInicial) {
-                case 1:
-                    // OPCION MENU PRIMER CONJUNTO
-                    int opcionT1;
-                    // VALIDADOR
-                    boolean creado1 = false;
-                    do {
-                        imprimirMenu();
-                        opcionT1 = scanner.nextInt();
-                        switch (opcionT1) {
-                            case 1: // CREAR CONJUNTO
-                                if (!creado1) {
-                                    System.out.println("INGRESAR EL SIZE DE LA TABLA: ");
-                                    int sizeT1 = scanner.nextInt();
-                                    t1 = new Tabla(sizeT1);
-                                    creado1 = true;
-                                } else {
-                                    System.out.println("CONJUNTO YA CREADO!");
-                                }
-                                break;
-                            case 2: // INGRESAR ELEMENTO A TABLA
-                                System.out.println("INGRESAR ELEMENTO A AÑADIR: ");
-                                System.out.println("NOMBRE: ");
-                                String nombre = scanner.next();
-                                System.out.println("APELLIDO: ");
-                                String apellido = scanner.next();
-                                System.out.println("DNI: ");
-                                int dni = scanner.nextInt();
-                                System.out.println("EMAIL: ");
-                                String email = scanner.next();
-                                System.out.println("CELULAR: ");
-                                String celular = scanner.next();
-                                System.out.println("DIRECCION: ");
-                                String direccion = scanner.next();
-                                Elemento e = new Elemento(nombre, apellido, dni, email, celular, direccion);
-                                System.out.println(t1.hash(e));
-                                t1.agregar(e, t1.hash(e));
-                                break;
-                            case 3: // IMPRIMIR TABLA
-                                System.out.println(t1);
-                                break;
-                            case 4: // SALIR AL MENU PRINCIPAL
-                                System.out.println("DE VUELTA AL MENU PRINCIPAL");
-                                break;
-                            default:
-                                System.out.println("OPCION INVALIDA");
-                                break;
-                        }
-                    } while (opcionT1 != 4);
-                    break;
-                case 2:
-                    // OPCION MENU PRIMER CONJUNTO
-                    int opcionT2;
-                    // VALIDADOR
-                    boolean creado2 = false;
-                    do {
-                        imprimirMenu();
-                        opcionT2 = scanner.nextInt();
-                        switch (opcionT2) {
-                            case 1: // CREAR CONJUNTO
-                                if (!creado2) {
-                                    System.out.println("INGRESAR EL SIZE DE LA TABLA: ");
-                                    int sizeT2 = scanner.nextInt();
-                                    t2 = new Tabla(sizeT2);
-                                    creado2 = true;
-                                } else {
-                                    System.out.println("CONJUNTO YA CREADO!");
-                                }
-                                break;
-                            case 2: // INGRESAR ELEMENTO A TABLA
-                                System.out.println("INGRESAR ELEMENTO A AÑADIR: ");
-                                System.out.println("NOMBRE: ");
-                                String nombre = scanner.next();
-                                System.out.println("APELLIDO: ");
-                                String apellido = scanner.next();
-                                System.out.println("DNI: ");
-                                int dni = scanner.nextInt();
-                                System.out.println("EMAIL: ");
-                                String email = scanner.next();
-                                System.out.println("CELULAR: ");
-                                String celular = scanner.next();
-                                System.out.println("DIRECCION: ");
-                                String direccion = scanner.next();
-                                Elemento e = new Elemento(nombre, apellido, dni, email, celular, direccion);
-                                t2.agregar(e, t2.hash(e));
-                                break;
-                            case 3: // IMPRIMIR TABLA
-                                System.out.println(t2);
-                                break;
-                            case 4: // SALIR AL MENU PRINCIPAL
-                                System.out.println("DE VUELTA AL MENU PRINCIPAL");
-                                break;
-                            default:
-                                System.out.println("OPCION INVALIDA");
-                                break;
-                        }
-                    } while (opcionT2 != 4);
-                    break;
-                case 3:
-                    System.out.println("FIN DEL PROGRAMA");
-                    break;
-                default:
-                    System.out.println("OPCION INVALIDA");
-                    break;
-            }
-        } while (opcionInicial != 3);
-        scanner.close();
+        // CREAR TABLA SIN HASH (10 filas, 6 columnas)
+        String[][] tablaSinHash = new String[2][6];
+        // CARGAR TABLA
+        System.out.println("Ingrese los datos para la tabla sin Hash:");
+        cargarTabla(scanner, tablaSinHash);
+
+        // CREAR TABLA CON HASH (10 filas, 10 columnas (4 columnas adicionales - Una por cada metodo hash))
+        String[][] tablaConHash = new String[2][10];
+        // INSERTAR VALORES HASH DE LA PRIMERA TABLA EN LA SEGUNDA
+        calcularHash(tablaSinHash, tablaConHash);
+
+        // IMPRIMIR TABLAS
+        imprimirTabla(tablaSinHash);
+        imprimirTabla(tablaConHash);
     }
 
-    public static void imprimirMenu(){
-        System.out.println("Ingrese una opcion: \n" +
-                "1. Crear tabla \n" +
-                "2. Agregar elemento \n" +
-                "3. Imprimir tabla \n" +
-                "4. Salir");
+    public static void cargarTabla(Scanner scanner, String[][] tabla) {
+        for (int i = 0; i < tabla.length; i++) {
+            System.out.println("Registro " + (i + 1) + ":");
+            System.out.print("DNI: ");
+            tabla[i][0] = scanner.nextLine();
+            System.out.print("Apellidos: ");
+            tabla[i][1] = scanner.nextLine();
+            System.out.print("Nombres: ");
+            tabla[i][2] = scanner.nextLine();
+            System.out.print("Email: ");
+            tabla[i][3] = scanner.nextLine();
+            System.out.print("Celular: ");
+            tabla[i][4] = scanner.nextLine();
+            System.out.print("Dirección: ");
+            tabla[i][5] = scanner.nextLine();
+        }
+    }
+
+    public static void calcularHash(String[][] tablaSinHash, String[][] tablaConHash) {
+        for (int i = 0; i < tablaSinHash.length; i++) {
+            String dni = tablaSinHash[i][0];
+            // Calcular y asignar los valores hash
+            String hash1 = aritModular(dni, tablaSinHash.length);
+            String hash2 = plegamiento(dni, tablaSinHash.length);
+            String hash3 = mitadDelCuadrado(dni, tablaSinHash.length);
+            String hash4 = multiplicacion(dni, tablaSinHash.length);
+
+            // Insertar los valores hash en la segunda tabla
+            tablaConHash[i][0] = dni;
+            tablaConHash[i][1] = hash1;
+            tablaConHash[i][2] = hash2;
+            tablaConHash[i][3] = hash3;
+            tablaConHash[i][4] = hash4;
+
+            // Copiar el resto de los datos desde la primera tabla
+            for (int j = 1; j < 6; j++) {
+                tablaConHash[i][j + 4] = tablaSinHash[i][j];
+            }
+        }
+    }
+
+
+    // METODO ARITMETICA MODULAR
+    public static String aritModular(String dni, int sizeTabla) {
+        int dnint = Integer.parseInt(dni);
+        int posicion = dnint % sizeTabla;
+        return String.valueOf(posicion);
+    }
+
+    // METODO PLEGAMIENTO
+    public static String plegamiento(String dni, int sizeTabla) {
+        String auxClave = dni;
+        String auxTamTab = String.valueOf(sizeTabla - 1);
+        int posicion = 0;
+        String parte = "";
+        for(int i = 0; i < auxClave.length(); i++){
+            parte += auxClave.charAt(i);
+            if(parte.length() == auxTamTab.length()){
+                posicion += Integer.parseInt(parte);
+                parte = "";
+            } else if (i == auxClave.length() - 1) {
+                posicion += Integer.parseInt(parte);
+            }
+        }
+        return String.valueOf(posicion);
+    }
+
+    // METODO MITAD DEL CUADRADO
+    public static String mitadDelCuadrado(String dni, int sizeTabla) {
+        String auxClave = String.valueOf((long) Math.pow(Integer.parseInt(dni), 2));
+        String auxTamTab = String.valueOf(sizeTabla - 1);
+        int inicio = (auxClave.length()/2) - 1;
+        String posicion = "";
+        for(int i=inicio; i < inicio + auxTamTab.length(); i++){
+            posicion += auxClave.charAt(i);
+        }
+        return posicion;
+    }
+
+    // METODO DE MULTIPLICACION
+    public static String multiplicacion(String dni, int sizeTabla) {
+        int dnint = Integer.parseInt(dni);
+        double A = 0.61680339887;
+        double d = A * dnint - Math.floor(A * dnint);
+        return String.valueOf(sizeTabla * d);
+    }
+
+    public static void imprimirTabla(String[][] tabla) {
+        for (int i = 0; i < tabla.length; i++) {
+            for (int j = 0; j < tabla[i].length; j++) {
+                System.out.print(tabla[i][j] + "\t");
+            }
+            System.out.println();
+        }
     }
 }
-
