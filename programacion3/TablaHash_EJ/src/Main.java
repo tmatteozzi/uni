@@ -119,7 +119,7 @@ public class Main {
         int dnint = Integer.parseInt(dni);
         double A = 0.61680339887;
         double d = A * dnint - Math.floor(A * dnint);
-        return String.valueOf(Math.round(sizeTabla * d));
+        return String.valueOf(Math.floor(sizeTabla * d));
     }
 
     // IMPRIMIR LA TABLA
