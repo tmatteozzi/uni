@@ -13,64 +13,69 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // INICIALIZACION DE SCANNER
         Scanner scanner = new Scanner(System.in);
         // CREAR TABLA SIN HASH (10 filas, 6 columnas)
-        String[][] tablaSinHash = new String[2][6];
+        String[][] tablaSinHash = new String[10][6];
         // CARGAR TABLA
         System.out.println("Ingrese los datos para la tabla sin Hash:");
         cargarTabla(scanner, tablaSinHash);
 
         // CREAR TABLA CON HASH (10 filas, 10 columnas (4 columnas adicionales - Una por cada metodo hash))
-        String[][] tablaConHash = new String[2][10];
+        String[][] tablaConHash = new String[tablaSinHash.length][10];
         // INSERTAR VALORES HASH DE LA PRIMERA TABLA EN LA SEGUNDA
         calcularHash(tablaSinHash, tablaConHash);
 
         // IMPRIMIR TABLAS
+        System.out.println("TABLA SIN HASH");
         imprimirTabla(tablaSinHash);
+        System.out.println("TABLA CON HASH");
         imprimirTabla(tablaConHash);
     }
 
+    // METODO PARA CARGAR ELEMENTOS DE LA TABLA
     public static void cargarTabla(Scanner scanner, String[][] tabla) {
+        // CARGAR DATOS POR CADA FILA EN LA TABLA
         for (int i = 0; i < tabla.length; i++) {
-            System.out.println("Registro " + (i + 1) + ":");
+            System.out.println("PERSONA " + (i + 1) + ":");
             System.out.print("DNI: ");
             tabla[i][0] = scanner.nextLine();
-            System.out.print("Apellidos: ");
+            System.out.print("NOMBRE: ");
             tabla[i][1] = scanner.nextLine();
-            System.out.print("Nombres: ");
+            System.out.print("APELLIDO: ");
             tabla[i][2] = scanner.nextLine();
-            System.out.print("Email: ");
+            System.out.print("MAIL: ");
             tabla[i][3] = scanner.nextLine();
-            System.out.print("Celular: ");
+            System.out.print("CELULAR: ");
             tabla[i][4] = scanner.nextLine();
-            System.out.print("Dirección: ");
+            System.out.print("DIRECCION: ");
             tabla[i][5] = scanner.nextLine();
+            System.out.println();
         }
     }
 
+    // METODO PARA CALCULAR LOS 4 TIPOS DE HASH
     public static void calcularHash(String[][] tablaSinHash, String[][] tablaConHash) {
         for (int i = 0; i < tablaSinHash.length; i++) {
+            // EXTRAER EL DNI DE CADA PERSONA
             String dni = tablaSinHash[i][0];
-            // Calcular y asignar los valores hash
+            // CALCULAR LOS DISTINTOS TIPOS DE HASH
             String hash1 = aritModular(dni, tablaSinHash.length);
             String hash2 = plegamiento(dni, tablaSinHash.length);
             String hash3 = mitadDelCuadrado(dni, tablaSinHash.length);
             String hash4 = multiplicacion(dni, tablaSinHash.length);
-
-            // Insertar los valores hash en la segunda tabla
+            // INSERTAR LOS VALORES A LA TABLA (PRIMERO EL DNI Y DSPUES LOS HASH)
             tablaConHash[i][0] = dni;
             tablaConHash[i][1] = hash1;
             tablaConHash[i][2] = hash2;
             tablaConHash[i][3] = hash3;
             tablaConHash[i][4] = hash4;
-
-            // Copiar el resto de los datos desde la primera tabla
+            // PONER EL RESTO DE DATOS A LA TABLA
             for (int j = 1; j < 6; j++) {
                 tablaConHash[i][j + 4] = tablaSinHash[i][j];
             }
         }
     }
-
 
     // METODO ARITMETICA MODULAR
     public static String aritModular(String dni, int sizeTabla) {
@@ -114,15 +119,17 @@ public class Main {
         int dnint = Integer.parseInt(dni);
         double A = 0.61680339887;
         double d = A * dnint - Math.floor(A * dnint);
-        return String.valueOf(sizeTabla * d);
+        return String.valueOf(Math.round(sizeTabla * d));
     }
 
+    // IMPRIMIR LA TABLA
     public static void imprimirTabla(String[][] tabla) {
         for (int i = 0; i < tabla.length; i++) {
             for (int j = 0; j < tabla[i].length; j++) {
-                System.out.print(tabla[i][j] + "\t");
+                System.out.print(tabla[i][j] + "|\t");
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
