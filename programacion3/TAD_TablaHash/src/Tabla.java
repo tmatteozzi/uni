@@ -51,22 +51,32 @@ public class Tabla {
     }
 
     public boolean eliminar(int clave) {
-        // ELEMENTO EN PRIMER NIVEL DE TABLA
-        for (int i = 0; i < tabla.length; i++) {
-            Elemento actual = tabla[i];
-            Elemento anterior = null;
-            while (actual != null) {
-                if (actual.getDni() == clave) {
-                    if (anterior != null) {
-                        anterior.setSiguiente(actual.getSiguiente());
-                    } else {
-                        tabla[i] = actual.getSiguiente();
-                    }
-                    return true;
-                }
-                anterior = actual;
-                actual = actual.getSiguiente();
+        try {
+            if (clave < 0) {
+                throw new Exception("EL DNI NO PUEDE SER NEGATIVO");
             }
+            // ELEMENTO EN PRIMER NIVEL DE TABLA
+            for (int i = 0; i < tabla.length; i++) {
+                // TRACKERS
+                Elemento actual = tabla[i];
+                Elemento anterior = null;
+                while (actual != null) {
+                    if (actual.getDni() == clave) {
+                        if (anterior != null) {
+                            // ELIMINAR EL NODO
+                            anterior.setSiguiente(actual.getSiguiente());
+                        } else {
+                            tabla[i] = actual.getSiguiente();
+                        }
+                        return true;
+                    }
+                    // ACTUALIZAR PARA SIGUIENTE VUELTA
+                    anterior = actual;
+                    actual = actual.getSiguiente();
+                }
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
         return false;
     }
@@ -81,6 +91,7 @@ public class Tabla {
                 Elemento actual = tabla[i];
                 while (actual != null) {
                     if (actual.getDni() == clave) {
+                        // DEVOLVER LA POSICION DONDE SE ENCUENTRA
                         return i;
                     }
                     actual = actual.getSiguiente();
@@ -101,7 +112,7 @@ public class Tabla {
             if (tabla[i] != null) {
                 sb.append(tabla[i].toString());
             } else {
-                sb.append("Vacio");
+                sb.append("VACIO");
             }
             sb.append("\n");
         }
