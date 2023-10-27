@@ -26,8 +26,12 @@ public class Main {
             switch (opcion) {
                 case 1: // CREAR CONJUNTO
                     if (!creado) {
-                        System.out.println("INGRESAR EL SIZE DE LA TABLA: ");
+                        System.out.println("INGRESAR EL SIZE DE LA TABLA (POTENCIA DE 10): ");
                         int sizeT1 = scanner.nextInt();
+                        while(!esPotenciaDeDiez(sizeT1)){
+                            System.out.println("DEBE SER UNA POTENCIA DE 10. VOLVER A INGRESAR: ");
+                            sizeT1 = scanner.nextInt();
+                        }
                         t = new Tabla(sizeT1);
                         creado = true;
                     } else {
@@ -70,7 +74,7 @@ public class Main {
                         int dniABuscar = scanner.nextInt();
                         int posicionABuscar = t.buscar(dniABuscar);
                         if(posicionABuscar!= -1){
-                            System.out.println("ELEMENTO ENCONTRADO. POSICION: " + posicionABuscar);
+                            System.out.println("POSICION: " + posicionABuscar);
                         } else {
                             System.out.println("NO SE HA ENCONTRADO EL ELEMENTO");
                         }
@@ -94,5 +98,11 @@ public class Main {
                     break;
             }
         } while (opcion != 6);
+    }
+
+    public static boolean esPotenciaDeDiez(int numero) {
+        // SI LOG EN BASE DE 10 EN UN INT ENTONCES ES POTENCIA DE 10
+        double logBaseDiez = Math.log10(numero);
+        return logBaseDiez == (int) logBaseDiez;
     }
 }

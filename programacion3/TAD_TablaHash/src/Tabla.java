@@ -91,6 +91,11 @@ public class Tabla {
                 Elemento actual = tabla[i];
                 while (actual != null) {
                     if (actual.getDni() == clave) {
+                        if(actual == tabla[i]){
+                            System.out.println("EL ELEMENTO SE ENCUENTRA EN EL PRIMER NIVEL DE LA TABLA");
+                        } else {
+                            System.out.println("EL ELEMENTO SE ENCUENTRA EN UN NODO");
+                        }
                         // DEVOLVER LA POSICION DONDE SE ENCUENTRA
                         return i;
                     }
