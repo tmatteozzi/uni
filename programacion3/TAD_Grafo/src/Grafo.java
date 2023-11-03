@@ -45,15 +45,15 @@ public class Grafo {
 
     public void imprimirMatrizAdyacencia() {
         System.out.println("ADYACENCIA:");
-        System.out.print(String.format("%4s", "")); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA
+        System.out.printf("%4s", ""); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA
         for (int i = 0; i < cantidadNodos; i++) {
-            System.out.print(String.format("%4s", nodos[i])); // CABEZERAS DE COLUMNAS (IDENTIFICADORES DE NODOS)
+            System.out.printf("%4s", nodos[i]); // CABEZERAS DE COLUMNAS (IDENTIFICADORES DE NODOS)
         }
         System.out.println();
         for (int i = 0; i < cantidadNodos; i++) {
-            System.out.print(String.format("%4s", nodos[i])); // CABEZERAS DE FILAS (IDENTIFICADORES DE NODOS)
+            System.out.printf("%4s", nodos[i]); // CABEZERAS DE FILAS (IDENTIFICADORES DE NODOS)
             for (int j = 0; j < cantidadNodos; j++) {
-                System.out.print(String.format("%4s", (adyacencia[i][j] != null ? adyacencia[i][j] : "0")));
+                System.out.printf("%4s", (adyacencia[i][j] != null ? adyacencia[i][j] : "0"));
             }
             System.out.println();
         }
@@ -61,16 +61,16 @@ public class Grafo {
 
     public void imprimirMatrizIncidencia() {
         System.out.println("\nINCIDENCIA:");
-        System.out.print(String.format("%4s", "")); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA
+        System.out.printf("%4s", ""); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA
         for (int i = 0; i < cantidadFlechas; i++) {
-            System.out.print(String.format("%4s", flechas[i])); // CABEZERAS DE COLUMNAS (IDENTIFICADORES DE FLECHAS)
+            System.out.printf("%4s", flechas[i]); // CABEZERAS DE COLUMNAS (IDENTIFICADORES DE FLECHAS)
         }
         System.out.println();
         for (int i = 0; i < cantidadNodos; i++) {
-            System.out.print(String.format("%4s", nodos[i])); // CABEZERAS DE FILAS (IDENTIFICADORES DE NODOS)
+            System.out.printf("%4s", nodos[i]); // CABEZERAS DE FILAS (IDENTIFICADORES DE NODOS)
             for (int j = 0; j < cantidadFlechas; j++) {
                 String valor = incidencia[i][j];
-                System.out.print(String.format("%4s", (valor != null ? valor : "0")));
+                System.out.printf("%4s", (valor != null ? valor : "0"));
             }
             System.out.println();
         }
