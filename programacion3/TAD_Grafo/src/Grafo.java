@@ -18,9 +18,7 @@ public class Grafo {
     }
 
     // GETTER
-    public String[] getFlechas() {
-        return flechas;
-    }
+    public String[] getFlechas() { return flechas; }
 
     // METODOS
     public void agregarNodo(int indice, String identificador) { nodos[indice] = identificador; }
@@ -45,7 +43,7 @@ public class Grafo {
 
     public void imprimirMatrizAdyacencia() {
         System.out.println("ADYACENCIA:");
-        System.out.printf("%4s", ""); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA
+        System.out.printf("%4s", ""); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA (%4s ES EL FORMATO DE ANCHO)
         for (int i = 0; i < cantidadNodos; i++) {
             System.out.printf("%4s", nodos[i]); // CABEZERAS DE COLUMNAS (IDENTIFICADORES DE NODOS)
         }
@@ -61,7 +59,7 @@ public class Grafo {
 
     public void imprimirMatrizIncidencia() {
         System.out.println("\nINCIDENCIA:");
-        System.out.printf("%4s", ""); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA
+        System.out.printf("%4s", ""); // ESPACIO BLANCO PARA LA ESQUINA DE LA IZQUIERDA (%4s ES EL FORMATO DE ANCHO)
         for (int i = 0; i < cantidadFlechas; i++) {
             System.out.printf("%4s", flechas[i]); // CABEZERAS DE COLUMNAS (IDENTIFICADORES DE FLECHAS)
         }

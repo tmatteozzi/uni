@@ -42,6 +42,7 @@ public class Main {
                 return;
             }
             grafo.agregarArista(inicio, fin, grafo.getFlechas()[i]);
+            System.out.println("RELACIÓN AGREGADA: " + inicioIdentificador + " -" + grafo.getFlechas()[i] + "-> " + finIdentificador);
         }
         // IMPRIMIR MATRICES
         grafo.imprimirMatrizAdyacencia();
