@@ -17,8 +17,9 @@ public class Grafo {
         flechas = new String[cantidadFlechas];
     }
 
-    // GETTER
+    // GETTERS
     public String[] getFlechas() { return flechas; }
+    public String[] getNodos() { return nodos; }
 
     // METODOS
     public void agregarNodo(int indice, String identificador) { nodos[indice] = identificador; }
