@@ -14,19 +14,19 @@ def afd(automata, w):
     # Comenzar en el estado inicial
     estado = q0
 
-    # Diccionario para mapear símbolos a índices
-    cAIndice = {simbolo: i for i, simbolo in enumerate(E)}
+    # Crear diccionario para mapear símbolos a índices
+    cAIndice = {c: i for i, c in enumerate(E)}
 
     # Recorrer la cadena simbolo a simbolo (c == simbolo)
     for c in w:
         # Obtener el índice del símbolo actual
         indiceC = cAIndice[c]
-        siguienteQ = f[estado][indiceC]
+        siguienteEstado = f[estado][indiceC]
         # Si el siguiente estado es None, la cadena no pertenece al automata
-        if siguienteQ is None:
+        if siguienteEstado is None:
             return False
         # Actualizar el estado actual
-        estado = siguienteQ
+        estado = siguienteEstado
 
     # La cadena pertenece al automata si el estado final está en el conjunto de estados finales
     return estado in F
