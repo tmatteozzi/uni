@@ -2,6 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './pages/Root';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import ClientPage from './pages/ClientPage/ClientPage';
+import { clientLoader } from './pages/ClientPage/clientLoader';
+import ClientAddPage from './pages/ClientAddPage';
 
 const router = createBrowserRouter([
     {
@@ -9,7 +12,13 @@ const router = createBrowserRouter([
         element: <Root />,
         children: [
             { path: '/', element: <HomePage /> },
-            { path: '/login', element: <LoginPage /> }
+            { path: '/login', element: <LoginPage /> },
+            {
+                path: '/client/:id',
+                element: <ClientPage />,
+                loader: clientLoader
+            },
+            { path: '/client-add', element: <ClientAddPage /> }
         ]
     }
 ]);

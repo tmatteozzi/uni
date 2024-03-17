@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { listButton, listDiv, listH1 } from '../styleClassNames';
 import type { Client } from '../types/client';
 
@@ -9,7 +10,9 @@ export default function ClientListItem({ client }: ClientListItemProps) {
     return (
         <div className={listDiv}>
             <h1 className={listH1}>{client.name + ' ' + client.lastName}</h1>
-            <button className={listButton}>Detalles</button>
+            <Link to={`/client/${client.id}`} className={listButton}>
+                Detalles
+            </Link>
         </div>
     );
 }

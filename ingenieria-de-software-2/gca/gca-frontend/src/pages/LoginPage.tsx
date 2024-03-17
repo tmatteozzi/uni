@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { mainDiv, mainH1 } from '../styleClassNames';
 
-interface LoginProps {
-    onSubmit: (user: string, password: string) => Promise<void>;
-}
-
-export default function LoginPage({ onSubmit }: LoginProps) {
+export default function LoginPage() {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
 

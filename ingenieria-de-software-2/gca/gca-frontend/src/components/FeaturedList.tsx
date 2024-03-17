@@ -2,13 +2,12 @@ import type { Client } from '../types/client';
 import FeaturedListItem from './FeaturedListItem';
 
 interface FeaturedListProps {
-    features: {
-        text: string;
-        client: Client;
-    }[];
+    text: string;
+    client: Client;
 }
 
-export default function FeaturedList({ features }: FeaturedListProps) {
+export default function FeaturedList() {
+    const features: FeaturedListProps[] = [];
     let renderedItems;
     if (features) {
         renderedItems = features.map((item) => {

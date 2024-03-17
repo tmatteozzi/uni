@@ -4,6 +4,7 @@ import ClientList from './ClientList';
 import { Client } from '../types/client';
 import { clients } from '../testData';
 import { GoSearch } from 'react-icons/go';
+import { Link } from 'react-router-dom';
 
 export default function ClientSearch() {
     const [term, setTerm] = useState('');
