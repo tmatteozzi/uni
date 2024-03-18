@@ -4,7 +4,6 @@ import ClientList from './ClientList';
 import { Client } from '../types/client';
 import { clients } from '../testData';
 import { GoSearch } from 'react-icons/go';
-import { Link } from 'react-router-dom';
 import { mainH2 } from '../styleClassNames';
 
 export default function ClientSearch() {

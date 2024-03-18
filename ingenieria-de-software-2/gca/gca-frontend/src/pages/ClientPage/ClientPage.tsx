@@ -1,8 +1,18 @@
 import { useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ClientLoaderResults } from './clientLoader';
-import PolizaList from '../../components/PolizaList';
-import { containerDiv, mainH1, listDiv, listH1 } from '../../styleClassNames';
+import PolizaList from '../../components/PolicyList';
+import {
+    containerDiv,
+    mainH1,
+    listDiv,
+    listH1,
+    addButton
+} from '../../styleClassNames';
+//test
+import { policiesTest } from '../../testData';
+//
 
 export default function ClientPage() {
     const { client } = useLoaderData() as ClientLoaderResults;
@@ -41,8 +51,13 @@ export default function ClientPage() {
                 </div>
             </div>
             <div>
-                <h1 className={`${mainH1} mt-4`}>Polizas:</h1>
-                <PolizaList />
+                <div className="flex justify-between items-center mb-4 border-t">
+                    <h1 className={`${mainH1} mt-4`}>Polizas</h1>
+                    <Link to={`/policy-add`} className={`${addButton} mt-4`}>
+                        Agregar Poliza
+                    </Link>
+                </div>
+                <PolizaList policies={policiesTest} />
             </div>
         </div>
     );

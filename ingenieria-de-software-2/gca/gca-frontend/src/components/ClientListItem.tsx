@@ -8,7 +8,7 @@ interface ClientListItemProps {
 
 export default function ClientListItem({ client }: ClientListItemProps) {
     return (
-        <div className={listDiv}>
+        <div className={`${listDiv} bg-gray-100`}>
             <h1 className={listH1}>{client.name + ' ' + client.lastName}</h1>
             <Link to={`/client/${client.id}`} className={listButton}>
                 Detalles
