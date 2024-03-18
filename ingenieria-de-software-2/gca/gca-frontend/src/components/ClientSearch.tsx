@@ -5,6 +5,7 @@ import { Client } from '../types/client';
 import { clients } from '../testData';
 import { GoSearch } from 'react-icons/go';
 import { Link } from 'react-router-dom';
+import { mainH2 } from '../styleClassNames';
 
 export default function ClientSearch() {
     const [term, setTerm] = useState('');
@@ -30,6 +31,7 @@ export default function ClientSearch() {
                 </form>
             </div>
             <div className="mt-4">
+                <h2 className={mainH2}>Resultados:</h2>
                 {results && <ClientList clients={results} />}
             </div>
         </div>
