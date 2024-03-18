@@ -1,5 +1,7 @@
 import type { Client } from './types/client';
+import { Policy } from './types/policy';
 
+// CLIENT
 const client1: Client = {
     id: 1,
     name: 'John',
@@ -61,4 +63,73 @@ export const clients: { client: Client }[] = [
     { client: client3 },
     { client: client4 },
     { client: client5 }
+];
+
+export const policie1: Policy = {
+    id: 1,
+    startDate: new Date('1982-03-10'),
+    endDate: new Date('1982-04-10'),
+    productName: 'A todo riesgo',
+    companyName: 'Sancor Seguros',
+    branchName: '200',
+    userId: client1.id
+};
+
+export const policie2: Policy = {
+    id: 2,
+    startDate: new Date('2005-08-20'),
+    endDate: new Date('2006-08-20'),
+    productName: 'Seguro de vida',
+    companyName: 'La Caja Seguros',
+    branchName: '500',
+    userId: client1.id
+};
+
+export const policie3: Policy = {
+    id: 3,
+    startDate: new Date('2010-12-05'),
+    endDate: new Date('2011-12-05'),
+    productName: 'Seguro de automóvil',
+    companyName: 'Provincia Seguros',
+    branchName: '800',
+    userId: client1.id
+};
+
+export const policie4: Policy = {
+    id: 4,
+    startDate: new Date('2018-06-15'),
+    endDate: new Date('2023-06-15'),
+    productName: 'Seguro de hogar',
+    companyName: 'Allianz',
+    branchName: '300',
+    userId: client1.id
+};
+
+export const policie5: Policy = {
+    id: 5,
+    startDate: new Date('2023-01-01'),
+    endDate: new Date('2024-01-01'),
+    productName: 'Seguro de salud',
+    companyName: 'Swiss Medical',
+    branchName: '600',
+    userId: client1.id
+};
+
+export const policie6: Policy = {
+    id: 6,
+    startDate: new Date('2015-03-10'),
+    endDate: new Date('2015-04-10'),
+    productName: 'Seguro de viaje',
+    companyName: 'Travel Ace Assistance',
+    branchName: '700',
+    userId: client1.id
+};
+
+export const policiesTest: { policy: Policy }[] = [
+    { policy: policie1 },
+    { policy: policie2 },
+    { policy: policie3 },
+    { policy: policie4 },
+    { policy: policie5 },
+    { policy: policie6 }
 ];
