@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="581919d5-583b-4b2a-97cc-26025e334977" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/.eslintrc.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/ClientList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/ClientListItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/ClientSearch.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/FeaturedList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/FeaturedListItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/PolicyList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/components/PolicyListItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/context/AuthContext.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/main.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/pages/ClientAddPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/pages/ClientPage/ClientPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/pages/ClientPage/clientLoader.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/pages/HomePage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/pages/LoginPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/pages/Root.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/styleClassNames.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/testData.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/types/client.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/types/policy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/utils/countries.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/src/vite-env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/tailwind.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/tsconfig.node.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ingenieria-de-software-2/gca/gca-frontend/vite.config.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2hnNO9AUQJWz23g9uxbsIAgBbbz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/tomasmatteozzi/Documents/workspaces/uni/automatas-lenguajes-formales",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+    <option name="sshConnectionType" value="PRIVATE_KEY" />
+    <option name="sshExecutablePath" value="$USER_HOME$/.ssh/ssh_github" />
+    <option name="sshUserName" value="tmatteozzi" />
+    <option name="sshPrivateKeyPath" value="$USER_HOME$/.ssh/ssh_github" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="581919d5-583b-4b2a-97cc-26025e334977" name="Changes" comment="" />
+      <created>1710460572620</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710460572620</updated>
+      <workItem from="1710460573631" duration="27000" />
+      <workItem from="1718225847635" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
