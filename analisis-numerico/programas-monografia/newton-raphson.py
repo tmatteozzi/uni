@@ -23,7 +23,7 @@ def verificar_condiciones(funcion, derivada1, derivada2, a, b):
         if derivada1.subs(x, xi) == 0:
             raise ValueError("f'(x) no debe ser cero en el intervalo [a, b]")
 
-def encontrar_intervalo(funcion, x, start=0, step=1, max_iter=100):
+def encontrar_intervalo(funcion, x, start=-5, step=1, max_iter=200):
     a = start
     b = a + step
     for _ in range(max_iter):
