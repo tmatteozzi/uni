@@ -3,7 +3,7 @@ import sympy as sp
 def verificar_condiciones(funcion, derivada1, derivada2, a, b):
     x = sp.symbols('x')
 
-    # 1. Verificar continuidad de f, f', f''
+    # Verificar continuidad de f, f', f''
     try:
         sp.simplify(funcion)
         sp.simplify(derivada1)
@@ -11,18 +11,17 @@ def verificar_condiciones(funcion, derivada1, derivada2, a, b):
     except Exception as e:
         raise ValueError(f"Error al simplificar las funciones: {e}")
 
-    # 2. Verificar que f(a) * f(b) < 0
+    # Verificar que f(a) * f(b) < 0
     f_a = funcion.subs(x, a)
     f_b = funcion.subs(x, b)
     if f_a * f_b >= 0:
         raise ValueError("f(a) * f(b) debe ser menor que 0")
 
-    # 3. Verificar que f'(x) != 0 en [a, b]
-    if derivada1.subs(x, a) == 0 or derivada1.subs(x, b) == 0:
-        raise ValueError("f'(x) no debe ser cero en el intervalo [a, b]")
-
-    # 4. Verificar que f''(x) tenga un comportamiento predecible en [a, b] (opcional)
-    # No se realizará verificación de f'' en esta versión
+    # Verificar que f'(x) != 0 en [a, b]
+    for i in range(11):
+        xi = a + i * (b - a) / 10
+        if derivada1.subs(x, xi) == 0:
+            raise ValueError("f'(x) no debe ser cero en el intervalo [a, b]")
 
 def encontrar_intervalo(funcion, x, start=0, step=1, max_iter=100):
     a = start
@@ -34,7 +33,9 @@ def encontrar_intervalo(funcion, x, start=0, step=1, max_iter=100):
         if f_a * f_b < 0:
             return a, b
 
+        # Ajustar dinámicamente el tamaño del paso si no se encuentra un intervalo
         a = b
+        step *= 1.5  # Incrementa el tamaño del paso exponencialmente para cubrir más rango
         b += step
 
     raise ValueError("No se encontró un intervalo adecuado.")
