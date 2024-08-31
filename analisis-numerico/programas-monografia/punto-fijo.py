@@ -38,15 +38,28 @@ def punto_fijo(g_func, intervalo, error):
         iteraciones += 1
     print(f"\nNúmero de iteraciones necesarias: {iteraciones}")
 
-    # Realizar las iteraciones del método de punto fijo
-    print("\nIteraciones del método de punto fijo:")
-    x0 = 0  # Inicializar en un valor conocido, por ejemplo, x0 = 0
-    for i in range(iteraciones):
-        x1 = g_func(x0)
-        print(f"x{i+1} = {x1}")
-        x0 = x1
+    # Función para realizar las iteraciones del método de punto fijo
+    def iterar_punto_fijo(x0):
+        current_x = x0
+        for i in range(iteraciones):
+            next_x = g_func(current_x)
+            print(f"x{i+1} = {next_x}")
+            current_x = next_x
+        return next_x
 
-    return x0
+    # Intentar con el extremo superior primero y luego el inferior
+    for x0 in [b, a]:
+        print(f"\nProbar con valor inicial x0 = {x0}")
+        resultado = iterar_punto_fijo(x0)
+        # Verificar si la iteración está suficientemente cerca del error deseado
+        if abs(g_func(resultado) - resultado) < error:
+            print(f"\nConvergió con x0 = {x0}")
+            return resultado
+        else:
+            print(f"\nNo convergió con x0 = {x0}, intentando con el otro extremo")
+
+    print("El método no converge con ninguno de los extremos.")
+    return None
 
 # Definir la función g(x)
 def g_func(x):
