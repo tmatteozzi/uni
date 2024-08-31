@@ -2,10 +2,10 @@ import numpy as np
 import sympy as sp
 
 def punto_fijo(g_func, intervalo, error):
-    # Definir variable simbólica
+    # Definir variable
     x = sp.symbols('x')
 
-    # Derivar la función g(x) simbólicamente
+    # Derivar la función g(x)
     g = g_func(x)
     g_prime = sp.diff(g, x)
 
@@ -20,7 +20,7 @@ def punto_fijo(g_func, intervalo, error):
             return
     print("La primera condición se cumple: g(x) pertenece a [a, b]")
 
-    # Validar la segunda condición: |g'(x)| < 1 en todo [a, b] y encontrar L
+    # Validar la segunda condición: |g'(x)| < 1 en todos [a, b] y encontrar L
     print("\nValidando la segunda condición:")
     g_prime_func = sp.lambdify(x, g_prime)
     L = 0
@@ -40,12 +40,12 @@ def punto_fijo(g_func, intervalo, error):
 
     # Función para realizar las iteraciones del método de punto fijo
     def iterar_punto_fijo(x0):
-        current_x = x0
+        x_actual = x0
         for i in range(iteraciones):
-            next_x = g_func(current_x)
-            print(f"x{i+1} = {next_x}")
-            current_x = next_x
-        return next_x
+            prox_x = g_func(x_actual)
+            print(f"x{i+1} = {prox_x}")
+            x_actual = prox_x
+        return prox_x
 
     # Intentar con el extremo superior primero y luego el inferior
     for x0 in [b, a]:
