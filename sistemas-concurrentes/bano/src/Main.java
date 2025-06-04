@@ -6,3 +6,5 @@ public class Main {
         SwingUtilities.invokeLater(() -> new VentanaSimulador().setVisible(true));
     }
 }
+
+// GRUPO: MATTEOZZI, MARZORATI, MONZALVO, SANABRIA, CENTURION Y GODOY

@@ -85,7 +85,7 @@ public class VentanaSimulador extends JFrame {
     }
 
     /**
-     * SIMULAR COMPORTAMIENTE DE UNA PERSONA QUE ENTRA, USA EL BAÑO Y SE VA
+     * SIMULAR COMPORTAMIENTO DE UNA PERSONA QUE ENTRA, USA EL BAÑO Y SE VA
      */
     private void persona(int id) {
         try {
