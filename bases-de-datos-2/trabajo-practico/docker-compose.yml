@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pg_dw
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bike_stores
+    ports:
+      - "5435:5432"
+    volumes:
+      # scripts de auto-init
+      - ./init:/docker-entrypoint-initdb.d
+      # mapeo de tus carpetas para poder \i incluir los .sql
+      - ./bikeStores:/sql/bikeStores
+      - ./dwh:/sql/dwh
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d bike_stores" ]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
