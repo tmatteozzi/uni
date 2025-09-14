@@ -1,10 +1,10 @@
--- ============================================================================
--- Adopted from https://www.sqlservertutorial.net/sql-server-sample-database   
--- ============================================================================
-
+-- SCHEMA CREATION
 DROP SCHEMA IF EXISTS bike_stores cascade;
 CREATE SCHEMA bike_stores;
 
+-- ===============
+-- Stores
+-- ===============
 CREATE TABLE bike_stores.stores (
 	store_id   SERIAL   	 PRIMARY KEY,
 	store_name VARCHAR (255) NOT NULL,
@@ -16,6 +16,9 @@ CREATE TABLE bike_stores.stores (
 	zip_code   VARCHAR (5)
 );
 
+-- ===============
+-- Staffs
+-- ===============
 CREATE TABLE bike_stores.staffs (
 	staff_id    SERIAL        PRIMARY KEY,
 	first_name  VARCHAR (50)  NOT NULL,
@@ -33,17 +36,26 @@ CREATE TABLE bike_stores.staffs (
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
+-- ===============
+-- Categories
+-- ===============
 CREATE TABLE bike_stores.categories (
 	category_id   SERIAL        PRIMARY KEY,
 	category_name VARCHAR (255) NOT NULL
 );
 
 
+-- ===============
+-- Brands
+-- ===============
 CREATE TABLE bike_stores.brands (
 	brand_id   SERIAL        PRIMARY KEY,
 	brand_name VARCHAR (255) NOT NULL
 );
 
+-- ===============
+-- Products
+-- ===============
 CREATE TABLE bike_stores.products (
 	product_id   SERIAL PRIMARY KEY,
 	product_name VARCHAR (255) NOT NULL,
@@ -59,6 +71,9 @@ CREATE TABLE bike_stores.products (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- ===============
+-- Customers
+-- ===============
 CREATE TABLE bike_stores.customers (
 	customer_id SERIAL PRIMARY KEY,
 	first_name  VARCHAR (255) NOT NULL,
@@ -71,6 +86,9 @@ CREATE TABLE bike_stores.customers (
 	zip_code    VARCHAR (5)
 );
 
+-- ===============
+-- Orders
+-- ===============
 CREATE TABLE bike_stores.orders (
 	order_id     SERIAL PRIMARY KEY,
 	customer_id  INT,
@@ -92,6 +110,9 @@ CREATE TABLE bike_stores.orders (
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
+-- ===============
+-- Order Items
+-- ===============
 CREATE TABLE bike_stores.order_items(
 	order_id   INT,
 	item_id    INT,
@@ -108,6 +129,9 @@ CREATE TABLE bike_stores.order_items(
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- ===============
+-- Stocks
+-- ===============
 CREATE TABLE bike_stores.stocks (
 	store_id   INT,
 	product_id INT,
