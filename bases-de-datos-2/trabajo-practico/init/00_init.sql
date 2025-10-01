@@ -13,4 +13,7 @@
 \echo '>> [dwh] creando hechos...'
 \i /sql/dwh/create_facts.sql
 
+\echo '>> [dwh] creando cubos...'
+\i /sql/dwh/create_cubes.sql
+
 \echo '>> Inicialización completada.'
