@@ -45,6 +45,11 @@ add constraint f_bike_order_d_store_fk
 		foreign key (store_id) references dwh.dim_store(store_id)
 ;
 
+-- Add primary key for fact_bike_order
+alter table dwh.fact_bike_order 
+add constraint f_bike_order_pk primary key (order_id, product_id)
+;
+
 -- ===============
 -- Shipment Fact
 -- ===============
@@ -89,6 +94,11 @@ add constraint f_bike_shipment_d_store_fk
 		foreign key (store_id) references dwh.dim_store(store_id)
 ;
 
+-- Add primary key for fact_bike_shipment
+alter table dwh.fact_bike_shipment 
+add constraint f_bike_shipment_pk primary key (order_id, product_id)
+;
+
 -- ============================
 -- Store Stock Fact
 -- ============================
@@ -113,4 +123,9 @@ add constraint f_store_stock_d_product_fk
 alter table dwh.fact_store_stock
 add constraint f_store_stock_d_date_fk
 	foreign key (date_id) references dwh.dim_date(date_id)
+;
+
+-- Add primary key for fact_store_stock
+alter table dwh.fact_store_stock
+add constraint f_store_stock_pk primary key (date_id, store_id, product_id)
 ;

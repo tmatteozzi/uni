@@ -13,7 +13,8 @@ CREATE TABLE bike_stores.stores (
 	street     VARCHAR (255),
 	city       VARCHAR (255),
 	state      VARCHAR (10),
-	zip_code   VARCHAR (5)
+	zip_code   VARCHAR (5),
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ===============
@@ -28,6 +29,7 @@ CREATE TABLE bike_stores.staffs (
 	active      SMALLINT      NOT NULL,
 	store_id    INT           NOT NULL,
 	manager_id  INT,
+	updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (store_id) 
         REFERENCES bike_stores.stores (store_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -83,7 +85,8 @@ CREATE TABLE bike_stores.customers (
 	street      VARCHAR (255),
 	city        VARCHAR (50),
 	state       VARCHAR (25),
-	zip_code    VARCHAR (5)
+	zip_code    VARCHAR (5),
+	updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ===============
@@ -136,6 +139,7 @@ CREATE TABLE bike_stores.stocks (
 	store_id   INT,
 	product_id INT,
 	quantity   INT,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (store_id, product_id),
 	FOREIGN KEY (store_id) 
         REFERENCES bike_stores.stores (store_id) 
