@@ -1,2 +1,0 @@
-PARA CORRER EL ETL EN EL DOCKER TIRAR
-docker exec pg_dw /docker-entrypoint-initdb.d/run_etl.sh
