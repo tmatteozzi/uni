@@ -76,6 +76,54 @@ ALTER TABLE bike_stores.stocks
     ADD COLUMN updated_at timestamptz DEFAULT now();
 END IF;
 
+  -- customers
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema='bike_stores' AND table_name='customers' AND column_name='created_at'
+  ) THEN
+ALTER TABLE bike_stores.customers
+    ADD COLUMN created_at timestamptz DEFAULT now();
+END IF;
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema='bike_stores' AND table_name='customers' AND column_name='updated_at'
+  ) THEN
+ALTER TABLE bike_stores.customers
+    ADD COLUMN updated_at timestamptz DEFAULT now();
+END IF;
+
+  -- stores
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema='bike_stores' AND table_name='stores' AND column_name='created_at'
+  ) THEN
+ALTER TABLE bike_stores.stores
+    ADD COLUMN created_at timestamptz DEFAULT now();
+END IF;
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema='bike_stores' AND table_name='stores' AND column_name='updated_at'
+  ) THEN
+ALTER TABLE bike_stores.stores
+    ADD COLUMN updated_at timestamptz DEFAULT now();
+END IF;
+
+  -- staffs
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema='bike_stores' AND table_name='staffs' AND column_name='created_at'
+  ) THEN
+ALTER TABLE bike_stores.staffs
+    ADD COLUMN created_at timestamptz DEFAULT now();
+END IF;
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema='bike_stores' AND table_name='staffs' AND column_name='updated_at'
+  ) THEN
+ALTER TABLE bike_stores.staffs
+    ADD COLUMN updated_at timestamptz DEFAULT now();
+END IF;
+
 END;
 $$;
 
@@ -119,6 +167,36 @@ END IF;
   ) THEN
 CREATE TRIGGER trg_stocks_updated_at
     BEFORE UPDATE ON bike_stores.stocks
+    FOR EACH ROW EXECUTE FUNCTION bike_stores.set_updated_at();
+END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_trigger t
+    JOIN pg_class c ON t.tgrelid = c.oid
+    WHERE t.tgname = 'trg_customers_updated_at' AND c.relname = 'customers'
+  ) THEN
+CREATE TRIGGER trg_customers_updated_at
+    BEFORE UPDATE ON bike_stores.customers
+    FOR EACH ROW EXECUTE FUNCTION bike_stores.set_updated_at();
+END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_trigger t
+    JOIN pg_class c ON t.tgrelid = c.oid
+    WHERE t.tgname = 'trg_stores_updated_at' AND c.relname = 'stores'
+  ) THEN
+CREATE TRIGGER trg_stores_updated_at
+    BEFORE UPDATE ON bike_stores.stores
+    FOR EACH ROW EXECUTE FUNCTION bike_stores.set_updated_at();
+END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_trigger t
+    JOIN pg_class c ON t.tgrelid = c.oid
+    WHERE t.tgname = 'trg_staffs_updated_at' AND c.relname = 'staffs'
+  ) THEN
+CREATE TRIGGER trg_staffs_updated_at
+    BEFORE UPDATE ON bike_stores.staffs
     FOR EACH ROW EXECUTE FUNCTION bike_stores.set_updated_at();
 END IF;
 END;
