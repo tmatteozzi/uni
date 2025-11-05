@@ -5,14 +5,29 @@ create schema dwh;
 -- ==================
 -- Product Dimension
 -- ==================
-create table dwh.dim_product as
+create sequence if not exists dwh.dim_product_sk_seq;
+
+create table dwh.dim_product (
+	product_sk bigint default nextval('dwh.dim_product_sk_seq') primary key
+	,product_id int not null
+	,product_name varchar(255) not null
+	,list_price decimal(10,2) not null
+	,model_year int not null
+	,brand_name varchar(255) not null
+	,category_name varchar(255) not null
+	,valid_from timestamptz not null default now()
+	,valid_to timestamptz
+	,is_current boolean not null default true
+);
+
+insert into dwh.dim_product (product_id, product_name, list_price, model_year, brand_name, category_name)
 select 
 	p.product_id
 	,p.product_name 
 	,p.list_price
 	,p.model_year
 	,b.brand_name
-	,c.category_name 
+	,c.category_name
 from bike_stores.products p
 join bike_stores.brands b
 	on p.brand_id = b.brand_id 
@@ -20,14 +35,29 @@ join bike_stores.categories c
 	on p.category_id = c.category_id 
 ;
 
-alter table dwh.dim_product 
-add constraint dim_product_pk primary key (product_id)
-;
+create index idx_dim_product_id_current on dwh.dim_product(product_id, is_current);
 
 -- ===================
 -- Customer Dimension
 -- ===================
-create table dwh.dim_customer as
+create sequence if not exists dwh.dim_customer_sk_seq;
+
+create table dwh.dim_customer (
+	customer_sk bigint default nextval('dwh.dim_customer_sk_seq') primary key
+	,customer_id int not null
+	,first_name varchar(255) not null
+	,last_name varchar(255) not null
+	,phone varchar(25)
+	,email varchar(255)
+	,street varchar(255)
+	,zip_code varchar(5)
+	,state varchar(25)
+	,valid_from timestamptz not null default now()
+	,valid_to timestamptz
+	,is_current boolean not null default true
+);
+
+insert into dwh.dim_customer (customer_id, first_name, last_name, phone, email, street, zip_code, state)
 select
 	c.customer_id
 	,c.first_name
@@ -40,14 +70,28 @@ select
 from bike_stores.customers c
 ;
 
-alter table dwh.dim_customer 
-add constraint dim_customer_pk primary key (customer_id)
-;
+create index idx_dim_customer_id_current on dwh.dim_customer(customer_id, is_current);
 
 -- ================
 -- Store Dimension
 -- ================
-create table dwh.dim_store as
+create sequence if not exists dwh.dim_store_sk_seq;
+
+create table dwh.dim_store (
+	store_sk bigint default nextval('dwh.dim_store_sk_seq') primary key
+	,store_id int not null
+	,store_name varchar(255) not null
+	,phone varchar(25)
+	,email varchar(255)
+	,street varchar(255)
+	,zip_code varchar(5)
+	,city varchar(255)
+	,valid_from timestamptz not null default now()
+	,valid_to timestamptz
+	,is_current boolean not null default true
+);
+
+insert into dwh.dim_store (store_id, store_name, phone, email, street, zip_code, city)
 select 
 	s.store_id 
 	,s.store_name
@@ -55,18 +99,34 @@ select
 	,coalesce (s.email, 'Unknown') as email
 	,s.street
 	,s.zip_code
-	,s.city 
+	,s.city
 from bike_stores.stores s
 ;
 
-alter table dwh.dim_store 
-add constraint dim_store_pk primary key (store_id)
-;
+create index idx_dim_store_id_current on dwh.dim_store(store_id, is_current);
 
 -- ================
 -- Staff Dimension
 -- ================
-create table dwh.dim_staff as
+create sequence if not exists dwh.dim_staff_sk_seq;
+
+create table dwh.dim_staff (
+	staff_sk bigint default nextval('dwh.dim_staff_sk_seq') primary key
+	,staff_id int not null
+	,first_name varchar(50) not null
+	,last_name varchar(50) not null
+	,phone varchar(25)
+	,email varchar(255)
+	,active int not null
+	,manager_id int
+	,manager_first_name varchar(50)
+	,manager_last_name varchar(50)
+	,valid_from timestamptz not null default now()
+	,valid_to timestamptz
+	,is_current boolean not null default true
+);
+
+insert into dwh.dim_staff (staff_id, first_name, last_name, phone, email, active, manager_id, manager_first_name, manager_last_name)
 select 
 	s.staff_id
 	,s.first_name
@@ -82,13 +142,13 @@ left join bike_stores.staffs s2
 	on s.manager_id = s2.staff_id
 ;
 
-alter table dwh.dim_staff 
-add constraint dim_staff_pk primary key (staff_id)
-;
+create index idx_dim_staff_id_current on dwh.dim_staff(staff_id, is_current);
 
 -- ==========================
 -- Staff Hierarchy Bridge
 -- ==========================
+-- Note: This bridge table uses business keys (staff_id) for the hierarchy logic
+-- but will be joined to current staff records via dim_staff
 create table dwh.staff_hierarchy as
 with recursive sh(staff_id, subordinate_id, hierarchy_depth) as
 (
@@ -113,14 +173,9 @@ select
 from sh
 ;
 
-alter table dwh.staff_hierarchy
-add constraint statt_hierarchy_d_staff_fk 
-	foreign key (staff_id) references dwh.dim_staff(staff_id)
-;
-alter table dwh.staff_hierarchy 
-add constraint statt_hierarchy_d_subordinate_fk 
-	foreign key (subordinate_id) references dwh.dim_staff(staff_id)
-;
+-- Create indexes for performance
+create index idx_staff_hierarchy_staff on dwh.staff_hierarchy(staff_id);
+create index idx_staff_hierarchy_subordinate on dwh.staff_hierarchy(subordinate_id);
 
 -- ===============
 -- Date Dimension
