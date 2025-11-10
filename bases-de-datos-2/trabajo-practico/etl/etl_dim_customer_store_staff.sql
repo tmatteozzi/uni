@@ -79,6 +79,12 @@ BEGIN
     UPDATE etl.etl_watermarks SET load_watermark = now() WHERE job='dim_customer';
     INSERT INTO etl.etl_runs(job, finished_at, status, rows_processed, message)
     VALUES ('dim_customer', now(), 'OK', rows_count, 'Dim customer SCD Type 2 updated');
+    
+    -- Refrescar cubos automáticamente si hubo cambios
+    IF rows_count > 0 THEN
+        PERFORM dwh.etl_refresh_cubes();
+        RAISE NOTICE 'Cubos refrescados automáticamente después de actualizar dim_customer';
+    END IF;
 END;
 $$;
 
@@ -159,6 +165,12 @@ BEGIN
     UPDATE etl.etl_watermarks SET load_watermark = now() WHERE job='dim_store';
     INSERT INTO etl.etl_runs(job, finished_at, status, rows_processed, message)
     VALUES ('dim_store', now(), 'OK', rows_count, 'Dim store SCD Type 2 updated');
+    
+    -- Refrescar cubos automáticamente si hubo cambios
+    IF rows_count > 0 THEN
+        PERFORM dwh.etl_refresh_cubes();
+        RAISE NOTICE 'Cubos refrescados automáticamente después de actualizar dim_store';
+    END IF;
 END;
 $$;
 
@@ -246,5 +258,11 @@ BEGIN
     UPDATE etl.etl_watermarks SET load_watermark = now() WHERE job='dim_staff';
     INSERT INTO etl.etl_runs(job, finished_at, status, rows_processed, message)
     VALUES ('dim_staff', now(), 'OK', rows_count, 'Dim staff SCD Type 2 updated');
+    
+    -- Refrescar cubos automáticamente si hubo cambios
+    IF rows_count > 0 THEN
+        PERFORM dwh.etl_refresh_cubes();
+        RAISE NOTICE 'Cubos refrescados automáticamente después de actualizar dim_staff';
+    END IF;
 END;
 $$;

@@ -76,5 +76,11 @@ BEGIN
 
     INSERT INTO etl.etl_runs(job, finished_at, status, rows_processed, message)
     VALUES ('dim_product', now(), 'OK', rows_count, 'Dim product SCD Type 2 updated');
+    
+    -- Refrescar cubos automáticamente si hubo cambios
+    IF rows_count > 0 THEN
+        PERFORM dwh.etl_refresh_cubes();
+        RAISE NOTICE 'Cubos refrescados automáticamente después de actualizar dim_product';
+    END IF;
 END;
 $$;
