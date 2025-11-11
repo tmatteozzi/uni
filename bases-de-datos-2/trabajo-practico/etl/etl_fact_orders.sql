@@ -80,6 +80,7 @@ BEGIN
     WITH src AS (
         SELECT
             to_char(o.shipped_date,'yyyymmdd')::int as shipment_date_id,
+            to_char(o.order_date,'yyyymmdd')::int as order_date_id,
             o.customer_id, 
             o.staff_id, 
             o.store_id, 
@@ -89,7 +90,9 @@ BEGIN
             oi.list_price, 
             oi.discount,
             oi.list_price * oi.quantity as shipment_amount,
-            (oi.list_price - oi.discount) * oi.quantity as discounted_shipment_amount
+            (oi.list_price - oi.discount) * oi.quantity as discounted_shipment_amount,
+            (oi.list_price * 0.6) * oi.quantity as estimated_cost,
+            (o.shipped_date - o.order_date)::int as shipping_days
         FROM bike_stores.orders o
         JOIN bike_stores.order_items oi ON o.order_id = oi.order_id
         WHERE o.shipped_date IS NOT NULL
@@ -99,6 +102,7 @@ BEGIN
     src_with_sk AS (
         SELECT
             src.shipment_date_id,
+            src.order_date_id,
             dc.customer_sk,
             ds.staff_sk,
             dst.store_sk,
@@ -108,7 +112,9 @@ BEGIN
             src.list_price,
             src.discount,
             src.shipment_amount,
-            src.discounted_shipment_amount
+            src.discounted_shipment_amount,
+            src.estimated_cost,
+            src.shipping_days
         FROM src
         JOIN dwh.dim_customer dc ON src.customer_id = dc.customer_id AND dc.is_current = true
         JOIN dwh.dim_staff ds ON src.staff_id = ds.staff_id AND ds.is_current = true
@@ -117,12 +123,14 @@ BEGIN
     ),
     inserted AS (
         INSERT INTO dwh.fact_bike_shipment (
-            shipment_date_id, customer_sk, staff_sk, store_sk, product_sk, order_id, 
-            quantity, list_price, discount, shipment_amount, discounted_shipment_amount
+            shipment_date_id, order_date_id, customer_sk, staff_sk, store_sk, product_sk, order_id, 
+            quantity, list_price, discount, shipment_amount, discounted_shipment_amount, 
+            estimated_cost, shipping_days
         )
         SELECT 
-            shipment_date_id, customer_sk, staff_sk, store_sk, product_sk, order_id,
-            quantity, list_price, discount, shipment_amount, discounted_shipment_amount
+            shipment_date_id, order_date_id, customer_sk, staff_sk, store_sk, product_sk, order_id,
+            quantity, list_price, discount, shipment_amount, discounted_shipment_amount,
+            estimated_cost, shipping_days
         FROM src_with_sk
         ON CONFLICT (order_id, product_sk) DO NOTHING
         RETURNING 1

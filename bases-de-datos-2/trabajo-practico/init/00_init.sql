@@ -16,6 +16,9 @@
 \echo '>> [dwh] creando cubos...'
 \i /sql/dwh/create_cubes.sql
 
+\echo '>> [dwh] creando vistas históricas...'
+\i /sql/dwh/create_views_historicas.sql
+
 \echo '>> [etl] creando etl...'
 \i /sql/etl/etl_create_metadata.sql
 \i /sql/etl/etl_add_updated_triggers.sql

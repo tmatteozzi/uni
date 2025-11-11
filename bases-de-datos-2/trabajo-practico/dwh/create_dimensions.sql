@@ -221,3 +221,28 @@ add constraint dim_date_pk primary key (date_id)
 alter table dwh.dim_date
 add constraint dim_date_date_u unique(date)
 ;
+
+-- ===========================
+-- Store Capacity Configuration
+-- ===========================
+-- This table defines the storage capacity for each store
+create table dwh.store_capacity (
+	store_sk bigint not null
+	,max_capacity int not null default 10000
+	,constraint store_capacity_pk primary key (store_sk)
+	,constraint store_capacity_store_fk foreign key (store_sk) references dwh.dim_store(store_sk)
+);
+
+-- Insert default capacities for each store
+insert into dwh.store_capacity (store_sk, max_capacity)
+select 
+	store_sk,
+	case 
+		when store_id = 1 then 15000  -- Santa Cruz Bikes
+		when store_id = 2 then 12000  -- Baldwin Bikes
+		when store_id = 3 then 10000  -- Rowlett Bikes
+		else 10000
+	end as max_capacity
+from dwh.dim_store
+where is_current = true
+;

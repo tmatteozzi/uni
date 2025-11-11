@@ -10,6 +10,7 @@ create schema if not exists dwh_cube;
 -- CUBE 1: Sales / Orders (fact_bike_order)
 -- Axes: order_date_id, store_sk, product_sk, customer_sk, staff_sk
 -- Metrics: rows, quantity, gross_amount, final_price, average_discount
+--          avg_ticket, discount_margin_pct
 -- =========================================================
 
 drop materialized view if exists dwh_cube.cube_bike_order cascade;
@@ -33,7 +34,19 @@ select
     sum(fo.quantity)                as quantity,
     sum(fo.order_amount)            as gross_amount,
     sum(fo.discounted_order_amount) as final_price,
-    avg(fo.discount)                as average_discount
+    avg(fo.discount)                as average_discount,
+    -- New metric 1: Average Ticket (final price per order)
+    case 
+        when count(distinct fo.order_id) > 0 
+        then sum(fo.discounted_order_amount) / count(distinct fo.order_id)
+        else 0 
+    end as avg_ticket,
+    -- New metric 2: Discount Margin % (percentage of discount given)
+    case 
+        when sum(fo.order_amount) > 0 
+        then ((sum(fo.order_amount) - sum(fo.discounted_order_amount)) / sum(fo.order_amount)) * 100
+        else 0 
+    end as discount_margin_pct
 from dwh.fact_bike_order fo
 group by cube (
     fo.order_date_id,
@@ -60,6 +73,7 @@ create index if not exists ix_cube_bike_order_store_product
 -- CUBE 2: Shipments (fact_bike_shipment)
 -- Axes: shipment_date_id, store_sk, product_sk, customer_sk, staff_sk
 -- Metrics: rows, quantity, gross_amount, final_price, average_discount
+--          profit_margin_pct, avg_shipping_days
 -- =========================================================
 
 drop materialized view if exists dwh_cube.cube_bike_shipment cascade;
@@ -82,7 +96,15 @@ select
     sum(fs.quantity)                     as quantity,
     sum(fs.shipment_amount)              as gross_amount,
     sum(fs.discounted_shipment_amount)   as final_price,
-    avg(fs.discount)                     as average_discount
+    avg(fs.discount)                     as average_discount,
+    -- New metric 1: Profit Margin % ((revenue - cost) / revenue * 100)
+    case 
+        when sum(fs.discounted_shipment_amount) > 0 
+        then ((sum(fs.discounted_shipment_amount) - sum(fs.estimated_cost)) / sum(fs.discounted_shipment_amount)) * 100
+        else 0 
+    end as profit_margin_pct,
+    -- New metric 2: Average Shipping Days (order to shipment time)
+    avg(fs.shipping_days) as avg_shipping_days
 from dwh.fact_bike_shipment fs
 group by cube (
     fs.shipment_date_id,
@@ -106,7 +128,7 @@ create index if not exists ix_cube_bike_shipment_store_product
 -- =========================================================
 -- CUBE 3: Store Stock (fact_store_stock)
 -- Axes: date_id, store_sk, product_sk
--- Metrics: rows, total_stock
+-- Metrics: rows, total_stock, stock_capacity_pct, stock_value
 -- =========================================================
 
 drop materialized view if exists dwh_cube.cube_store_stock cascade;
@@ -122,8 +144,24 @@ select
          grouping(fss.product_sk)::int
     ) as gid,
     count(*)          as rows,
-    sum(fss.quantity) as total_stock
+    sum(fss.quantity) as total_stock,
+    -- New metric 1: Stock vs Capacity % (stock / capacity * 100)
+    case 
+        when grouping(fss.store_sk) = 0 then
+            case 
+                when max(sc.max_capacity) > 0 
+                then (sum(fss.quantity)::decimal / max(sc.max_capacity)) * 100
+                else 0 
+            end
+        else null  -- Only calculate when store is not aggregated
+    end as stock_capacity_pct,
+    -- New metric 2: Stock Value (quantity * list_price)
+    sum(fss.quantity * dp.list_price) as stock_value
 from dwh.fact_store_stock fss
+left join dwh.store_capacity sc 
+    on fss.store_sk = sc.store_sk
+left join dwh.dim_product dp
+    on fss.product_sk = dp.product_sk and dp.is_current = true
 group by cube (
     fss.date_id,
     fss.store_sk,

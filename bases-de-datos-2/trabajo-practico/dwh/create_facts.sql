@@ -64,6 +64,7 @@ add constraint f_bike_order_pk primary key (order_id, product_sk)
 create table dwh.fact_bike_shipment as
 select
 	to_char(o.shipped_date, 'yyyymmdd')::int as shipment_date_id
+	,to_char(o.order_date, 'yyyymmdd')::int as order_date_id
 	,dc.customer_sk
 	,ds.staff_sk
 	,dst.store_sk
@@ -74,6 +75,10 @@ select
 	,oi.discount
 	,oi.list_price * oi.quantity                 as shipment_amount 
 	,(oi.list_price - oi.discount) * oi.quantity as discounted_shipment_amount
+	-- Estimated cost at 60% of list price for profit margin calculation
+	,(oi.list_price * 0.6) * oi.quantity         as estimated_cost
+	-- Shipping days (difference between shipped_date and order_date)
+	,(o.shipped_date - o.order_date)::int as shipping_days
 from bike_stores.orders o 
 join bike_stores.order_items oi
 	on o.order_id = oi.order_id
