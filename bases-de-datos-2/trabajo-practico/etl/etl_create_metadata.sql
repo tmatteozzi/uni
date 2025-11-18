@@ -16,7 +16,8 @@ values
     ('dim_staff', '1970-01-01'::timestamptz),
     ('fact_orders', '1970-01-01'::timestamptz),
     ('fact_shipments', '1970-01-01'::timestamptz),
-    ('fact_store_stock', '1970-01-01'::timestamptz)
+    ('fact_store_stock', '1970-01-01'::timestamptz),
+    ('aggregated_metrics', '1970-01-01'::timestamptz)
     ON CONFLICT (job) DO NOTHING;
 
 -- table to log ETL runs

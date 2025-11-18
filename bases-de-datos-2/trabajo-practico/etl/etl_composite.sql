@@ -15,5 +15,8 @@ BEGIN
 
   -- refresh cubes
   PERFORM dwh.etl_refresh_cubes();
+  
+  -- calculate and save metrics
+  PERFORM dwh.etl_calculate_metrics();
 END;
 $$;
